@@ -1,6 +1,6 @@
 from rubik_solver import utils
 
-cube = "wowgybwyogygybyoggrowbrgywrborwggybrbwororbwborgowryby"
+cube = "wowg y bwyo gygy b yogg rowb r gywr borw g gybr bwor o rbwb orgo w ryby"
 
 print(utils.solve(cube, 'Kociemba'))
 utils.pprint(cube)
