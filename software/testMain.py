@@ -1,11 +1,11 @@
 from motor import Motor
 
 
-m = Motor()
+D = Motor()
 
-m.turn90CW()
-m.turn90CW()
-m.turn90CW()
-m.turn90CCW()
-m.turn90CCW()
-m.turn90CCW()
+D.turn90CW()
+D.turn90CW()
+D.turn90CW()
+D.turn90CCW()
+D.turn90CCW()
+D.turn90CCW()
