@@ -4,9 +4,9 @@ import RPi.GPIO as GPIO
 class Motor:
 
 
-    def __init__(self):
-        self.DIR = 20       # Direction GPIO Pin
-        self.STEP = 21      # Step GPIO Pin
+    def __init__(self, directionPin, stepPin):
+        self.DIR = directionPin       # Direction GPIO Pin
+        self.STEP = stepPin      # Step GPIO Pin
         self.CW = 1         # Clockwise Rotation
         self.CCW = 0        # Counterclockwise Rotation
         self.SPR = 200      # Steps per Revolution (360 / 1.8)
