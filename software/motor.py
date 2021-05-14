@@ -34,9 +34,9 @@ class Motor:
         sleep(.5)
         for x in range(int(self.SPR/4)):
             GPIO.output(self.STEP, GPIO.HIGH)
-            sleep(self.delay)
-            GPIO.output(self.TEP, GPIO.LOW)
-            sleep(self.delay)
+            sleep(self.DELAY)
+            GPIO.output(self.STEP, GPIO.LOW)
+            sleep(self.DELAY)
 
     def printdetails(self):
         print("This piano is a/an " , self.DIR , " foot")
