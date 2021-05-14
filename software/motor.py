@@ -20,6 +20,9 @@ class Motor:
         RESOLUTION = {'Full': (0, 0, 0),'Half': (1, 0, 0),'1/4': (0, 1, 0),'1/8': (1, 1, 0),'1/16': (0, 0, 1),'1/32': (1, 0, 1)}
         GPIO.output(MODE, RESOLUTION['Full'])
 
+    def setDelay(self, delay):
+        self.DELAY = delay
+
     def turn90CW(self):
         GPIO.output(self.DIR, self.CW)
         sleep(.5)
