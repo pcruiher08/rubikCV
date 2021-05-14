@@ -12,5 +12,5 @@ class Motor:
 
 	
     def printdetails(self):
-        print("This piano is a/an " + self.DIR + " foot",)
-        print(self.STEP, "piano, " + self.SPR, "years old and costing\" + self.price + \" dollars.")
+        print("This piano is a/an " , self.DIR , " foot")
+        print(self.STEP, "piano, " , self.SPR, "years old and costing" , self.CW , " dollars.")
