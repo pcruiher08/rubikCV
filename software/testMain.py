@@ -1,6 +1,6 @@
 from motor import Motor
 import time
-turnDelay = .005 / 8 * 1
+turnDelay = .005 / 8 * 1/2
 
 F = Motor(26,19)
 L = Motor(13,6)
