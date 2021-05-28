@@ -1,7 +1,7 @@
 from motor import Motor
 
 
-D = Motor(20,21)
+D = Motor(26,19)
 '''
 L = Motor(12,16)
 
