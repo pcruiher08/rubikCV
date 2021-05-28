@@ -9,7 +9,7 @@ class Motor:
         self.STEP = stepPin      # Step GPIO Pin
         self.CW = 1         # Clockwise Rotation
         self.CCW = 0        # Counterclockwise Rotation
-        self.SPR = 400      # Steps per Revolution (360 / 1.8)
+        self.SPR = 800      # Steps per Revolution (360 / 1.8)
         self.DELAY = .005/1 # delay
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.DIR, GPIO.OUT)
