@@ -27,7 +27,13 @@ U.turn90CW()
 L.turn90CCW()
 F.turn90CCW()
 F.turn90CCW()
+U.turn90CW()
+L.turn90CCW()
+
 time.sleep(5)
+
+L.turn90CW()
+U.turn90CCW()
 F.turn90CW()
 F.turn90CW()
 L.turn90CW()
