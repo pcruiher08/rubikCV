@@ -1,4 +1,5 @@
 from motor import Motor
+import time
 turnDelay = .005 / 8 * 1
 
 F = Motor(26,19)
@@ -9,39 +10,66 @@ U = Motor(5, 22)
 D = Motor(27, 17)
 
 F.setDelay(turnDelay)
-F.turn90CW()
-F.turn90CW()
-F.turn90CW()
-F.turn90CCW()
-F.turn90CCW()
-F.turn90CCW()
-
 L.setDelay(turnDelay)
-L.turn90CW()
-L.turn90CW()
-L.turn90CW()
-L.turn90CCW()
-L.turn90CCW()
-L.turn90CCW()
-
 R.setDelay(turnDelay)
-R.turn90CW()
-R.turn90CW()
-R.turn90CW()
-R.turn90CCW()
-R.turn90CCW()
-R.turn90CCW()
-
-
 B.setDelay(turnDelay)
-B.turn90CW()
-B.turn90CW()
-B.turn90CW()
-B.turn90CCW()
-B.turn90CCW()
-B.turn90CCW()
-
 U.setDelay(turnDelay)
+D.setDelay(turnDelay)
+
+F.turn90CW()
+D.turn90CW()
+U.turn90CW()
+L.turn90CCW()
+D.turn90CCW()
+U.turn90CW()
+U.turn90CW()
+L.turn90CCW()
+F.turn90CCW()
+
+time.sleep(3)
+
+
+F.turn90CCW()
+D.turn90CCW()
+U.turn90CCW()
+L.turn90CW()
+D.turn90CW()
+U.turn90CCW()
+U.turn90CCW()
+L.turn90CW()
+F.turn90CW()
+
+
+'''
+F.turn90CW()
+F.turn90CW()
+F.turn90CW()
+F.turn90CCW()
+F.turn90CCW()
+F.turn90CCW()
+
+L.turn90CW()
+L.turn90CW()
+L.turn90CW()
+L.turn90CCW()
+L.turn90CCW()
+L.turn90CCW()
+
+R.turn90CW()
+R.turn90CW()
+R.turn90CW()
+R.turn90CCW()
+R.turn90CCW()
+R.turn90CCW()
+
+
+B.turn90CW()
+B.turn90CW()
+B.turn90CW()
+B.turn90CCW()
+B.turn90CCW()
+B.turn90CCW()
+
 U.turn90CW()
 U.turn90CW()
 U.turn90CW()
@@ -49,10 +77,10 @@ U.turn90CCW()
 U.turn90CCW()
 U.turn90CCW()
 
-D.setDelay(turnDelay)
 D.turn90CW()
 D.turn90CW()
 D.turn90CW()
 D.turn90CCW()
 D.turn90CCW()
 D.turn90CCW()
+'''

@@ -32,9 +32,6 @@ class Motor:
             GPIO.output(self.STEP, GPIO.LOW)
             sleep(self.DELAY)
     
-    def duerme(self, time):
-        sleep(time)
-        
     def turn90CCW(self):
         GPIO.output(self.DIR, self.CCW)
         sleep(.25)
