@@ -15,7 +15,8 @@ R.setDelay(turnDelay)
 B.setDelay(turnDelay)
 U.setDelay(turnDelay)
 D.setDelay(turnDelay)
-
+'''
+#test
 F.turn90CW()
 D.turn90CW()
 U.turn90CW()
@@ -37,13 +38,12 @@ L.turn90CW()
 U.turn90CCW()
 D.turn90CCW()
 F.turn90CCW()
-
-
-#start
-
-
-
 '''
+
+
+
+
+#tuning
 F.turn90CW()
 F.turn90CW()
 F.turn90CW()
@@ -86,4 +86,3 @@ D.turn90CW()
 D.turn90CCW()
 D.turn90CCW()
 D.turn90CCW()
-'''
