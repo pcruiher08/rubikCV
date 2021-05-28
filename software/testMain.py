@@ -15,7 +15,7 @@ R.setDelay(turnDelay)
 B.setDelay(turnDelay)
 U.setDelay(turnDelay)
 D.setDelay(turnDelay)
-
+'''
 F.turn90CW()
 D.turn90CW()
 U.turn90CW()
@@ -38,6 +38,26 @@ U.turn90CCW()
 U.turn90CCW()
 L.turn90CW()
 F.turn90CW()
+
+'''
+F.turn90CW()
+L.turn90CW()
+U.turn90CCW()
+U.turn90CCW()
+D.turn90CW()
+L.turn90CW()
+U.turn90CCW()
+D.turn90CCW()
+F.turn90CCW()
+F.turn90CW()
+L.turn90CW()
+U.turn90CCW()
+U.turn90CCW()
+D.turn90CW()
+L.turn90CW()
+U.turn90CCW()
+D.turn90CCW()
+F.turn90CCW()
 
 
 '''
