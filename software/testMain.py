@@ -23,7 +23,6 @@ R.turn90CCW()
 R.turn90CCW()
 
 
-'''
 B.setDelay(.005 / 8 * 2)
 B.turn90CW()
 B.turn90CW()
@@ -31,4 +30,3 @@ B.turn90CW()
 B.turn90CCW()
 B.turn90CCW()
 B.turn90CCW()
-'''
