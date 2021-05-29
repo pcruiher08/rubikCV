@@ -96,6 +96,8 @@ while True:
 
             img = cv2.circle(img, P16, 2, blueColor, 5)
 
+
+            img = cv2.circle(img, P19, 2, blueColor, 5)
             img = cv2.circle(img, P20, 2, blueColor, 5)
 
 
