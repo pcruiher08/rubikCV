@@ -85,7 +85,7 @@ while True:
             P12 = getFractionPoint(bottomCorner, leftCorner, 3/6)
             P13 = bottomCorner
 
-            P11 = (P11[0] + 27, P11[1] + 12)
+            P11 = (P11[0] + 30, P11[1] + 12)
             P12 = (P12[0] + 22, P12[1] + 12)
             P13 = (P13[0], P13[1] + 25)
 
