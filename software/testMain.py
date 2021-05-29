@@ -86,28 +86,28 @@ D.setDelay(turnDelay)
 
 screen.lcd_clear()
 screen.lcd_display_string("Scanning", 1)
-time.sleep(0.2)
+time.sleep(1)
 screen.lcd_clear()
 screen.lcd_display_string("Front scan", 1)
 
 commandParser("F2")
 commandParser("F' F'")
 
-time.sleep(0.2)
+time.sleep(1)
 screen.lcd_clear()
 screen.lcd_display_string("Left scan", 1)
 
 commandParser("L2")
 commandParser("L' L'")
 
-time.sleep(0.2)
+time.sleep(1)
 screen.lcd_clear()
 screen.lcd_display_string("Down scan", 1)
 
 commandParser("D2")
 commandParser("D' D'")
 
-time.sleep(0.2)
+time.sleep(1)
 screen.lcd_clear()
 screen.lcd_display_string("Up scan", 1)
 
@@ -117,7 +117,7 @@ commandParser("F")
 commandParser("L'")
 commandParser("L")
 
-time.sleep(0.2)
+time.sleep(1)
 screen.lcd_clear()
 screen.lcd_display_string("Back piece", 1)
 
