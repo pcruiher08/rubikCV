@@ -103,6 +103,8 @@ while True:
 
             img = cv2.line(img, P5, P20,redColor,2)
             img = cv2.line(img, P8, P16,redColor,2)
+            img = cv2.line(img, P10, P20,redColor,2)
+            img = cv2.line(img, P7, P16,redColor,2)
 
 
             
