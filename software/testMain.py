@@ -76,7 +76,10 @@ U.setDelay(turnDelay)
 D.setDelay(turnDelay)
 
 #commandParser("D U2 R D F L' D2 R' D L D' R2 B2 R2 D B2 D' B2 D2 F2")
-commandParser("F L F U’ R U F2 L2 U’ L’ B D’ B’ L2 U")
+#cube in a cube pattern
+#commandParser("F L F U’ R U F2 L2 U’ L’ B D’ B’ L2 U")
+#6 centers
+commandParser("F2 B2 U D’ R2 L2 U D’")
 '''
 #test
 F.turn90CW()
