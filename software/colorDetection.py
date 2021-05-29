@@ -53,9 +53,9 @@ while True:
             img = cv2.line(img, bottomCorner, leftCorner,greenColor,8)
 
             P1 = getFractionPoint(bottomCorner, leftCorner, 2/3)
-            P2 = getFractionPoint(bottomCorner, leftCorner, 2/3)
+            P2 = getFractionPoint(bottomCorner, leftCorner, 1/3)
 
-            print(P1)
+            print(P2)
             img = cv2.circle(img, P1, 2, redColor, 5)
             img = cv2.circle(img, P2, 2, redColor, 5)
 
