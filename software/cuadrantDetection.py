@@ -124,7 +124,8 @@ while True:
             img = cv2.line(img, P5, P11,redColor,2)
             img = cv2.line(img, P1, P11,redColor,2)
             img = cv2.line(img, P15, P7,redColor,2)
-
+            img = cv2.line(img, P6, P15,redColor,2)
+            img = cv2.line(img, P2, P12,redColor,2)
 
 
 
