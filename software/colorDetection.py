@@ -37,7 +37,7 @@ while True:
             bottomCorner = (topCorner[0]-5, topCorner[1]+160)
             rightCorner = (bottomCorner[0]+160, bottomCorner[1]+10)
             leftCorner = (bottomCorner[0]-160, bottomCorner[1]+10)
-            img = cv2.line(img, topCorner, bottomCorner,(0,255,0),8)\
+            img = cv2.line(img, topCorner, bottomCorner,(0,255,0),8)
             img = cv2.line(img, bottomCorner, rightCorner,(0,255,0),8)
             img = cv2.line(img, bottomCorner, leftCorner,(0,255,0),8)
             
