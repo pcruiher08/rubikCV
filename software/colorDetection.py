@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 def getMidPoint(a, b):
-    return ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+    return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
