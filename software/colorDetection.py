@@ -72,7 +72,7 @@ while True:
 
             P6 = (P6[0] + 20, P6[1])
             P7 = (P7[0] + 20, P7[1])
-            P7 = (P7[0] + 20, P8[1])
+            P7 = (P8[0] + 20, P8[1])
             
             img = cv2.circle(img, P1, 2, redColor, 5)
             img = cv2.circle(img, P2, 2, redColor, 5)
