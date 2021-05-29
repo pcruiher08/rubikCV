@@ -80,8 +80,8 @@ while True:
 
 
 
-            P19 = getFractionPoint(P5, P20, 2/3 + 0.08)
             P20 = (P5[0] + distancePointPoint(bottomCorner, rightCorner) - 10, P5[1] + distancePointPoint(P5, P4) - 13)
+            P19 = getFractionPoint(P5, P20, 2/3 + 0.08)
 
             img = cv2.circle(img, P1, 2, blueColor, 5)
             img = cv2.circle(img, P2, 2, blueColor, 5)
