@@ -28,6 +28,7 @@ def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
 
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
+blueColor = (255,0,0)
 redColor = (0,0,255)
 while True:
     success, img = cap.read()
@@ -81,7 +82,7 @@ while True:
             img = cv2.circle(img, P5, 2, redColor, 5)
             img = cv2.circle(img, P6, 2, redColor, 5)
             img = cv2.circle(img, P7, 2, redColor, 5)
-            img = cv2.circle(img, P8, 2, redColor, 5)
+            img = cv2.circle(img, P8, 2, blueColor, 5)
 
 
 
