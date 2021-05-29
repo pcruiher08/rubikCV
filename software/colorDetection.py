@@ -7,11 +7,11 @@ def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     key = getattr(aruco, f'DICT_{markerSize}X{markerSize}_{totalMarkers}')
     arucoDict = aruco.Dictionary_get(key)
     arucoParam = aruco.DetectorParameters_create()
-    bboxs, ids, rejected = aruco.detectMarkers(gray, arucoDict, parameters = arucoParam)
+    corners, ids, rejected = aruco.detectMarkers(gray, arucoDict, parameters = arucoParam)
     # print(ids)
     if draw:
-        aruco.drawDetectedMarkers(img, bboxs,ids) 
-    return [bboxs, ids]
+        aruco.drawDetectedMarkers(img, corners,ids) 
+    return [corners, ids]
 
 cap = cv2.VideoCapture(0)   
 while True:
@@ -20,6 +20,8 @@ while True:
     if  len(arucofound[0])!=0:
         for bbox, id in zip(arucofound[0], arucofound[1]):
             print(bbox, id)
+            coords = tuple([0][0])
+            img = cv2.circle(img, coords, 2, (255,0,0), 2)
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
     if k == 27:
