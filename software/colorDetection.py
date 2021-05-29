@@ -33,7 +33,7 @@ while True:
             img = cv2.circle(img, coords, 2, (0,0,255), 5)
         if(howManyArucos == 2):
             topCorner = getMidPoint(coordinates[0], coordinates[1])
-            img = cv2.line(img, topCorner, (topCorner[0], topCorner[1]-20),(0,255,255),5)
+            img = cv2.line(img, topCorner, (topCorner[0], topCorner[1]+200),(0,255,255),5)
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
     if k == 27:
