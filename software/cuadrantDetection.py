@@ -48,7 +48,7 @@ while True:
             topCorner = (topCorner[0]-5, topCorner[1]+22)
             bottomCorner = (topCorner[0]-5, topCorner[1]+160)
             rightCorner = (bottomCorner[0]+125, bottomCorner[1]+47)
-            leftCorner = (bottomCorner[0]-130, bottomCorner[1]+45)
+            leftCorner = (bottomCorner[0]-120, bottomCorner[1]+40)
 
             #central line
             img = cv2.line(img, topCorner, bottomCorner,greenColor,8)
