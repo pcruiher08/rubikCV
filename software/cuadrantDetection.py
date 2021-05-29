@@ -45,10 +45,11 @@ while True:
             img = cv2.circle(img, coords, 2, redColor, 5)
         if(howManyArucos == 2):
             topCorner = getMidPoint(coordinates[0], coordinates[1])
-            topCorner = (topCorner[0]-5, topCorner[1]+25)
+            topCorner = (topCorner[0]-5, topCorner[1]+22)
             bottomCorner = (topCorner[0]-5, topCorner[1]+160)
-            rightCorner = (bottomCorner[0]+130, bottomCorner[1]+50)
+            rightCorner = (bottomCorner[0]+125, bottomCorner[1]+54)
             leftCorner = (bottomCorner[0]-130, bottomCorner[1]+45)
+
             #central line
             img = cv2.line(img, topCorner, bottomCorner,greenColor,8)
             #right line
