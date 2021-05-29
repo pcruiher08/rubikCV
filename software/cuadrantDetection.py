@@ -46,7 +46,7 @@ while True:
         if(howManyArucos == 2):
             topCorner = getMidPoint(coordinates[0], coordinates[1])
             topCorner = (topCorner[0]-5, topCorner[1]+22)
-            bottomCorner = (topCorner[0]-5, topCorner[1]+160)
+            bottomCorner = (topCorner[0]-5, topCorner[1]+170)
             rightCorner = (bottomCorner[0]+125, bottomCorner[1]+47)
             leftCorner = (bottomCorner[0]-120, bottomCorner[1]+40)
 
