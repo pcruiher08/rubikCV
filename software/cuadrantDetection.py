@@ -86,13 +86,13 @@ while True:
             P14 = getFractionPoint(P15, P3, 1/3 - 0.05)
             P16 = (P8[0] + 2, P8[1] - distancePointPoint(topCorner, bottomCorner) + 5)
             P17 = getFractionPoint(P16, P8, 1/3 - 0.05)
-            #P18
+            P18 = pointInterceptPointPointPointPoint(P8,P16,P5,P20)
             P20 = (P5[0] + distancePointPoint(bottomCorner, rightCorner) - 10, P5[1] + distancePointPoint(P5, P4) - 13)
             P19 = getFractionPoint(P5, P20, 2/3 + 0.08)
             P21 = (P1[0] + distancePointPoint(P4,P5)-7, P1[1] + 16)
             P22 = getFractionPoint(P21, P8, 1/3-0.05)
-            #P23 
             P25 = (P10[0]-35, P1[1]+20)
+            P23 = pointInterceptPointPointPointPoint(P3,P25,P8,P21)
             P24 = getFractionPoint(P25, P3, 1/3)
 
 
@@ -109,19 +109,16 @@ while True:
             img = cv2.circle(img, P11, 2, blueColor, 5)
             img = cv2.circle(img, P12, 2, blueColor, 5)
             img = cv2.circle(img, P13, 2, blueColor, 5)
-
-
-
             img = cv2.circle(img, P14, 2, blueColor, 5)
             img = cv2.circle(img, P15, 2, blueColor, 5)
             img = cv2.circle(img, P16, 2, blueColor, 5)
             img = cv2.circle(img, P17, 2, blueColor, 5)
-
+            img = cv2.circle(img, P18, 2, blueColor, 5)
             img = cv2.circle(img, P19, 2, blueColor, 5)
             img = cv2.circle(img, P20, 2, blueColor, 5)
             img = cv2.circle(img, P21, 2, blueColor, 5)
             img = cv2.circle(img, P22, 2, blueColor, 5)
-            
+            img = cv2.circle(img, P23, 2, blueColor, 5)
             img = cv2.circle(img, P24, 2, blueColor, 5)
             img = cv2.circle(img, P25, 2, blueColor, 5)
 
