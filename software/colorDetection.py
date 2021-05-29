@@ -78,8 +78,8 @@ while True:
             P9 = getFractionPoint(bottomCorner, rightCorner, 3/6)
             P10 = getFractionPoint(bottomCorner, rightCorner, 5/6) 
 
-            P9 = (P9[0], P9[1] - 20)
-            P10 = (P10[0], P10[1] - 20)
+            P9 = (P9[0], P9[1] - 25)
+            P10 = (P10[0], P10[1] - 25)
 
             img = cv2.circle(img, P1, 2, blueColor, 5)
             img = cv2.circle(img, P2, 2, blueColor, 5)
