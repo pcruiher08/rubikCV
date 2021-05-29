@@ -47,7 +47,7 @@ while True:
             topCorner = getMidPoint(coordinates[0], coordinates[1])
             topCorner = (topCorner[0]-5, topCorner[1]+22)
             bottomCorner = (topCorner[0]-5, topCorner[1]+160)
-            rightCorner = (bottomCorner[0]+125, bottomCorner[1]+50)
+            rightCorner = (bottomCorner[0]+125, bottomCorner[1]+47)
             leftCorner = (bottomCorner[0]-130, bottomCorner[1]+45)
 
             #central line
