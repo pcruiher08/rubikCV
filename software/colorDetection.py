@@ -2,6 +2,10 @@ import cv2
 import cv2.aruco as aruco
 import numpy as np
 import os
+
+def getMidPoint(a, b):
+    return ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     key = getattr(aruco, f'DICT_{markerSize}X{markerSize}_{totalMarkers}')
@@ -17,12 +21,19 @@ cap = cv2.VideoCapture(0)
 while True:
     success, img = cap.read()
     arucofound = findArucoMarkers(img)
-    if  len(arucofound[0])!=0:
+    howManyArucos = len(arucofound[0])
+
+    if howManyArucos!=0:
+        coordinates = []
         for bbox, id in zip(arucofound[0], arucofound[1]):
             print(bbox, id)
             coords = tuple(bbox[0][0])
             print(coords)
+            coordinates.append(coords)
             img = cv2.circle(img, coords, 2, (0,0,255), 5)
+        if(howManyArucos == 2):
+            topCorner = getMidPoint(coordinates[0], coordinates[1])
+            img = cv2.line(img, topCorner, (topCorner[0]-20, topCorner[1]),(0,255,255),5)
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
     if k == 27:
