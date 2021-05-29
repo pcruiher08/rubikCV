@@ -79,6 +79,10 @@ while True:
             P16 = (P8[0] + 10, P8[1] - distancePointPoint(topCorner, bottomCorner) + 5)
 
 
+
+
+            P20 = (P5[0] + distancePointPoint(bottomCorner, rightCorner), P5[1] )
+
             img = cv2.circle(img, P1, 2, blueColor, 5)
             img = cv2.circle(img, P2, 2, blueColor, 5)
             img = cv2.circle(img, P3, 2, blueColor, 5)
@@ -91,6 +95,9 @@ while True:
             img = cv2.circle(img, P10, 2, blueColor, 5)
 
             img = cv2.circle(img, P16, 2, blueColor, 5)
+
+            img = cv2.circle(img, P20, 2, blueColor, 5)
+
 
             
     cv2.imshow('img',img)
