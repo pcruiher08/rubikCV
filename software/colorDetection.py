@@ -65,13 +65,24 @@ while True:
 
             P4 = (P4[0] - 20, P4[1])
             P5 = (P5[0] - 20, P5[1])
+
+            P6 = getFractionPoint(topCorner, bottomCorner, 1/6)
+            P7 = getFractionPoint(topCorner, bottomCorner, 3/6)
+            P8 = getFractionPoint(topCorner, bottomCorner, 5/6)
+
+            P6 = (P6[0] + 20, P6[1])
+            P7 = (P7[0] + 20, P7[1])
+            P7 = (P7[0] + 20, P8[1])
             
-            print(P2)
             img = cv2.circle(img, P1, 2, redColor, 5)
             img = cv2.circle(img, P2, 2, redColor, 5)
             img = cv2.circle(img, P3, 2, redColor, 5)
             img = cv2.circle(img, P4, 2, redColor, 5)
             img = cv2.circle(img, P5, 2, redColor, 5)
+            img = cv2.circle(img, P6, 2, redColor, 5)
+            img = cv2.circle(img, P7, 2, redColor, 5)
+            img = cv2.circle(img, P8, 2, redColor, 5)
+
 
 
 
