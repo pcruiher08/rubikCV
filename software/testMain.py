@@ -13,7 +13,7 @@ U = Motor(5, 22)
 D = Motor(27, 17)
 
 screen = LCD.lcd()
-screen.lcd_display_string("hay 6 motores conectados", 1)
+screen.lcd_display_string("hay 6 motores", 1)
 
 F.setDelay(turnDelay)
 L.setDelay(turnDelay)
