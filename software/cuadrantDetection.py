@@ -99,6 +99,12 @@ while True:
             img = cv2.circle(img, P20, 2, blueColor, 5)
 
 
+            #lineas especiales
+
+            img = cv2.line(img, P5, P20,redColor,2)
+            img = cv2.line(img, P8, P16,redColor,2)
+
+
             
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
