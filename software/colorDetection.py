@@ -6,6 +6,12 @@ import os
 def getMidPoint(a, b):
     return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
 
+def getThirdPoint(a, b):
+    return (int((a[0] + b[0]) / 3), int((a[1] + b[1]) / 3))
+
+def getTwoThirdsPoint(a, b):
+    return (int((a[0] + b[0]) * 2 / 3), int((a[1] + b[1]) * 2 / 3))
+
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     key = getattr(aruco, f'DICT_{markerSize}X{markerSize}_{totalMarkers}')
@@ -42,6 +48,10 @@ while True:
             img = cv2.line(img, topCorner, bottomCorner,greenColor,8)
             img = cv2.line(img, bottomCorner, rightCorner,greenColor,8)
             img = cv2.line(img, bottomCorner, leftCorner,greenColor,8)
+
+            P1 = getTwoThirdsPoint(bottomCorner, leftCorner)
+            img = cv2.circle(img, P1, 2, redColor, 5)
+
             
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
