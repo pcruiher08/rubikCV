@@ -72,10 +72,11 @@ while True:
             P9 = getFractionPoint(bottomCorner, rightCorner, 2/3 + 0.05)
             P10 = rightCorner 
             P11 = (P1[0]+8, P1[1] - distancePointPoint(P4, P5)+10) 
+            P12 = getFractionPoint(P11, P5, 1/3)
 
 
 
-
+            P14 = getFractionPoint(P15, P3, 1/3 - 0.05)
             P15 = (P3[0]+7, P3[1] - distancePointPoint(bottomCorner, topCorner)+7)
             P16 = (P8[0] + 2, P8[1] - distancePointPoint(topCorner, bottomCorner) + 5)
             P17 = getFractionPoint(P16, P8, 1/3 - 0.05)
@@ -95,9 +96,11 @@ while True:
             img = cv2.circle(img, P9, 2, blueColor, 5)
             img = cv2.circle(img, P10, 2, blueColor, 5)
             img = cv2.circle(img, P11, 2, blueColor, 5)
+            img = cv2.circle(img, P12, 2, blueColor, 5)
 
 
 
+            img = cv2.circle(img, P14, 2, blueColor, 5)
             img = cv2.circle(img, P15, 2, blueColor, 5)
             img = cv2.circle(img, P16, 2, blueColor, 5)
             img = cv2.circle(img, P17, 2, blueColor, 5)
