@@ -34,9 +34,13 @@ while True:
         if(howManyArucos == 2):
             topCorner = getMidPoint(coordinates[0], coordinates[1])
             topCorner = (topCorner[0]-5, topCorner[1]+25)
-
             bottomCorner = (topCorner[0]-5, topCorner[1]+160)
-            img = cv2.line(img, topCorner, bottomCorner,(0,255,0),8)
+            rightCorner = (bottomCorner[0]+160, bottomCorner[1]+10)
+            leftCorner = (bottomCorner[0]-160, bottomCorner[1]+10)
+            img = cv2.line(img, topCorner, bottomCorner,(0,255,0),8)\
+            img = cv2.line(img, bottomCorner, rightCorner,(0,255,0),8)
+            img = cv2.line(img, bottomCorner, leftCorner,(0,255,0),8)
+            
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
     if k == 27:
