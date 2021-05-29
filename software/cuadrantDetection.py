@@ -76,7 +76,7 @@ while True:
 
 
 
-            P16 = (P8[0] + 7, P8[1] - distancePointPoint(topCorner, bottomCorner) + 5)
+            P16 = (P8[0] + 5, P8[1] - distancePointPoint(topCorner, bottomCorner) + 5)
 
 
 
