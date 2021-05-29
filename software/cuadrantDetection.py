@@ -2,6 +2,7 @@ import cv2
 import cv2.aruco as aruco
 import numpy as np
 import os
+import math as m 
 
 def getMidPoint(a, b):
     return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
@@ -14,6 +15,9 @@ def getTwoThirdsPoint(a, b):
 
 def getFractionPoint(a, b, t):
     return ( int(a[0] * (1 - t) ) + int(b[0] * t), int( a[1] * (1 - t) ) + int(b[1] * t) )
+
+def distancePointPoint(a, b):
+    return int( m.sqrt( (a[0] - b[1]) * (a[0] - b[1]) + (a[1] - b[0]) * (a[1] - b[0]) ) )
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -68,7 +72,11 @@ while True:
             P9 = getFractionPoint(bottomCorner, rightCorner, 2/3)
             P10 = rightCorner 
 
-  
+
+
+
+
+            p16 = (P8[0] - distancePointPoint(topCorner, bottomCorner), P8[1])
 
 
             img = cv2.circle(img, P1, 2, blueColor, 5)
@@ -81,6 +89,9 @@ while True:
             img = cv2.circle(img, P8, 2, blueColor, 5)
             img = cv2.circle(img, P9, 2, blueColor, 5)
             img = cv2.circle(img, P10, 2, blueColor, 5)
+
+            img = cv2.circle(img, P16, 2, blueColor, 5)
+
             
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
