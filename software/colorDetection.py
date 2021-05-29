@@ -49,7 +49,7 @@ while True:
             img = cv2.line(img, bottomCorner, rightCorner,greenColor,8)
             img = cv2.line(img, bottomCorner, leftCorner,greenColor,8)
 
-            P1 = getThirdPoint(leftCorner, bottomCorner)
+            P1 = getMidPoint(leftCorner, bottomCorner)
             print(P1)
             img = cv2.circle(img, P1, 2, redColor, 5)
 
