@@ -18,6 +18,8 @@ def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     return [corners, ids]
 
 cap = cv2.VideoCapture(0)   
+greenColor = (0,255,0)
+redColor = (0,0,255)
 while True:
     success, img = cap.read()
     arucofound = findArucoMarkers(img)
@@ -30,16 +32,16 @@ while True:
             coords = tuple(bbox[0][0])
             print(coords)
             coordinates.append(coords)
-            img = cv2.circle(img, coords, 2, (0,0,255), 5)
+            img = cv2.circle(img, coords, 2, redColor, 5)
         if(howManyArucos == 2):
             topCorner = getMidPoint(coordinates[0], coordinates[1])
             topCorner = (topCorner[0]-5, topCorner[1]+25)
             bottomCorner = (topCorner[0]-5, topCorner[1]+160)
             rightCorner = (bottomCorner[0]+130, bottomCorner[1]+45)
             leftCorner = (bottomCorner[0]-130, bottomCorner[1]+45)
-            img = cv2.line(img, topCorner, bottomCorner,(0,255,0),8)
-            img = cv2.line(img, bottomCorner, rightCorner,(0,255,0),8)
-            img = cv2.line(img, bottomCorner, leftCorner,(0,255,0),8)
+            img = cv2.line(img, topCorner, bottomCorner,greenColor,8)
+            img = cv2.line(img, bottomCorner, rightCorner,greenColor,8)
+            img = cv2.line(img, bottomCorner, leftCorner,greenColor,8)
             
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
