@@ -12,6 +12,9 @@ def getThirdPoint(a, b):
 def getTwoThirdsPoint(a, b):
     return (int((a[0] + b[0]) * 2 / 3), int((a[1] + b[1]) * 2 / 3))
 
+def getFractionPoint(a, b, t):
+    return (int(a[0]) * (1 - t) + int(b[0]) * t, int(a[1]) * (1 - t) + int(b[1]) * t)
+
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     key = getattr(aruco, f'DICT_{markerSize}X{markerSize}_{totalMarkers}')
