@@ -32,7 +32,9 @@ while True:
             coordinates.append(coords)
             img = cv2.circle(img, coords, 2, (0,0,255), 5)
         if(howManyArucos == 2):
-            topCorner = getMidPoint(coordinates[0]-5, coordinates[1]+15)
+            topCorner = getMidPoint(coordinates[0], coordinates[1])
+            topCorner = (topCorner[0]-5, topCorner[1]+15)
+
             bottomCorner = (topCorner[0]-8, topCorner[1]+190)
             img = cv2.line(img, topCorner, bottomCorner,(0,255,0),8)
     cv2.imshow('img',img)
