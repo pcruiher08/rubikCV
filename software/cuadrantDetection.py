@@ -76,7 +76,7 @@ while True:
 
 
 
-            P16 = (P8[0] - distancePointPoint(topCorner, bottomCorner), P8[1])
+            P16 = (P8[0], P8[1] - distancePointPoint(topCorner, bottomCorner))
 
 
             img = cv2.circle(img, P1, 2, blueColor, 5)
