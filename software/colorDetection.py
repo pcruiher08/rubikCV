@@ -56,6 +56,10 @@ while True:
             P2 = getFractionPoint(bottomCorner, leftCorner, 3/6)
             P3 = getFractionPoint(bottomCorner, leftCorner, 1/6)
 
+            P1[1] -= 10
+            P2[1] -= 10
+            P3[1] -= 10
+
             print(P2)
             img = cv2.circle(img, P1, 2, redColor, 5)
             img = cv2.circle(img, P2, 2, redColor, 5)
