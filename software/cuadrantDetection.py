@@ -65,7 +65,7 @@ while True:
             P2 = getFractionPoint(bottomCorner, leftCorner, 2/3)
             P3 = getFractionPoint(bottomCorner, leftCorner, 1/3)
             P4 = bottomCorner
-            P5 = getFractionPoint(bottomCorner, topCorner, 1/3) 
+            P5 = getFractionPoint(bottomCorner, topCorner, 1/3+0.05) 
             P6 = getFractionPoint(bottomCorner, topCorner, 2/3+0.05)
             P7 = topCorner
             P8 = getFractionPoint(bottomCorner, rightCorner, 1/3 + 0.05)
