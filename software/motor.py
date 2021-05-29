@@ -7,8 +7,8 @@ class Motor:
     def __init__(self, directionPin, stepPin):
         self.DIR = directionPin       # Direction GPIO Pin
         self.STEP = stepPin      # Step GPIO Pin
-        self.CW = 1         # Clockwise Rotation
-        self.CCW = 0        # Counterclockwise Rotation
+        self.CW = 0         # Clockwise Rotation
+        self.CCW = 1        # Counterclockwise Rotation
         self.SPR = 800      # Steps per Revolution (360 / 1.8)
         self.DELAY = .005/1 # delay
         GPIO.setmode(GPIO.BCM)
@@ -23,17 +23,27 @@ class Motor:
     def setDelay(self, delay):
         self.DELAY = delay
 
-    def turn90CCW(self):
-        GPIO.output(self.DIR, self.CW)
+    def turn90(self, direction):
+        #1 for CCW, 0 for CW
+        GPIO.output(self.DIR, direction)
         sleep(.15)
         for x in range(int(self.SPR/4)):
             GPIO.output(self.STEP, GPIO.HIGH)
             sleep(self.DELAY)
             GPIO.output(self.STEP, GPIO.LOW)
             sleep(self.DELAY)
-    
-    def turn90CW(self):
+
+    def turn90CCW(self):
         GPIO.output(self.DIR, self.CCW)
+        sleep(.15)
+        for x in range(int(self.SPR/4)):
+            GPIO.output(self.STEP, GPIO.HIGH)
+            sleep(self.DELAY)
+            GPIO.output(self.STEP, GPIO.LOW)
+            sleep(self.DELAY)
+   
+    def turn90CW(self):
+        GPIO.output(self.DIR, self.CW)
         sleep(.15)
         for x in range(int(self.SPR/4)):
             GPIO.output(self.STEP, GPIO.HIGH)

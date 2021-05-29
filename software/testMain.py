@@ -3,6 +3,59 @@ import time
 import LCD
 from time import *
 
+def commandParser(series):
+    #R U R’ U R U2 R’ U
+    movements = series.split(' ')
+    for move in movements:
+        twoMoves = False
+        directionFlag = False
+        if len(move) == 2:
+            if(move[1] == '2'):
+                #cw cw
+                twoMoves = True
+            else:
+                #ccw
+                directionFlag = True
+
+        if(move[0] == 'F'):
+            if(twoMoves):
+                F.turn90CW()
+                F.turn90CW()
+            else:
+                F.turn90(directionFlag)
+        if(move[0] == 'L'):
+            if(twoMoves):
+                L.turn90CW()
+                L.turn90CW()
+            else:
+                L.turn90(directionFlag)  
+        if(move[0] == 'R'):
+            if(twoMoves):
+                R.turn90CW()
+                R.turn90CW()
+            else:
+                R.turn90(directionFlag)
+        if(move[0] == 'B'):
+            if(twoMoves):
+                B.turn90CW()
+                B.turn90CW()
+            else:
+                B.turn90(directionFlag)
+        if(move[0] == 'U'):
+            if(twoMoves):
+                U.turn90CW()
+                U.turn90CW()
+            else:
+                U.turn90(directionFlag)
+        if(move[0] == 'D'):
+            if(twoMoves):
+                D.turn90CW()
+                D.turn90CW()
+            else:
+                D.turn90(directionFlag)
+        twoMoves = False
+        directionFlag = False
+
 turnDelay = .005 / 8 * 1/2
 
 F = Motor(26,19)
@@ -21,6 +74,8 @@ R.setDelay(turnDelay)
 B.setDelay(turnDelay)
 U.setDelay(turnDelay)
 D.setDelay(turnDelay)
+
+commandParser("R U R’ U R U2 R’ U")
 '''
 #test
 F.turn90CW()
@@ -53,6 +108,7 @@ D.turn90CCW()
 F.turn90CCW()
 
 
+'''
 '''
 #tuning
 F.turn90CW()
@@ -97,3 +153,4 @@ D.turn90CW()
 D.turn90CCW()
 D.turn90CCW()
 D.turn90CCW()
+'''
