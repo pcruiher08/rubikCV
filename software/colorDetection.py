@@ -56,9 +56,9 @@ while True:
             P2 = getFractionPoint(bottomCorner, leftCorner, 3/6)
             P3 = getFractionPoint(bottomCorner, leftCorner, 1/6)
 
-            P1 = (P1[0], P1[1] - 10)
-            P2 = (P2[0], P2[1] - 10)
-            P3 = (P3[0], P3[1] - 10)
+            P1 = (P1[0], P1[1] - 40)
+            P2 = (P2[0], P2[1] - 40)
+            P3 = (P3[0], P3[1] - 40)
 
 
             print(P2)
