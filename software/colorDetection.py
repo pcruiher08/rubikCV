@@ -60,11 +60,19 @@ while True:
             P2 = (P2[0], P2[1] - 30)
             P3 = (P3[0], P3[1] - 30)
 
+            P4 = getFractionPoint(bottomCorner, topCorner, 3/6)
+            P5 = getFractionPoint(bottomCorner, topCorner, 5/6) 
 
+            P4 = (P4[0] - 30, P4[1])
+            P5 = (P5[0] - 30, P5[1])
+            
             print(P2)
             img = cv2.circle(img, P1, 2, redColor, 5)
             img = cv2.circle(img, P2, 2, redColor, 5)
             img = cv2.circle(img, P3, 2, redColor, 5)
+            img = cv2.circle(img, P4, 2, redColor, 5)
+            img = cv2.circle(img, P5, 2, redColor, 5)
+
 
 
 
