@@ -13,7 +13,7 @@ def getTwoThirdsPoint(a, b):
     return (int((a[0] + b[0]) * 2 / 3), int((a[1] + b[1]) * 2 / 3))
 
 def getFractionPoint(a, b, t):
-    return (int(a[0]) * (1 - t) + int(b[0]) * t, int(a[1]) * (1 - t) + int(b[1]) * t)
+    return ( int(a[0] * (1 - t) ) + int(b[0] * t), int( a[1] * (1 - t) ) + int(b[1] * t) )
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -52,7 +52,7 @@ while True:
             img = cv2.line(img, bottomCorner, rightCorner,greenColor,8)
             img = cv2.line(img, bottomCorner, leftCorner,greenColor,8)
 
-            P1 = getMidPoint(leftCorner, bottomCorner)
+            P1 = getFractionPoint(leftCorner, bottomCorner, 1/3)
             print(P1)
             img = cv2.circle(img, P1, 2, redColor, 5)
 
