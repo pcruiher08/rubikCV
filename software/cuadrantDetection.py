@@ -17,7 +17,7 @@ def getFractionPoint(a, b, t):
     return ( int(a[0] * (1 - t) ) + int(b[0] * t), int( a[1] * (1 - t) ) + int(b[1] * t) )
 
 def distancePointPoint(a, b):
-    return int( m.sqrt( (a[0] - b[1]) * (a[0] - b[1]) + (a[1] - b[0]) * (a[1] - b[0]) ) )
+    return int( m.sqrt( (a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) ) )
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
