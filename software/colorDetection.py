@@ -50,6 +50,7 @@ while True:
             img = cv2.line(img, bottomCorner, leftCorner,greenColor,8)
 
             P1 = getTwoThirdsPoint(bottomCorner, leftCorner)
+            print(P1)
             img = cv2.circle(img, P1, 2, redColor, 5)
 
             
