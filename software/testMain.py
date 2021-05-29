@@ -66,6 +66,7 @@ U = Motor(5, 22)
 D = Motor(27, 17)
 
 screen = LCD.lcd()
+screen.lcd_clear()
 screen.lcd_display_string("hay 6 motores", 1)
 
 F.setDelay(turnDelay)
@@ -78,8 +79,52 @@ D.setDelay(turnDelay)
 #commandParser("D U2 R D F L' D2 R' D L D' R2 B2 R2 D B2 D' B2 D2 F2")
 #cube in a cube pattern
 #commandParser("F L F U’ R U F2 L2 U’ L’ B D’ B’ L2 U")
-#6 centers
-commandParser("F2 B2 U D’ R2 L2 U D’")
+#6 centers pattern
+#commandParser("F2 B2 U D’ R2 L2 U D’")
+
+#scan phase
+
+screen.lcd_clear()
+screen.lcd_display_string("Scanning", 1)
+time.sleep(0.2)
+screen.lcd_clear()
+screen.lcd_display_string("Front scan", 1)
+
+commandParser("F2")
+commandParser("F' F'")
+
+time.sleep(0.2)
+screen.lcd_clear()
+screen.lcd_display_string("Left scan", 1)
+
+commandParser("L2")
+commandParser("L' L'")
+
+time.sleep(0.2)
+screen.lcd_clear()
+screen.lcd_display_string("Down scan", 1)
+
+commandParser("D2")
+commandParser("D' D'")
+
+time.sleep(0.2)
+screen.lcd_clear()
+screen.lcd_display_string("Up scan", 1)
+
+commandParser("U2")
+commandParser("F'")
+commandParser("F")
+commandParser("L'")
+commandParser("L")
+
+time.sleep(0.2)
+screen.lcd_clear()
+screen.lcd_display_string("Back piece", 1)
+
+commandParser("B' D")
+commandParser("D' B")
+
+
 '''
 #test
 F.turn90CW()
