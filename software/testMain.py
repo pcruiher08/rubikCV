@@ -76,6 +76,7 @@ U.setDelay(turnDelay)
 D.setDelay(turnDelay)
 
 commandParser("D U2 R D F L' D2 R' D L D' R2 B2 R2 D B2 D' B2 D2 F2")
+
 '''
 #test
 F.turn90CW()
