@@ -88,7 +88,7 @@ while True:
             P21 = (P1[0] + distancePointPoint(P4,P5)-7, P1[1] + 16)
 
 
-            P25 = (P10[0]-30, P1[1]+20)
+            P25 = (P10[0]-30, P1[1]-20)
 
 
             img = cv2.circle(img, P1, 2, blueColor, 5)
