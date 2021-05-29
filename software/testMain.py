@@ -1,5 +1,8 @@
 from motor import Motor
 import time
+import LCD
+from time import *
+
 turnDelay = .005 / 8 * 1/2
 
 F = Motor(26,19)
@@ -8,6 +11,9 @@ R = Motor(21, 20)
 B = Motor(16,12)
 U = Motor(5, 22)
 D = Motor(27, 17)
+
+screen = LCD.lcd()
+screen.lcd_display_string("hay 6 motores conectados", 1)
 
 F.setDelay(turnDelay)
 L.setDelay(turnDelay)
