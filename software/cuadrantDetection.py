@@ -71,12 +71,12 @@ while True:
             P8 = getFractionPoint(bottomCorner, rightCorner, 1/3 + 0.05)
             P9 = getFractionPoint(bottomCorner, rightCorner, 2/3 + 0.05)
             P10 = rightCorner 
-            P11 = (P1[0]+10, P1[1] - distancePointPoint(P4, P5)+10) 
+            P11 = (P1[0]+8, P1[1] - distancePointPoint(P4, P5)+10) 
 
 
 
 
-            P15 = (P3[0], P3[1] - distancePointPoint(bottomCorner, topCorner))
+            P15 = (P3[0]+10, P3[1] - distancePointPoint(bottomCorner, topCorner)+10)
             P16 = (P8[0] + 2, P8[1] - distancePointPoint(topCorner, bottomCorner) + 5)
             P17 = getFractionPoint(P16, P8, 1/3 - 0.05)
 
