@@ -19,6 +19,13 @@ def getFractionPoint(a, b, t):
 def distancePointPoint(a, b):
     return int( m.sqrt( (a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) ) )
 
+def pointInterceptPointPointPointPoint(a, b, c, d):
+
+    divide = (a[0] - b[0]) * (c[1] - d[1]) - (a[1] - b[1]) * (c[0] - d[0])
+    punto1 = ((a[0]*b[1] - a[1]*b[0]) * (c[0]-d[0]) - (a[0]-b[0]) * (c[0]*d[1] - c[1]*d[0]))/divide
+    punto2 = ((a[0]*b[1] - a[1]*b[0]) * (c[1]-d[1]) - (a[1]-b[1]) * (c[0]*d[1] - c[1]*d[0]))/divide
+    return (punto1, punto2)
+
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     key = getattr(aruco, f'DICT_{markerSize}X{markerSize}_{totalMarkers}')
@@ -73,20 +80,17 @@ while True:
             P10 = rightCorner 
             P11 = (P1[0]+8, P1[1] - distancePointPoint(P4, P5)+10) 
             P12 = getFractionPoint(P11, P5, 1/3)
-
-
-
+            P13 = pointInterceptPointPointPointPoint(P3,P15,P5,P11)
             P15 = (P3[0]+7, P3[1] - distancePointPoint(bottomCorner, topCorner)+7)
             P14 = getFractionPoint(P15, P3, 1/3 - 0.05)
-
             P16 = (P8[0] + 2, P8[1] - distancePointPoint(topCorner, bottomCorner) + 5)
             P17 = getFractionPoint(P16, P8, 1/3 - 0.05)
-
-
+            #P18
             P20 = (P5[0] + distancePointPoint(bottomCorner, rightCorner) - 10, P5[1] + distancePointPoint(P5, P4) - 13)
             P19 = getFractionPoint(P5, P20, 2/3 + 0.08)
             P21 = (P1[0] + distancePointPoint(P4,P5)-7, P1[1] + 16)
             P22 = getFractionPoint(P21, P8, 1/3-0.05)
+            #P23 
             P25 = (P10[0]-35, P1[1]+20)
             P24 = getFractionPoint(P25, P3, 1/3)
 
@@ -103,6 +107,7 @@ while True:
             img = cv2.circle(img, P10, 2, blueColor, 5)
             img = cv2.circle(img, P11, 2, blueColor, 5)
             img = cv2.circle(img, P12, 2, blueColor, 5)
+            img = cv2.circle(img, P13, 2, blueColor, 5)
 
 
 
