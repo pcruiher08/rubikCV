@@ -57,7 +57,7 @@ while True:
             P2 = getFractionPoint(bottomCorner, leftCorner, 3/6)
             P3 = getFractionPoint(bottomCorner, leftCorner, 1/6)
 
-            P1 = (P1[0], P1[1] - 30)
+            P1 = (P1[0] + 7, P1[1] - 30)
             P2 = (P2[0], P2[1] - 30)
             P3 = (P3[0], P3[1] - 30)
 
@@ -85,9 +85,9 @@ while True:
             P12 = getFractionPoint(bottomCorner, leftCorner, 3/6)
             P13 = bottomCorner
 
-            P11 = (P11[0] + 30, P11[1] + 12)
+            P11 = (P11[0] + 30, P11[1] + 8)
             P12 = (P12[0] + 22, P12[1] + 12)
-            P13 = (P13[0], P13[1] + 25)
+            P13 = (P13[0], P13[1] + 20)
 
             img = cv2.circle(img, P1, 2, blueColor, 5)
             img = cv2.circle(img, P2, 2, blueColor, 5)
