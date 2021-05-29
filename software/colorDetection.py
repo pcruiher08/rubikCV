@@ -19,10 +19,10 @@ while True:
     arucofound = findArucoMarkers(img)
     if  len(arucofound[0])!=0:
         for bbox, id in zip(arucofound[0], arucofound[1]):
-            #print(bbox, id)
+            print(bbox, id)
             coords = tuple(bbox[0][0])
             print(coords)
-            #img = cv2.circle(img, coords, 2, (255,0,0), 2)
+            img = cv2.circle(img, coords, 2, (255,0,0), 2)
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
     if k == 27:
