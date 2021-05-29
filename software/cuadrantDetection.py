@@ -66,7 +66,7 @@ while True:
             P3 = getFractionPoint(bottomCorner, leftCorner, 1/3)
             P4 = bottomCorner
             P5 = getFractionPoint(bottomCorner, topCorner, 1/3) 
-            P6 = getFractionPoint(bottomCorner, topCorner, 2/3)
+            P6 = getFractionPoint(bottomCorner, topCorner, 2/3+0.05)
             P7 = topCorner
             P8 = getFractionPoint(bottomCorner, rightCorner, 1/3 + 0.05)
             P9 = getFractionPoint(bottomCorner, rightCorner, 2/3 + 0.05)
@@ -107,6 +107,7 @@ while True:
             img = cv2.line(img, P8, P16,redColor,2)
             img = cv2.line(img, P10, P20,redColor,2)
             img = cv2.line(img, P7, P16,redColor,2)
+            img = cv2.line(img, P6, P17,redColor,2)
 
             img = cv2.line(img, P9, P19,redColor,2)
 
