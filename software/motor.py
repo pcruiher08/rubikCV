@@ -23,7 +23,7 @@ class Motor:
     def setDelay(self, delay):
         self.DELAY = delay
 
-    def turn90CW(self):
+    def turn90CCW(self):
         GPIO.output(self.DIR, self.CW)
         sleep(.15)
         for x in range(int(self.SPR/4)):
@@ -32,7 +32,7 @@ class Motor:
             GPIO.output(self.STEP, GPIO.LOW)
             sleep(self.DELAY)
     
-    def turn90CCW(self):
+    def turn90CW(self):
         GPIO.output(self.DIR, self.CCW)
         sleep(.15)
         for x in range(int(self.SPR/4)):
