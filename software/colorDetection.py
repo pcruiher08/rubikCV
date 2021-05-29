@@ -75,6 +75,12 @@ while True:
             P7 = (P7[0] + 25, P7[1])
             P8 = (P8[0] + 25, P8[1] + 7)
             
+            P9 = getFractionPoint(bottomCorner, rightCorner, 3/6)
+            P10 = getFractionPoint(bottomCorner, rightCorner, 5/6) 
+
+            P9 = (P9[0], P9[1] - 20)
+            P10 = (P10[0], P10[1] - 20)
+
             img = cv2.circle(img, P1, 2, blueColor, 5)
             img = cv2.circle(img, P2, 2, blueColor, 5)
             img = cv2.circle(img, P3, 2, blueColor, 5)
@@ -83,6 +89,9 @@ while True:
             img = cv2.circle(img, P6, 2, blueColor, 5)
             img = cv2.circle(img, P7, 2, blueColor, 5)
             img = cv2.circle(img, P8, 2, blueColor, 5)
+            img = cv2.circle(img, P9, 2, blueColor, 5)
+            img = cv2.circle(img, P10, 2, blueColor, 5)
+
 
 
 
