@@ -13,7 +13,7 @@ def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
         aruco.drawDetectedMarkers(img, bboxs,ids) 
     return [bboxs, ids]
 
-cap = cv2.VideoCapture(2)   
+cap = cv2.VideoCapture(0)   
 while True:
     success, img = cap.read()
     arucofound = findArucoMarkers(img)
