@@ -157,7 +157,6 @@ while True:
 
 
 
-    cv2.imshow('otra',image_new)       
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
     if k == 27:
