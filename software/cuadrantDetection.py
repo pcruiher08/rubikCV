@@ -148,6 +148,7 @@ while True:
             C1 = [P1, P11, P12, P2]
             C1 = list(map(list, C1))
             C1 = np.array(C1)
+            print(C1)
 
             x, y, w, h = 10, 10, 10, 10  # Rectangle parameters
             cv2.rectangle(overlay, (x, y), (x+w, y+h), (0, 200, 0), -1)  # A filled rectangle
