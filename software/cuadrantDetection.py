@@ -150,6 +150,12 @@ while True:
             C3 = np.array(list(map(list, [P3, P13, P5, P4])))
             C4 = np.array(list(map(list, [P4, P5, P18, P8])))
             C5 = np.array(list(map(list, [P8, P18, P19, P9])))
+            C6 = np.array(list(map(list, [P9, P19, P20, P10])))
+            C7 = np.array(list(map(list, [P13, P14, P6, P5])))
+            C8 = np.array(list(map(list, [P14, P15, P7, P6])))
+            C9 = np.array(list(map(list, [P6, P7, P16, P17])))
+            C10 = np.array(list(map(list, [P5, P6, P17, P18])))
+
 
             
             cv2.fillPoly(overlay, pts = [C1], color =redColor)
