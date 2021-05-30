@@ -26,14 +26,53 @@ def pointInterceptPointPointPointPoint(a, b, c, d):
     punto2 = ((a[0]*b[1] - a[1]*b[0]) * (c[1]-d[1]) - (a[1]-b[1]) * (c[0]*d[1] - c[1]*d[0]))/divide
     return (int(punto1), int(punto2))
 
+def calculateHSVDistance(a, b):
+    dh = min(abs(b[0]-a[0]), 360-abs(b[0]-a[0])) / 180.0
+    ds = abs(b[1]-a[1])
+    dv = abs(b[2]-b[0]) / 255.0
+    return m.sqrt(dh*dh+ds*ds+dv*dv)
+
 def getAverageInsidePolygon(img, polygon):
     imghsv = img.copy()
     imghsv = cv2.cvtColor(imghsv, cv2.COLOR_BGR2HSV)
     mask = np.zeros(img.shape[:2], dtype = np.uint8)
     cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
-    average = cv2.mean(imghsv,mask=mask)
+    average = cv2.mean(imghsv,mask=mask)[:3]
     print(average)
-    return average
+
+    color_ranges_HSV = [
+    [(180, 18, 255), (0, 0, 231),"W"],
+    [(24, 255, 255), (10, 50, 70),"O"],
+    [(89, 255, 255), (36, 50, 70),"G"],
+    [(180, 255, 255), (159, 50, 70),"R"],
+    [(9, 255, 255), (0, 50, 70),"R"],
+    [(35, 255, 255), (25, 50, 70),"Y"],
+    [(128, 255, 255), (90, 50, 70),"B"]]
+
+    nearestColor = 'P'
+    minimumDistance = 1000
+    for color in color_ranges_HSV:
+        comparison1 = calculateHSVDistance(color[0], average)
+        comparison2 = calculateHSVDistance(color[1], average)
+        closestColor = min(comparison1, comparison2)
+        if( closestColor < minimumDistance ):
+            minimumDistance = closestColor
+            nearestColor = color[2]
+
+    if(nearestColor == 'W'):
+        average = (255,255,255)
+    elif(nearestColor == 'R'):
+        average = (0,0,255)
+    elif(nearestColor == 'G'):
+        average = (0,255,0)
+    elif(nearestColor == 'B'):
+        average = (255,0,0)
+    elif(nearestColor == 'Y'):
+        average = (0,255,255)
+    elif(nearestColor == 'O'):
+        average = (0,128,255)
+
+    return average, nearestColor
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -173,12 +212,12 @@ while True:
 
 
             
-            cv2.fillPoly(overlay, pts = [C1], color =tuple(getAverageInsidePolygon(img,C1)[:3]))
+            cv2.fillPoly(overlay, pts = [C1], color =tuple(getAverageInsidePolygon(img,C1)[0]))
             cv2.fillPoly(overlay, pts = [C2], color =greenColor)
             cv2.fillPoly(overlay, pts = [C3], color =blueColor)
             cv2.fillPoly(overlay, pts = [C4], color =blueColor)
             cv2.fillPoly(overlay, pts = [C5], color =blueColor)
-            cv2.fillPoly(overlay, pts = [C6], color =tuple(getAverageInsidePolygon(img,C6)[:3]))
+            cv2.fillPoly(overlay, pts = [C6], color =tuple(getAverageInsidePolygon(img,C6)[0]))
             cv2.fillPoly(overlay, pts = [C7], color =blueColor)
             cv2.fillPoly(overlay, pts = [C8], color =blueColor)
             cv2.fillPoly(overlay, pts = [C9], color =blueColor)
@@ -187,7 +226,7 @@ while True:
             cv2.fillPoly(overlay, pts = [C12], color =blueColor)
             cv2.fillPoly(overlay, pts = [C13], color =blueColor)
             cv2.fillPoly(overlay, pts = [C14], color =blueColor)
-            cv2.fillPoly(overlay, pts = [C15], color =tuple(getAverageInsidePolygon(img,C15)[:3]))
+            cv2.fillPoly(overlay, pts = [C15], color =tuple(getAverageInsidePolygon(img,C15)[0]))
 
             alpha = 0.5
             cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
