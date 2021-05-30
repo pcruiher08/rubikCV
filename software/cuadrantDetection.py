@@ -157,7 +157,7 @@ while True:
             C10 = np.array(list(map(list, [P5, P6, P17, P18])))
             C11 = np.array(list(map(list, [P21, P1, P2, P22])))
             C12 = np.array(list(map(list, [P22, P2, P3, P23])))
-            C13 = np.array(list(map(list, [P23, P3, P24, P8])))
+            C13 = np.array(list(map(list, [P23, P3, P4, P8])))
             C14 = np.array(list(map(list, [P23, P8, P9, P24])))
             C15 = np.array(list(map(list, [P24, P9, P10, P25])))
 
