@@ -168,7 +168,7 @@ while True:
             cv2.polylines(img, [pts], isClosed=True, color=(0, 0, 255), thickness=20)
 
             # fill it
-            cv2.fillPoly(img, [pts], color=(0, 0, 255))            
+            cv2.fillPoly(img, [pts], color=(0, 255, 0))            
             alpha = 0.4  # Transparency factor.
 
             # Following line overlays transparent rectangle over the image
