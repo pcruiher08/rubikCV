@@ -148,10 +148,16 @@ while True:
             C1 = np.array(list(map(list, [P1, P11, P12, P2])))
             C2 = np.array(list(map(list, [P2, P12, P13, P3])))
             C3 = np.array(list(map(list, [P3, P13, P5, P4])))
+            C4 = np.array(list(map(list, [P4, P5, P18, P8])))
+            C5 = np.array(list(map(list, [P8, P18, P19, P9])))
+
             
             cv2.fillPoly(overlay, pts = [C1], color =redColor)
-            cv2.fillPoly(overlay, pts = [C2], color = greenColor)
+            cv2.fillPoly(overlay, pts = [C2], color =greenColor)
             cv2.fillPoly(overlay, pts = [C3], color =blueColor)
+            cv2.fillPoly(overlay, pts = [C4], color =blueColor)
+            cv2.fillPoly(overlay, pts = [C5], color =blueColor)
+
             alpha = 0.5
             cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
 
