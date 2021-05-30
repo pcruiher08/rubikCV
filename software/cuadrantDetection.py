@@ -32,13 +32,15 @@ def calculateHSVDistance(a, b):
     dv = abs(b[2]-b[0]) / 255.0
     return m.sqrt(dh*dh+ds*ds+dv*dv)
 
+def namestr(obj, namespace):
+    return [name for name in namespace if namespace[name] is obj]
+
 def getAverageInsidePolygon(img, polygon):
     imghsv = img.copy()
     imghsv = cv2.cvtColor(imghsv, cv2.COLOR_BGR2HSV)
     mask = np.zeros(img.shape[:2], dtype = np.uint8)
     cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
     average = cv2.mean(imghsv,mask=mask)[:3]
-    print(average)
 
     color_ranges_HSV = [
     [(180, 18, 255), (0, 0, 231),"W"],
@@ -72,6 +74,7 @@ def getAverageInsidePolygon(img, polygon):
     elif(nearestColor == 'O'):
         average = (0,128,255)
 
+    print(nearestColor, namestr(polygon, globals()))
     return average, nearestColor
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
