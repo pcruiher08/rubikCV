@@ -4,6 +4,18 @@ import numpy as np
 import os
 import math as m 
 
+def mouseRGB(event,x,y,flags,param):
+    if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
+        colorsB = frame[y,x,0]
+        colorsG = frame[y,x,1]
+        colorsR = frame[y,x,2]
+        colors = frame[y,x]
+        print("Red: ",colorsR)
+        print("Green: ",colorsG)
+        print("Blue: ",colorsB)
+        print("BRG Format: ",colors)
+        print("Coordinates of pixel: X: ",x,"Y: ",y)
+
 def getMidPoint(a, b):
     return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
 
@@ -87,22 +99,24 @@ def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     if draw:
         aruco.drawDetectedMarkers(img, corners,ids) 
     return [corners, ids]
-
+cv2.namedWindow('mouseRGB')
+cv2.setMouseCallback('mouseRGB',mouseRGB)
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
 blueColor = (255,0,0)
 redColor = (0,0,255)
 while True:
     success, img = cap.read()
+    frame = img.copy()
     arucofound = findArucoMarkers(img)
     howManyArucos = len(arucofound[0])
 
     if howManyArucos!=0:
         coordinates = []
         for bbox, id in zip(arucofound[0], arucofound[1]):
-            print(bbox, id)
+            #print(bbox, id)
             coords = tuple(bbox[0][0])
-            print(coords)
+            #print(coords)
             coordinates.append(coords)
             img = cv2.circle(img, coords, 2, redColor, 5)
         if(howManyArucos == 2):
@@ -237,6 +251,8 @@ while True:
 
 
     cv2.imshow('img',img)
+    cv2.imshow('mouseRGB', frame)
+
     k = cv2.waitKey(30) & 0xff
     if k == 27:
         break
