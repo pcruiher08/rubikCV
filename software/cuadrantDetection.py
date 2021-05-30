@@ -27,7 +27,7 @@ def pointInterceptPointPointPointPoint(a, b, c, d):
     return (int(punto1), int(punto2))
 
 def getAverageInsidePolygon(img, polygon):
-    mask = np.zeros(img.shape)
+    mask = np.zeros(img.rows, img.cols)
     cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
     print(cv2.mean(img,mask=mask))
 
