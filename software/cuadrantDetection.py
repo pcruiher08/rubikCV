@@ -174,7 +174,11 @@ while True:
             cv2.fillPoly(overlay, pts = [C8], color =blueColor)
             cv2.fillPoly(overlay, pts = [C9], color =blueColor)
             cv2.fillPoly(overlay, pts = [C10], color =blueColor)
-
+            cv2.fillPoly(overlay, pts = [C11], color =blueColor)
+            cv2.fillPoly(overlay, pts = [C12], color =blueColor)
+            cv2.fillPoly(overlay, pts = [C13], color =blueColor)
+            cv2.fillPoly(overlay, pts = [C14], color =blueColor)
+            cv2.fillPoly(overlay, pts = [C15], color =blueColor)
 
             alpha = 0.5
             cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
