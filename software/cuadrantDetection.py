@@ -145,10 +145,12 @@ while True:
             img = cv2.line(img, P9, P24,redColor,2)
             overlay = img.copy()
 
+            C1 = [P1, P11, P12, P2]
+            C1 = np.array(C1)
 
             x, y, w, h = 10, 10, 10, 10  # Rectangle parameters
             cv2.rectangle(overlay, (x, y), (x+w, y+h), (0, 200, 0), -1)  # A filled rectangle
-
+            cv2.fillPoly(overlay, C1, redColor)
             alpha = 0.4  # Transparency factor.
 
             # Following line overlays transparent rectangle over the image
