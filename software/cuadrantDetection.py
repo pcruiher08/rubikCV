@@ -146,6 +146,7 @@ while True:
             overlay = img.copy()
 
             C1 = [P1, P11, P12, P2]
+            C1 = list(map(list, C1))
             C1 = np.array(C1)
 
             x, y, w, h = 10, 10, 10, 10  # Rectangle parameters
