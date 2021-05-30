@@ -143,16 +143,16 @@ while True:
             img = cv2.line(img, P1, P21,redColor,2)
             img = cv2.line(img, P2, P22,redColor,2)
             img = cv2.line(img, P9, P24,redColor,2)
-    overlay = img.copy()
+            overlay = img.copy()
 
 
-    x, y, w, h = 10, 10, 10, 10  # Rectangle parameters
-    cv2.rectangle(overlay, (x, y), (x+w, y+h), (0, 200, 0), -1)  # A filled rectangle
+            x, y, w, h = 10, 10, 10, 10  # Rectangle parameters
+            cv2.rectangle(overlay, (x, y), (x+w, y+h), (0, 200, 0), -1)  # A filled rectangle
 
-    alpha = 0.4  # Transparency factor.
+            alpha = 0.4  # Transparency factor.
 
-    # Following line overlays transparent rectangle over the image
-    image_new = cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0)
+            # Following line overlays transparent rectangle over the image
+            img = cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0)
 
 
 
