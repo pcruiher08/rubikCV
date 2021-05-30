@@ -165,10 +165,10 @@ while True:
             # draw a triangle
             vertices = np.array([[480, 400], [250, 650], [600, 650]], np.int32)
             pts = vertices.reshape((-1, 1, 2))
-            cv2.polylines(img, [pts], isClosed=True, color=(0, 255, 0), thickness=20)
+            cv2.polylines(img, [pts], isClosed=True, color=(0, 0, 255), thickness=20)
 
             # fill it
-            cv2.fillPoly(img, [pts], color=(0, 255, 0))            
+            cv2.fillPoly(img, [pts], color=(0, 0, 255))            
             alpha = 0.4  # Transparency factor.
 
             # Following line overlays transparent rectangle over the image
