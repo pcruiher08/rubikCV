@@ -31,7 +31,7 @@ def getAverageInsidePolygon(img, polygon):
     imghsv = cv2.cvtColor(imghsv, cv2.COLOR_BGR2HSV)
     mask = np.zeros(img.shape[:2], dtype = np.uint8)
     cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
-    average = cv2.mean(img,mask=mask)
+    average = cv2.mean(imghsv,mask=mask)
     print(average)
     return average
 
