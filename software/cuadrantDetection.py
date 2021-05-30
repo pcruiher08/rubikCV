@@ -149,6 +149,7 @@ while True:
             C1 = list(map(list, C1))
             C1 = np.array(C1)
             print(C1)
+            C1 = np.array([[25, 20], [30, 100], [75, 80], [10, 100]])
 
             x, y, w, h = 10, 10, 10, 10  # Rectangle parameters
             cv2.rectangle(overlay, (x, y), (x+w, y+h), (0, 200, 0), -1)  # A filled rectangle
