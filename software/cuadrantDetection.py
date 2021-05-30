@@ -4,17 +4,38 @@ import numpy as np
 import os
 import math as m 
 
+def rgb_to_hsv(r, g, b):
+    r, g, b = r/255.0, g/255.0, b/255.0
+    mx = max(r, g, b)
+    mn = min(r, g, b)
+    df = mx-mn
+    if mx == mn:
+        h = 0
+    elif mx == r:
+        h = (60 * ((g-b)/df) + 360) % 360
+    elif mx == g:
+        h = (60 * ((b-r)/df) + 120) % 360
+    elif mx == b:
+        h = (60 * ((r-g)/df) + 240) % 360
+    if mx == 0:
+        s = 0
+    else:
+        s = (df/mx)*100
+    v = mx*100
+    return h, s, v
+
 def mouseRGB(event,x,y,flags,param):
     if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
         colorsB = frame[y,x,0]
         colorsG = frame[y,x,1]
         colorsR = frame[y,x,2]
         colors = frame[y,x]
-        print("Red: ",colorsR)
-        print("Green: ",colorsG)
-        print("Blue: ",colorsB)
-        print("BRG Format: ",colors)
-        print("Coordinates of pixel: X: ",x,"Y: ",y)
+        #print("Red: ",colorsR)
+        #print("Green: ",colorsG)
+        #print("Blue: ",colorsB)
+        #print("BRG Format: ",colors)
+        #print("Coordinates of pixel: X: ",x,"Y: ",y)
+        print(rgb_to_hsv(colorsR,colorsG,colorsB))
 
 def getMidPoint(a, b):
     return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
@@ -86,7 +107,7 @@ def getAverageInsidePolygon(img, polygon):
     elif(nearestColor == 'O'):
         average = (0,128,255)
 
-    print(nearestColor, namestr(polygon, globals()))
+    #print(nearestColor, namestr(polygon, globals()))
     return average, nearestColor
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
