@@ -176,7 +176,7 @@ while True:
             cv2.fillPoly(overlay, pts = [C3], color =blueColor)
             cv2.fillPoly(overlay, pts = [C4], color =blueColor)
             cv2.fillPoly(overlay, pts = [C5], color =blueColor)
-            cv2.fillPoly(overlay, pts = [C6], color =blueColor)
+            cv2.fillPoly(overlay, pts = [C6], color =tuple(getAverageInsidePolygon(img,C15)[:3]))
             cv2.fillPoly(overlay, pts = [C7], color =blueColor)
             cv2.fillPoly(overlay, pts = [C8], color =blueColor)
             cv2.fillPoly(overlay, pts = [C9], color =blueColor)
