@@ -145,13 +145,7 @@ while True:
             img = cv2.line(img, P9, P24,redColor,2)
 
             
-            overlay = img.copy()
-            pt1 = (150, 100)
-            pt2 = (100, 200)
-            pt3 = (200, 200)
-            triangle_cnt = np.array( [pt1, pt2, pt3] )
 
-            cv2.drawContours(img, [triangle_cnt], 0, (0,255,0), -1)
             C1 = [P1, P11, P12, P2]
             C1 = list(map(list, C1))
             C1 = np.array(C1)
@@ -160,7 +154,7 @@ while True:
 
             contours = np.array([[50,70], [50,120], [150,150], [150,50]])
             #image = np.zeros((200,200))
-            cv2.fillPoly(img, pts = [contours], color =(255,255,255))
+            cv2.fillPoly(img, pts = [C1], color =(255,255,255))
 
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
