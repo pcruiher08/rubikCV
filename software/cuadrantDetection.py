@@ -27,6 +27,8 @@ def pointInterceptPointPointPointPoint(a, b, c, d):
     return (int(punto1), int(punto2))
 
 def getAverageInsidePolygon(img, polygon):
+    imghsv = img.copy()
+    imghsv = cv2.cvtColor(imghsv, cv2.COLOR_BGR2HSV)
     mask = np.zeros(img.shape[:2], dtype = np.uint8)
     cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
     average = cv2.mean(img,mask=mask)
