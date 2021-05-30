@@ -145,10 +145,7 @@ while True:
             img = cv2.line(img, P9, P24,redColor,2)
 
             
-
-            C1 = [P1, P11, P12, P2]
-            C1 = list(map(list, C1))
-            C1 = np.array(C1)
+            C1 = np.array(list(map(list, [P1, P11, P12, P2])))
         
 
 
