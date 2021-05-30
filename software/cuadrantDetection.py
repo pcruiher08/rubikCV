@@ -185,13 +185,12 @@ while True:
             cv2.fillPoly(overlay, pts = [C12], color =blueColor)
             cv2.fillPoly(overlay, pts = [C13], color =blueColor)
             cv2.fillPoly(overlay, pts = [C14], color =blueColor)
-            cv2.fillPoly(overlay, pts = [C15], color =blueColor)
+            cv2.fillPoly(overlay, pts = [C15], color =tuple(getAverageInsidePolygon(img,C15)[:3]))
 
             alpha = 0.5
             cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
 
 
-            getAverageInsidePolygon(img,C15)
 
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
