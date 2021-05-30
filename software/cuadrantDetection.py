@@ -144,16 +144,16 @@ while True:
             img = cv2.line(img, P2, P22,redColor,2)
             img = cv2.line(img, P9, P24,redColor,2)
 
-            
+            overlay = img.copy()
             C1 = np.array(list(map(list, [P1, P11, P12, P2])))
             C2 = np.array(list(map(list, [P2, P12, P13, P3])))
             C3 = np.array(list(map(list, [P3, P13, P5, P4])))
-
-        
-            cv2.fillPoly(img, pts = [C1], color =(255,255,255))
-            cv2.fillPoly(img, pts = [C2], color =(255,255,255))
-            cv2.fillPoly(img, pts = [C3], color =(255,255,255))
-
+            
+            cv2.fillPoly(overlay, pts = [C1], color =redColor)
+            cv2.fillPoly(overlay, pts = [C2], color = greenColor)
+            cv2.fillPoly(overlay, pts = [C3], color =blueColor)
+            alpha = 0.5
+            cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
 
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
