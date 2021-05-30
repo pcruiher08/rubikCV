@@ -280,6 +280,7 @@ while True:
 
     cv2.imshow('img',img)
     cv2.imshow('mouseRGB', frame)
+    cv2.imwrite('fotoparahumberto', frame)
 
     k = cv2.waitKey(30) & 0xff
     if k == 27:
