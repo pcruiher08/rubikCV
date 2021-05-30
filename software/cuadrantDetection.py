@@ -29,7 +29,9 @@ def pointInterceptPointPointPointPoint(a, b, c, d):
 def getAverageInsidePolygon(img, polygon):
     mask = np.zeros(img.shape[:2], dtype = np.uint8)
     cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
-    print(cv2.mean(img,mask=mask))
+    average = cv2.mean(img,mask=mask)
+    print(average)
+    return average
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
