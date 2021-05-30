@@ -26,6 +26,11 @@ def pointInterceptPointPointPointPoint(a, b, c, d):
     punto2 = ((a[0]*b[1] - a[1]*b[0]) * (c[1]-d[1]) - (a[1]-b[1]) * (c[0]*d[1] - c[1]*d[0]))/divide
     return (int(punto1), int(punto2))
 
+def getAverageInsidePolygon(img, polygon):
+    mask = np.zeros((img.shape))
+    cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
+    print(cv2.mean(img,mask))
+
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     key = getattr(aruco, f'DICT_{markerSize}X{markerSize}_{totalMarkers}')
@@ -182,6 +187,9 @@ while True:
 
             alpha = 0.5
             cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
+
+
+            getAverageInsidePolygon(img,C15)
 
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
