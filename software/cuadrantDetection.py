@@ -156,26 +156,11 @@ while True:
             C1 = list(map(list, C1))
             C1 = np.array(C1)
         
-            C1 = np.array([[25, 20], [30, 100], [75, 80], [10, 100]])
-            contours = np.array( [ [50,50], [50,150], [150, 150], [150,50] ] )
-
-            #x, y, w, h = 10, 10, 10, 10  # Rectangle parameters
-
-            #cv2.rectangle(overlay, (x, y), (x+w, y+h), (0, 200, 0), -1)  # A filled rectangle
-            # draw a triangle
-            vertices = np.array([[480, 400], [250, 650], [600, 650]], np.int32)
-            pts = vertices.reshape((-1, 1, 2))
-            cv2.polylines(img, [pts], isClosed=True, color=(0, 0, 255), thickness=20)
-
-            # fill it
-            cv2.fillPoly(img, [pts], color=(0, 0, 255))            
-            alpha = 0.4  # Transparency factor.
-
-            # Following line overlays transparent rectangle over the image
-            img = cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0)
-            
 
 
+            contours = np.array([[50,70], [50,120], [150,150], [150,50]])
+            #image = np.zeros((200,200))
+            cv2.fillPoly(img, pts = [contours], color =(255,255,255))
 
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
