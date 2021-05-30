@@ -146,12 +146,14 @@ while True:
 
             
             C1 = np.array(list(map(list, [P1, P11, P12, P2])))
+            C2 = np.array(list(map(list, [P2, P12, P13, P3])))
+            C3 = np.array(list(map(list, [P3, P13, P5, P4])))
+
         
-
-
-            contours = np.array([[50,70], [50,120], [150,150], [150,50]])
-            #image = np.zeros((200,200))
             cv2.fillPoly(img, pts = [C1], color =(255,255,255))
+            cv2.fillPoly(img, pts = [C2], color =(255,255,255))
+            cv2.fillPoly(img, pts = [C3], color =(255,255,255))
+
 
     cv2.imshow('img',img)
     k = cv2.waitKey(30) & 0xff
