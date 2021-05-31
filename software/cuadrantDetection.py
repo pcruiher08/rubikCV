@@ -137,7 +137,7 @@ blueColor = (255,0,0)
 redColor = (0,0,255)
 # On CircuitPlayground Express, and boards with built in status NeoPixel -> board.NEOPIXEL
 # Otherwise choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D1
-pixel_pin = board.NEOPIXEL
+pixel_pin = board.D18
 num_pixels = 10
 
 # The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
