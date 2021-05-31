@@ -3,8 +3,6 @@ import cv2.aruco as aruco
 import numpy as np
 import os
 import math as m 
-import board
-import neopixel
 
 def rgb_to_hsv(r, g, b):
     r, g, b = r/255.0, g/255.0, b/255.0
@@ -135,40 +133,8 @@ cap = cv2.VideoCapture(0)
 greenColor = (0,255,0)
 blueColor = (255,0,0)
 redColor = (0,0,255)
-pixels = neopixel.NeoPixel(board.D18, 30)
-pixels.fill((0, 255, 0))
 
 
-
-def wheel(pos):
-    # Input a value 0 to 255 to get a color value.
-    # The colours are a transition r - g - b - back to r.
-    if pos < 0 or pos > 255:
-        r = g = b = 0
-    elif pos < 85:
-        r = int(pos * 3)
-        g = int(255 - pos * 3)
-        b = 0
-    elif pos < 170:
-        pos -= 85
-        r = int(255 - pos * 3)
-        g = 0
-        b = int(pos * 3)
-    else:
-        pos -= 170
-        r = 0
-        g = int(pos * 3)
-        b = int(255 - pos * 3)
-    return (r, g, b) if ORDER in (neopixel.RGB, neopixel.GRB) else (r, g, b, 0)
-
-
-def rainbow_cycle(wait):
-    for j in range(255):
-        for i in range(num_pixels):
-            pixel_index = (i * 256 // num_pixels) + j
-            pixels[i] = wheel(pixel_index & 255)
-        pixels.show()
-        time.sleep(wait)
 
 
 while True:
@@ -176,10 +142,7 @@ while True:
     frame = img.copy()
     arucofound = findArucoMarkers(img)
     howManyArucos = len(arucofound[0])
-    pixels.fill((255, 0, 0))
-    # Uncomment this line if you have RGBW/GRBW NeoPixels
-    # pixels.fill((255, 0, 0, 0))
-    pixels.show()
+
     if howManyArucos!=0:
         coordinates = []
         for bbox, id in zip(arucofound[0], arucofound[1]):
