@@ -75,7 +75,7 @@ def getAverageInsidePolygon(img, polygon):
     cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
     average = cv2.mean(imghsv,mask=mask)[:3]
     color_ranges_HSV = [
-    [(55, 0, 161),"W"],
+    [(234, 8, 255),"W"],
     [(13, 53, 255),"O"],
     [(127, 58, 131),"G"],
     [(8, 70, 131),"R"],
