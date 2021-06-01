@@ -5,6 +5,7 @@ import os
 import math as m 
 
 def rgb_to_hsv(r, g, b):
+    return r, g, b
     r, g, b = r/255.0, g/255.0, b/255.0
     mx = max(r, g, b)
     mn = min(r, g, b)
@@ -70,10 +71,18 @@ def namestr(obj, namespace):
 
 def getAverageInsidePolygon(img, polygon):
     imghsv = img.copy()
-    imghsv = cv2.cvtColor(imghsv, cv2.COLOR_BGR2HSV)
+    imghsv = cv2.cvtColor(imghsv, cv2.COLOR_BGR2RGB)
     mask = np.zeros(img.shape[:2], dtype = np.uint8)
     cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
     average = cv2.mean(imghsv,mask=mask)[:3]
+    color_ranges_RGB[
+    [(255, 255, 255),"W"],
+    [(255, 265, 0),"O"],
+    [(0, 255, 0),"G"],
+    [(255, 0, 0),"R"],
+    [(255, 255, 0),"Y"],
+    [(0, 0, 255),"B"]]
+    '''
     color_ranges_HSV = [
     [(234, 8, 255),"W"],
     [(30, 63, 255),"O"],
@@ -81,6 +90,7 @@ def getAverageInsidePolygon(img, polygon):
     [(8, 70, 131),"R"],
     [(60, 47, 189),"Y"],
     [(209, 90, 255),"B"]]
+    '''
     '''
     color_ranges_HSV = [
     [(55, 0, 161), (210, 17, 255),"W"],
@@ -103,7 +113,7 @@ def getAverageInsidePolygon(img, polygon):
     
     nearestColor = 'P'
     minimumDistance = 1000
-    for color in color_ranges_HSV:
+    for color in color_ranges_RGB:
         comparison1 = calculateHSVDistance(color[0], average)
         #comparison2 = calculateHSVDistance(color[1], average)
         #closestColor = min(comparison1, comparison2)
