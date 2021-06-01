@@ -81,7 +81,7 @@ def getAverageInsidePolygon(img, polygon):
     [(0, 255, 0),"G"],
     [(255, 0, 0),"R"],
     [(255, 255, 0),"Y"],
-    [(0, 0, 255),"B"]]
+    [(20, 150, 255),"B"]]
     '''
     color_ranges_HSV = [
     [(234, 8, 255),"W"],
