@@ -77,7 +77,7 @@ def getAverageInsidePolygon(img, polygon):
     average = cv2.mean(imghsv,mask=mask)[:3]
     color_ranges_RGB= [
     [(255, 255, 255),"W"],
-    [(255, 265, 0),"O"],
+    [(255, 169, 0),"O"],
     [(0, 255, 0),"G"],
     [(255, 0, 0),"R"],
     [(255, 255, 0),"Y"],
