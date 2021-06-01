@@ -75,7 +75,7 @@ def getAverageInsidePolygon(img, polygon):
     mask = np.zeros(img.shape[:2], dtype = np.uint8)
     cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
     average = cv2.mean(imghsv,mask=mask)[:3]
-    color_ranges_RGB[
+    color_ranges_RGB= [
     [(255, 255, 255),"W"],
     [(255, 265, 0),"O"],
     [(0, 255, 0),"G"],
@@ -110,7 +110,7 @@ def getAverageInsidePolygon(img, polygon):
     [(35, 255, 255), (25, 50, 70),"Y"],
     [(128, 255, 255), (90, 50, 70),"B"]]
     '''
-    
+
     nearestColor = 'P'
     minimumDistance = 1000
     for color in color_ranges_RGB:
