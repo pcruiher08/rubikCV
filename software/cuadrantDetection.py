@@ -83,6 +83,7 @@ def namestr(obj, namespace):
 
 def pointInsidePolygon(point, polygon):
     isInside = True
+    print("estoy checando ", polygon, "con ", point)
     for i in range(len(polygon)):
         result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
         if(not (result < 0)):
@@ -93,74 +94,6 @@ def pointInsidePolygon(point, polygon):
         print("ando aca afuera, abreme")
     return isInside
 
-def getAverageInsidePolygon(img, polygon):
-    imghsv = img.copy()
-    imghsv = cv2.cvtColor(imghsv, cv2.COLOR_BGR2RGB)
-    mask = np.zeros(img.shape[:2], dtype = np.uint8)
-    cv2.fillPoly(mask, pts = [polygon], color = (255,255,255))
-    average = cv2.mean(imghsv,mask=mask)[:3]
-    color_ranges_RGB= [
-    [(180, 180, 230),"W"],
-    [(255, 169, 0),"O"],
-    [(0, 255, 0),"G"],
-    [(255, 0, 0),"R"],
-    [(255, 255, 0),"Y"],
-    [(20, 150, 255),"B"]]
-    '''
-    color_ranges_HSV = [
-    [(234, 8, 255),"W"],
-    [(30, 63, 255),"O"],
-    [(127, 58, 131),"G"],
-    [(8, 70, 131),"R"],
-    [(60, 47, 189),"Y"],
-    [(209, 90, 255),"B"]]
-    '''
-    '''
-    color_ranges_HSV = [
-    [(55, 0, 161), (210, 17, 255),"W"],
-    [(13, 53, 255), (43, 68, 255),"O"],
-    [(127, 58, 131), (143, 83, 233),"G"],
-    [(8, 70, 131), (17, 100, 250),"R"],
-    [(60, 47, 189), (66, 65, 255),"Y"],
-    [(55, 0, 161), (210, 17, 255),"B"]]
-    '''
-    '''
-    color_ranges_HSV = [
-    [(180, 18, 255), (0, 0, 231),"W"],
-    [(24, 255, 255), (10, 50, 70),"O"],
-    [(89, 255, 255), (36, 50, 70),"G"],
-    [(180, 255, 255), (159, 50, 70),"R"],
-    [(9, 255, 255), (0, 50, 70),"R"],
-    [(35, 255, 255), (25, 50, 70),"Y"],
-    [(128, 255, 255), (90, 50, 70),"B"]]
-    '''
-
-    nearestColor = 'P'
-    minimumDistance = 1000
-    for color in color_ranges_RGB:
-        comparison1 = calculateHSVDistance(color[0], average)
-        #comparison2 = calculateHSVDistance(color[1], average)
-        #closestColor = min(comparison1, comparison2)
-        closestColor = comparison1
-        if( closestColor < minimumDistance ):
-            minimumDistance = closestColor
-            nearestColor = color[1]
-
-    if(nearestColor == 'W'):
-        average = (255,255,255)
-    elif(nearestColor == 'R'):
-        average = (0,0,255)
-    elif(nearestColor == 'G'):
-        average = (0,255,0)
-    elif(nearestColor == 'B'):
-        average = (255,0,0)
-    elif(nearestColor == 'Y'):
-        average = (0,255,255)
-    elif(nearestColor == 'O'):
-        average = (0,128,255)
-
-    #print(nearestColor, namestr(polygon, globals()))
-    return average, nearestColor
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -263,6 +196,7 @@ while True:
 
 
             polygonsState0 = [C1, C2]
+            
 
             if scanState == 0:
                 print("estado", scanState)
