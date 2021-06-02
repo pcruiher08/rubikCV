@@ -6,14 +6,20 @@ from polygon import Polygon
 import math as m 
 
 
+button = Polygon(np.array(list(map(list, [(0,0),(0,20),(20,20),(20,0)]))), (0,255,0))
+scanState = 0
+
 
 availalePolygons = []
-'''
+
 def clickInPolygon(event,x,y,flags,param):
     if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
-        for polygon in availalePolygons:
-            if(pointInsidePolygon((x,y), polygon)):
-'''
+        if pointInsidePolygon((x,y), button):
+            scanState += 1
+            print("cambio de estado")
+        if scanState == 0:
+            print("estado 0")
+
 
 def getMidPoint(a, b):
     return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
@@ -210,7 +216,6 @@ while True:
             P24 = getFractionPoint(P25, P3, 1/3)
             overlay = img.copy()
 
-            button = Polygon(np.array(list(map(list, [(0,0),(0,20),(20,20),(20,0)]))), (0,255,0))
             button.fillPolygon(img,overlay)
             C1 = Polygon(np.array(list(map(list, [P1, P11, P12, P2]))), (255,255,255)) 
 

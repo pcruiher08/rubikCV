@@ -7,7 +7,7 @@ class Polygon:
 
     def __init__(self, coordinates, color):
         self.coordinates = coordinates
-        self.color = (255, 255, 255)
+        self.color = color
 
     def setColor(self, color):
         self.color = color
