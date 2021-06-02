@@ -105,7 +105,7 @@ def pointInsidePolygon(point, polygon):
         print("ando aca afuera, abreme")
     '''
     return isInsideRight or isInsideLeft
-
+    
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

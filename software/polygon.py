@@ -34,13 +34,26 @@ class Polygon:
     def getColorLetter(self):
         return self.colorLetter
 
+    def getCentroid(self):
+        avgX = 0
+        avgY = 0
+
+        for point in self.coordinates:
+            avgX += point[0]
+            avgY += point[1]
+        
+        avgX /= len(self.coordinates)
+        avgY /= len(self.coordinates)
+
+        return (avgX, avgY)
+
     def nextColor(self):
         print("cambiando color")
         self.colorIndex = (self.colorIndex + 1) % 6
         self.color = self.colors[self.colorIndex][0]
-        self.colorLetter = 'K'
         self.color = (255,0,0)
         print(self.colorLetter)
+
     def setCoordinates(self, coordinates):
         self.coordinates = coordinates
 
