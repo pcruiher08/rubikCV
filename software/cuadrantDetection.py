@@ -14,10 +14,8 @@ polygonsState1 = []
 polygonsState2 = []
 
 
-img = 0
-overlay = 0
 def finiteStateMachine(event,x,y,flags,param):
-    global scanState
+    global scanState, polygonsState0, polygonsState1, polygonsState2
     if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
         print(x,y)
         if pointInsidePolygon((x,y), button.getCoordinates()):
@@ -25,7 +23,9 @@ def finiteStateMachine(event,x,y,flags,param):
             print("cambio de estado", scanState)
         if scanState == 0:
             print("estado", scanState)
-
+            for polygon in polygonsState0:
+                if pointInsidePolygon((x,y), polygon):
+                    polygon.nextColor()
         elif scanState == 1:
             print("estado", scanState)
         elif scanState == 2:
