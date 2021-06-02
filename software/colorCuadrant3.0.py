@@ -6,48 +6,36 @@ from polygon import Polygon
 import math as m 
 
 
-button = Polygon(np.array(list(map(list, [(0,0),(0,20),(20,20),(20,0)]))), (0,255,0))
+matrizKociemba = []
+
 scanState = 0
 
-polygonsState0 = []
-polygonsState1 = []
-polygonsState2 = []
 
-
-def finiteStateMachine(event,x,y,flags,param):
-    global scanState, polygonsState0, polygonsState1, polygonsState2
-    if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
-        print(x,y)
-        if pointInsidePolygon((x,y), button.getCoordinates()):
-            scanState += 1
-            print("cambio de estado", scanState)
-        if scanState == 0:
-            print("finiteStateMachine", scanState)
-            print("desde la funcion", polygonsState0)
-            #print((x,y), polygonsState0[0].egtCoordinates())
-            for polygon in polygonsState0:
-                if pointInsidePolygon((x,y), polygon.getCoordinates()):
-                    polygon.nextColor()
-                    #print("desde la funcion", polygon.getColorLetter())
-        elif scanState == 1:
-            print("finiteStateMachine", scanState)
-        elif scanState == 2:
-            print("finiteStateMachine", scanState)
-        elif scanState == 3:
-            print("finiteStateMachine", scanState)
-        elif scanState == 4:
-            print("finiteStateMachine", scanState)
-        elif scanState == 5:
-            print("finiteStateMachine", scanState)
-        elif scanState == 6:
-            print("finiteStateMachine", scanState)
-        elif scanState == 7:
-            print("finiteStateMachine", scanState)
-        elif scanState == 8:
-            print("finiteStateMachine", scanState)
-        elif scanState == 9:
-            #resolver
-            print("a resolver")
+def finiteStateMachine(cambia):
+    if cambia:
+        scanState += 1
+        print("cambio de estado", scanState)
+    if scanState == 0:
+        print("finiteStateMachine", scanState)
+    elif scanState == 1:
+        print("finiteStateMachine", scanState)
+    elif scanState == 2:
+        print("finiteStateMachine", scanState)
+    elif scanState == 3:
+        print("finiteStateMachine", scanState)
+    elif scanState == 4:
+        print("finiteStateMachine", scanState)
+    elif scanState == 5:
+        print("finiteStateMachine", scanState)
+    elif scanState == 6:
+        print("finiteStateMachine", scanState)
+    elif scanState == 7:
+        print("finiteStateMachine", scanState)
+    elif scanState == 8:
+        print("finiteStateMachine", scanState)
+    elif scanState == 9:
+        #resolver
+        print("a resolver")
 
 def getMidPoint(a, b):
     return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
@@ -115,7 +103,62 @@ def drawPolygons(img, overlay, polygons):
         polygon.fillPolygon(img, overlay)
 
 
+def colorFinder(img, contours):
+    contoursSpecial = contours.copy()
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    edgee = cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
+    #cv2.imshow('1', img)
 
+    edge = cv2.Canny(edgee,100,200)
+    #cv2.imshow("e",edge)
+
+    rows,cols,dim = img.shape
+    out = np.zeros([rows, cols, dim], dtype=np.uint8)
+    acumm = mask = np.zeros((rows, cols), dtype=np.uint8)
+
+    low_red = np.array([0,50,50])
+    upper_red = np.array([10,255,255])
+
+    color_ranges_HSV = [
+        [(179, 59, 255), (0, 0, 106),"W",(0,0,255)],
+        [(180, 255, 255), (159, 50, 70),"R",(4,255,255)],
+        [(8, 255, 255), (0, 45, 0),"R",(4,255,255)],
+        [(20, 255, 255), (9, 58, 33),"O",(19,255,255)],
+        [(35, 255, 255), (25, 50, 70),"Y",(30,255,255)],
+        [(120, 255, 255), (50, 90, 135),"B",(120,255,255)],
+        [(89, 255, 255), (36, 50, 70),"G",(60,255,255)]
+    ]
+    contoursFinal = []
+    colors = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A']
+    maskTemp = np.zeros([rows,cols,3],np.uint8)
+    for i in range(len(contoursSpecial)):
+        xavg = 0
+        yavg = 0
+        for j in range(len(contoursSpecial[i][0])):
+            xavg += contoursSpecial[i][0][j][1]
+            yavg += contoursSpecial[i][0][j][0]
+        xavg /= len(contoursSpecial[i][0])
+        yavg /= len(contoursSpecial[i][0])
+        xavg = int(xavg)
+        yavg = int(yavg)
+        mask = np.zeros([rows,cols],np.uint8)
+        mask[xavg][yavg] = 255
+        #cv2.drawContours(mask,contoursSpecial[i],-1,255,-1)
+        mean = cv2.mean(hsv,mask=mask)
+        temp = np.zeros([1,1,3],np.uint8)
+        temp[0][0] = mean[:3]
+        #print(mean)
+        #cv2.drawContours(img,contoursSpecial[i],-1,[0,0,255],3)
+        #cv2.drawContours(img,[aprox],-1,mean[:2],3)
+        #cv2.fillPoly(img,pts = [aprox], color = mean)
+        for k in range(len(color_ranges_HSV)):
+            inR = cv2.inRange(temp,color_ranges_HSV[k][1],color_ranges_HSV[k][0])
+            if(inR[0][0] == 255):
+                #cv2.drawContours(maskTemp,[aprox],-1,mean,3)
+                #contoursFinal.append([contoursSpecial[i],color_ranges_HSV[k][2]])
+                colors[i] = color_ranges_HSV[k][2]
+                cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[k][3])
+    return colors
 
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
@@ -123,7 +166,8 @@ blueColor = (255,0,0)
 redColor = (0,0,255)
 
 
-while True:
+
+for estado in range(9):
     success, img = cap.read()
     #img = cv2.imread("4.jpg")
     orig = img.copy()
@@ -178,9 +222,7 @@ while True:
             P25 = (P10[0]-35, P1[1]+20)
             P23 = pointInterceptPointPointPointPoint(P3,P25,P8,P21)
             P24 = getFractionPoint(P25, P3, 1/3)
-            overlay = img.copy()
 
-            button.fillPolygon(img,overlay)
             C1 = Polygon(np.array(list(map(list, [P1, P11, P12, P2]))), (255,255,255)) 
             C2 = Polygon(np.array(list(map(list, [P2, P12, P13, P3]))), (255,255,255))
             C3 = np.array(list(map(list, [P3, P13, P5, P4])))
@@ -214,47 +256,13 @@ while True:
             C15C = [np.array([P24, P9, P10, P25])]
 
             contoursSpecial = [C1C,C2C,C3C,C4C,C5C,C6C,C7C,C8C,C9C,C10C,C11C,C12C,C13C,C14C,C15C]
-            #cv2.drawContours(orig,C1C,-1,[0,255,255],3)
 
 
 
-            cv2.setMouseCallback('img',finiteStateMachine)
 
-            polygonsState0 = [C1, C2]
-            #print("desde el loop", polygonsState0)
                             
-            alpha = 0.5
-
-            #cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
 
 
-            '''
-            img = cv2.circle(img, P1, 2, blueColor, 5)
-            img = cv2.circle(img, P2, 2, blueColor, 5)
-            img = cv2.circle(img, P3, 2, blueColor, 5)
-            img = cv2.circle(img, P4, 2, blueColor, 5)
-            img = cv2.circle(img, P5, 2, blueColor, 5)
-            img = cv2.circle(img, P6, 2, blueColor, 5)
-            img = cv2.circle(img, P7, 2, blueColor, 5)
-            img = cv2.circle(img, P8, 2, blueColor, 5)
-            img = cv2.circle(img, P9, 2, blueColor, 5)
-            img = cv2.circle(img, P10, 2, blueColor, 5)
-            img = cv2.circle(img, P11, 2, blueColor, 5)
-            img = cv2.circle(img, P12, 2, blueColor, 5)
-            img = cv2.circle(img, P13, 2, blueColor, 5)
-            img = cv2.circle(img, P14, 2, blueColor, 5)
-            img = cv2.circle(img, P15, 2, blueColor, 5)
-            img = cv2.circle(img, P16, 2, blueColor, 5)
-            img = cv2.circle(img, P17, 2, blueColor, 5)
-            img = cv2.circle(img, P18, 2, blueColor, 5)
-            img = cv2.circle(img, P19, 2, blueColor, 5)
-            img = cv2.circle(img, P20, 2, blueColor, 5)
-            img = cv2.circle(img, P21, 2, blueColor, 5)
-            img = cv2.circle(img, P22, 2, blueColor, 5)
-            img = cv2.circle(img, P23, 2, blueColor, 5)
-            img = cv2.circle(img, P24, 2, blueColor, 5)
-            img = cv2.circle(img, P25, 2, blueColor, 5)
-            '''
             #lineas especiales
             
             img = cv2.line(img, P5, P20,[0,0,0],smolLine)
@@ -277,62 +285,15 @@ while True:
             img = cv2.line(img, P9, P24,[0,0,0],smolLine)
 
 
-            hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-            edgee = cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
-            #cv2.imshow('1', img)
 
-            edge = cv2.Canny(edgee,100,200)
-            #cv2.imshow("e",edge)
+            print(colorFinder(img, contoursSpecial))
+            
+            #take 5 picutes
+            #procesamos 5 fotos
+            #sacamos el arreglo con la letra mas repetida
+            #escribimos en la matriz kociemba
+            #cambiamos de estado moviendo motores y es ciclo
 
-            rows,cols,dim = img.shape
-            out = np.zeros([rows, cols, dim], dtype=np.uint8)
-            acumm = mask = np.zeros((rows, cols), dtype=np.uint8)
-
-            low_red = np.array([0,50,50])
-            upper_red = np.array([10,255,255])
-
-            color_ranges_HSV = [
-                [(179, 59, 255), (0, 0, 106),"W",(0,0,255)],
-                [(180, 255, 255), (159, 50, 70),"R",(4,255,255)],
-                [(8, 255, 255), (0, 45, 0),"R",(4,255,255)],
-                [(20, 255, 255), (9, 58, 33),"O",(19,255,255)],
-                [(35, 255, 255), (25, 50, 70),"Y",(30,255,255)],
-                [(120, 255, 255), (50, 90, 135),"B",(120,255,255)],
-                [(89, 255, 255), (36, 50, 70),"G",(60,255,255)]
-            ]
-            contoursFinal = []
-            colors = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A']
-            maskTemp = np.zeros([rows,cols,3],np.uint8)
-            for i in range(len(contoursSpecial)):
-                xavg = 0
-                yavg = 0
-                for j in range(len(contoursSpecial[i][0])):
-                    xavg += contoursSpecial[i][0][j][1]
-                    yavg += contoursSpecial[i][0][j][0]
-                xavg /= len(contoursSpecial[i][0])
-                yavg /= len(contoursSpecial[i][0])
-                xavg = int(xavg)
-                yavg = int(yavg)
-                mask = np.zeros([rows,cols],np.uint8)
-                mask[xavg][yavg] = 255
-                #cv2.drawContours(mask,contoursSpecial[i],-1,255,-1)
-                cv2.imshow("e",mask)
-                mean = cv2.mean(hsv,mask=mask)
-                temp = np.zeros([1,1,3],np.uint8)
-                temp[0][0] = mean[:3]
-                #print(mean)
-                #cv2.drawContours(img,contoursSpecial[i],-1,[0,0,255],3)
-                #cv2.drawContours(img,[aprox],-1,mean[:2],3)
-                cv2.imshow("hola2",img)
-                #cv2.fillPoly(img,pts = [aprox], color = mean)
-                for k in range(len(color_ranges_HSV)):
-                    inR = cv2.inRange(temp,color_ranges_HSV[k][1],color_ranges_HSV[k][0])
-                    if(inR[0][0] == 255):
-                        #cv2.drawContours(maskTemp,[aprox],-1,mean,3)
-                        #contoursFinal.append([contoursSpecial[i],color_ranges_HSV[k][2]])
-                        colors[i] = color_ranges_HSV[k][2]
-                        cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[k][3])
-            print(colors)
             
             '''
             maskTemp = np.zeros([rows,cols,3],np.uint8)
@@ -366,34 +327,16 @@ while True:
                                     cv2.fillPoly(maskTemp,pts = [aprox], color = mean)
             '''
             maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
-            cv2.imshow("maske",maskTemp)
-            cv2.imshow("holaaaa",orig)
+            cv2.imshow("color reconstruction",maskTemp)
+            cv2.imshow("vista original",orig)
 
 
 
 
-            '''
-            cv2.fillPoly(overlay, pts = [C1], color =tuple(getAverageInsidePolygon(img,C1)[0]))
-            cv2.fillPoly(overlay, pts = [C2], color =tuple(getAverageInsidePolygon(img,C2)[0]))
-            cv2.fillPoly(overlay, pts = [C3], color =tuple(getAverageInsidePolygon(img,C3)[0]))
-            cv2.fillPoly(overlay, pts = [C4], color =tuple(getAverageInsidePolygon(img,C4)[0]))
-            cv2.fillPoly(overlay, pts = [C5], color =tuple(getAverageInsidePolygon(img,C5)[0]))
-            cv2.fillPoly(overlay, pts = [C6], color =tuple(getAverageInsidePolygon(img,C6)[0]))
-            cv2.fillPoly(overlay, pts = [C7], color =tuple(getAverageInsidePolygon(img,C7)[0]))
-            cv2.fillPoly(overlay, pts = [C8], color =tuple(getAverageInsidePolygon(img,C8)[0]))
-            cv2.fillPoly(overlay, pts = [C9], color =tuple(getAverageInsidePolygon(img,C9)[0]))
-            cv2.fillPoly(overlay, pts = [C10], color =tuple(getAverageInsidePolygon(img,C10)[0]))
-            cv2.fillPoly(overlay, pts = [C11], color =tuple(getAverageInsidePolygon(img,C11)[0]))
-            cv2.fillPoly(overlay, pts = [C12], color =tuple(getAverageInsidePolygon(img,C12)[0]))
-            cv2.fillPoly(overlay, pts = [C13], color =tuple(getAverageInsidePolygon(img,C13)[0]))
-            cv2.fillPoly(overlay, pts = [C14], color =tuple(getAverageInsidePolygon(img,C14)[0]))
-            cv2.fillPoly(overlay, pts = [C15], color =tuple(getAverageInsidePolygon(img,C15)[0]))
-            '''
 
 
 
-
-    cv2.imshow('img',img)
+    cv2.imshow('arucos',img)
 
     
     k = cv2.waitKey(30) & 0xff
