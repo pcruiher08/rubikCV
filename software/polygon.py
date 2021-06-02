@@ -30,8 +30,12 @@ class Polygon:
     
     def getColor(self):
         return self.color
+    
+    def getColorLetter(self):
+        return self.colorLetter
 
     def nextColor(self):
+        print("cambiando color")
         self.colorIndex = (self.colorIndex + 1) % 6
         self.color = self.colors[self.colorIndex][0]
 

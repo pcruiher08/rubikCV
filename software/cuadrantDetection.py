@@ -23,8 +23,6 @@ def finiteStateMachine(event,x,y,flags,param):
             print("cambio de estado", scanState)
         if scanState == 0:
             print("finiteStateMachine", scanState)
-            pointInsidePolygon((x,y), polygonsState0[0].getCoordinates())
-            pointInsidePolygon((x,y), polygonsState0[1].getCoordinates())
 
             #print((x,y), polygonsState0[0].egtCoordinates())
             for polygon in polygonsState0:
@@ -212,7 +210,7 @@ while True:
             if scanState == 0:
                 print("estado", scanState)
                 drawPolygons(img, overlay, polygonsState0)
-
+                print(polygonsState0[0].getColorLetter())
             elif scanState == 1:
                 print("estado", scanState)
             elif scanState == 2:
