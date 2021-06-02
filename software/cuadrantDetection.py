@@ -213,7 +213,7 @@ while True:
 
             if scanState == 0:
                 print("estado", scanState)
-                #drawPolygons(img, overlay, polygonsState0)
+                drawPolygons(img, overlay, polygonsState0)
                 print(polygonsState0[0].getColorLetter())
             elif scanState == 1:
                 print("estado", scanState)
@@ -315,7 +315,7 @@ while True:
 
 
     cv2.imshow('img',img)
-    cv2.imwrite('humberto.jpg', img)
+
     
     k = cv2.waitKey(30) & 0xff
     if k == 27:
