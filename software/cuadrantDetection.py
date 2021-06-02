@@ -244,7 +244,7 @@ while True:
 
 
             polygons = [C1]
-            polygonsState0 = polygons.copy()
+            polygonsState0.append(C1)
 
 
 
