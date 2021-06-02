@@ -189,7 +189,6 @@ while True:
     frame = img.copy()
     arucofound = findArucoMarkers(img)
     howManyArucos = len(arucofound[0])
-
     if howManyArucos!=0:
         coordinates = []
         for bbox, id in zip(arucofound[0], arucofound[1]):
@@ -348,6 +347,7 @@ while True:
     if scanState == 0:
         print("estado", scanState)
         drawPolygons(img, overlay, polygonsState0)
+        print("poligonos 0", polygonsState0)
 
     elif scanState == 1:
         print("estado", scanState)
