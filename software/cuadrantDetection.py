@@ -209,7 +209,7 @@ while True:
 
             cv2.setMouseCallback('img',finiteStateMachine)
 
-            polygonsState0 = [C1, C2]
+            polygonsState0 = [C1, C2].copy()
             print("desde el loop", polygonsState0)
 
             if scanState == 0:
