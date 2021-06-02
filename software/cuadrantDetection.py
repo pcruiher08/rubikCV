@@ -12,15 +12,19 @@ scanState = 0
 
 availalePolygons = []
 
-def clickInPolygon(event,x,y,flags,param):
+def finiteStateMachine(event,x,y,flags,param):
     global scanState
     if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
         print(x,y)
         if pointInsidePolygon((x,y), button.getCoordinates()):
             scanState += 1
-            print("cambio de estado")
+            print("cambio de estado", scanState)
         if scanState == 0:
             print("estado 0")
+        elif scanState == 1:
+            print("estado 1")
+        elif scanState == 2:
+            print("estado 2")
 
 
 def getMidPoint(a, b):
@@ -321,7 +325,7 @@ while True:
 
 
 
-    cv2.setMouseCallback('img',clickInPolygon)
+    cv2.setMouseCallback('img',finiteStateMachine)
 
     cv2.imshow('img',img)
 
