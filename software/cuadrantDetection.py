@@ -249,7 +249,7 @@ while True:
             C1 = np.array(list(map(list, [P1, P11, P12, P2])))
 
             C1 = Polygon(np.array(list(map(list, [P1, P11, P12, P2]))), (255,255,255)) 
-            Polygon.paintPolygonLines(img)
+            C1.paintPolygonLines(img)
             polygons = []
             polygons.append(C1)
 
