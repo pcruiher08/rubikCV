@@ -243,7 +243,7 @@ while True:
 
 
             polygons = [C1]
-            polygonsState0.append(C1)
+            polygonsState0 = polygons.copy()
 
             if scanState == 0:
                 print("estado", scanState)
