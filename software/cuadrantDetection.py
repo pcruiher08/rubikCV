@@ -206,6 +206,7 @@ while True:
             C14 = np.array(list(map(list, [P23, P8, P9, P24])))
             C15 = np.array(list(map(list, [P24, P9, P10, P25])))
 
+            cv2.setMouseCallback('img',finiteStateMachine)
 
             polygonsState0 = [C1, C2]
             print("desde el loop", polygonsState0)
@@ -312,7 +313,6 @@ while True:
 
 
 
-    cv2.setMouseCallback('img',finiteStateMachine)
 
     cv2.imshow('img',img)
 
