@@ -5,39 +5,7 @@ import os
 from polygon import Polygon 
 import math as m 
 
-def rgb_to_hsv(r, g, b):
-    return r, g, b
-    r, g, b = r/255.0, g/255.0, b/255.0
-    mx = max(r, g, b)
-    mn = min(r, g, b)
-    df = mx-mn
-    if mx == mn:
-        h = 0
-    elif mx == r:
-        h = (60 * ((g-b)/df) + 360) % 360
-    elif mx == g:
-        h = (60 * ((b-r)/df) + 120) % 360
-    elif mx == b:
-        h = (60 * ((r-g)/df) + 240) % 360
-    if mx == 0:
-        s = 0
-    else:
-        s = (df/mx)*100
-    v = mx*100
-    return h, s, v
 
-def mouseRGB(event,x,y,flags,param):
-    if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
-        colorsB = frame[y,x,0]
-        colorsG = frame[y,x,1]
-        colorsR = frame[y,x,2]
-        colors = frame[y,x]
-        #print("Red: ",colorsR)
-        #print("Green: ",colorsG)
-        #print("Blue: ",colorsB)
-        #print("BRG Format: ",colors)
-        #print("Coordinates of pixel: X: ",x,"Y: ",y)
-        print(rgb_to_hsv(colorsR,colorsG,colorsB))
 
 availalePolygons = []
 '''
@@ -178,8 +146,6 @@ def drawPolygons(img, overlay, polygons):
 
 
 
-cv2.namedWindow('mouseRGB')
-cv2.setMouseCallback('mouseRGB',mouseRGB)
 
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
@@ -244,14 +210,12 @@ while True:
             P24 = getFractionPoint(P25, P3, 1/3)
             overlay = img.copy()
 
-
-            C1 = np.array(list(map(list, [P1, P11, P12, P2])))
-
+            button = Polygon(np.array(list(map(list, [(0,0),(0,20),(20,20),(20,0)]))), (0,255,0))
+            button.fillPolygon(img,overlay)
             C1 = Polygon(np.array(list(map(list, [P1, P11, P12, P2]))), (255,255,255)) 
 
 
-            polygons = []
-            polygons.append(C1)
+            polygons = [C1]
 
 
 
@@ -354,8 +318,6 @@ while True:
 
     cv2.imshow('img',img)
 
-    cv2.imshow('mouseRGB', frame)
-    cv2.imwrite('fotoparahumberto.jpg', frame)
     
     k = cv2.waitKey(30) & 0xff
     if k == 27:
