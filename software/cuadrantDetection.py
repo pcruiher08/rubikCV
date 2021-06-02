@@ -28,6 +28,7 @@ def finiteStateMachine(event,x,y,flags,param):
             for polygon in polygonsState0:
                 if pointInsidePolygon((x,y), polygon.getCoordinates()):
                     polygon.nextColor()
+                    print("desde la funcion", polygon.getColorLetter())
         elif scanState == 1:
             print("finiteStateMachine", scanState)
         elif scanState == 2:
