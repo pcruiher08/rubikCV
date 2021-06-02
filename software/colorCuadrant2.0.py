@@ -198,7 +198,7 @@ while True:
 
             #cv2.setMouseCallback('img',finiteStateMachine)
 
-            polygonsState0 = [C1, C2]
+            polygonsState0 = [C1, C2, C3, C4]
                             
             alpha = 0.5
 
@@ -284,6 +284,7 @@ while True:
                 ret, thresh = cv2.threshold(mask,127,255,0)
                 #cv2.imshow(color_ranges_HSV[i][2],mask)
                 contours, hier = cv2.findContours(thresh, cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
+                contours = polygonsState0
                 for j in range(len(contours)):
                     if(cv2.contourArea(contours[j]) > 300 and cv2.contourArea(contours[j]) < 3000):
                         epsilon = 0.1*cv2.arcLength(contours[j],True)
