@@ -40,6 +40,7 @@ class Polygon:
         self.color = self.colors[self.colorIndex][0]
         self.colorLetter = 'K'
         self.color = (255,0,0)
+        print(self.colorLetter)
     def setCoordinates(self, coordinates):
         self.coordinates = coordinates
 
