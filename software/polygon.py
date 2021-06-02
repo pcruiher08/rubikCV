@@ -17,6 +17,9 @@ class Polygon:
 
     def setCoordinates(self, coordinates):
         self.coordinates = coordinates
+
+    def getCoordinates(self):
+        return self.coordinates
     
     def paintPolygonLines(self, img):
         for i in range(len(self.coordinates)):
