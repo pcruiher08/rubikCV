@@ -320,7 +320,7 @@ while True:
 
 
 
-    #cv2.setMouseCallback('img',clickInPolygon)
+    cv2.setMouseCallback('img',clickInPolygon)
 
     cv2.imshow('img',img)
 
