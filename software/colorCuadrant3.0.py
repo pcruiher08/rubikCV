@@ -158,6 +158,10 @@ def colorFinder(img, contours):
                 #contoursFinal.append([contoursSpecial[i],color_ranges_HSV[k][2]])
                 colors[i] = color_ranges_HSV[k][2]
                 cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[k][3])
+        maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
+        cv2.imshow("color reconstruction",maskTemp)
+        cv2.imshow("vista original",img)
+
     return colors
 
 cap = cv2.VideoCapture(0)   
@@ -170,7 +174,6 @@ redColor = (0,0,255)
 for estado in range(9):
     success, img = cap.read()
     #img = cv2.imread("4.jpg")
-    orig = img.copy()
     arucofound = findArucoMarkers(img)
     howManyArucos = len(arucofound[0])
     if howManyArucos!=0:
@@ -326,9 +329,6 @@ for estado in range(9):
                                     contoursFinal.append([[aprox],color_ranges_HSV[k][2]])
                                     cv2.fillPoly(maskTemp,pts = [aprox], color = mean)
             '''
-            maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
-            cv2.imshow("color reconstruction",maskTemp)
-            cv2.imshow("vista original",orig)
 
 
 
