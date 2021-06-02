@@ -243,12 +243,11 @@ while True:
 
 
             polygons = [C1]
-            polygonsState0 = polygons.copy()
+            polygonsState0 = [C1]
 
             if scanState == 0:
                 print("estado", scanState)
                 drawPolygons(img, overlay, polygonsState0)
-                print("poligonos 0", polygonsState0)
 
             elif scanState == 1:
                 print("estado", scanState)
