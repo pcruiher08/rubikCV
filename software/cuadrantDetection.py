@@ -245,7 +245,30 @@ while True:
             polygons = [C1]
             polygonsState0.append(C1)
 
+            if scanState == 0:
+                print("estado", scanState)
+                drawPolygons(img, overlay, polygonsState0)
+                print("poligonos 0", polygonsState0)
 
+            elif scanState == 1:
+                print("estado", scanState)
+            elif scanState == 2:
+                print("estado", scanState)
+            elif scanState == 3:
+                print("estado", scanState)
+            elif scanState == 4:
+                print("estado", scanState)
+            elif scanState == 5:
+                print("estado", scanState)
+            elif scanState == 6:
+                print("estado", scanState)
+            elif scanState == 7:
+                print("estado", scanState)
+            elif scanState == 8:
+                print("estado", scanState)
+            elif scanState == 9:
+                #resolver
+                print("a resolver")
 
             alpha = 0.5
 
@@ -344,30 +367,7 @@ while True:
     cv2.setMouseCallback('img',finiteStateMachine)
 
     cv2.imshow('img',img)
-    if scanState == 0:
-        print("estado", scanState)
-        drawPolygons(img, overlay, polygonsState0)
-        print("poligonos 0", polygonsState0)
 
-    elif scanState == 1:
-        print("estado", scanState)
-    elif scanState == 2:
-        print("estado", scanState)
-    elif scanState == 3:
-        print("estado", scanState)
-    elif scanState == 4:
-        print("estado", scanState)
-    elif scanState == 5:
-        print("estado", scanState)
-    elif scanState == 6:
-        print("estado", scanState)
-    elif scanState == 7:
-        print("estado", scanState)
-    elif scanState == 8:
-        print("estado", scanState)
-    elif scanState == 9:
-        #resolver
-        print("a resolver")
     
     k = cv2.waitKey(30) & 0xff
     if k == 27:
