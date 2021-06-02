@@ -88,22 +88,12 @@ def pointInsidePolygon(point, polygon):
         result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
         if(not (result < 0)):
             isInsideRight = False
-    '''
-    if(isInsideRight):
-        print("toi adentro bro")
-    else:
-        print("ando aca afuera, abreme")
-    '''
+
     for i in range(len(polygon)):
         result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
         if(not (result > 0)):
             isInsideLeft = False
-    '''
-    if(isInsideLeft):
-        print("toi adentro bro")
-    else:
-        print("ando aca afuera, abreme")
-    '''
+
     return isInsideRight or isInsideLeft
 
 
@@ -127,15 +117,15 @@ def drawPolygons(img, overlay, polygons):
 
 
 
-#cap = cv2.VideoCapture(0)   
+cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
 blueColor = (255,0,0)
 redColor = (0,0,255)
 
 
 while True:
-    #success, img = cap.read()
-    img = cv2.imread("4.jpg")
+    success, img = cap.read()
+    #img = cv2.imread("4.jpg")
     orig = img.copy()
     arucofound = findArucoMarkers(img)
     howManyArucos = len(arucofound[0])
@@ -403,7 +393,7 @@ while True:
 
 
 
-    #cv2.imshow('img',img)
+    cv2.imshow('img',img)
 
     
     k = cv2.waitKey(30) & 0xff
