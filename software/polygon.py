@@ -13,9 +13,17 @@ class Polygon:
                 ]
 
     def __init__(self, coordinates, color):
+        self.colors = [[(255,255,255),'W'],
+              [(255,0,0),'B'],
+              [(0,255,0),'G'],
+              [(0,0,255),'R'],
+              [(255,255,0),'Y'],
+              [(255,169,0),'O']
+                ]
         self.coordinates = coordinates
         self.color = color
         self.colorIndex = 0
+        self.colorLetter = self.colors[self.colorIndex][1]
 
     def setColor(self, color):
         self.color = color
@@ -25,7 +33,7 @@ class Polygon:
 
     def nextColor(self):
         self.colorIndex = (self.colorIndex + 1) % 6
-        self.color = colors[self.colorIndex][0]
+        self.color = self.colors[self.colorIndex][0]
 
     def setCoordinates(self, coordinates):
         self.coordinates = coordinates
