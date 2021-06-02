@@ -22,26 +22,26 @@ def finiteStateMachine(event,x,y,flags,param):
             scanState += 1
             print("cambio de estado", scanState)
         if scanState == 0:
-            print("estado", scanState)
+            print("finiteStateMachine", scanState)
             for polygon in polygonsState0:
                 if pointInsidePolygon((x,y), polygon.getCoordinates()):
                     polygon.nextColor()
         elif scanState == 1:
-            print("estado", scanState)
+            print("finiteStateMachine", scanState)
         elif scanState == 2:
-            print("estado", scanState)
+            print("finiteStateMachine", scanState)
         elif scanState == 3:
-            print("estado", scanState)
+            print("finiteStateMachine", scanState)
         elif scanState == 4:
-            print("estado", scanState)
+            print("finiteStateMachine", scanState)
         elif scanState == 5:
-            print("estado", scanState)
+            print("finiteStateMachine", scanState)
         elif scanState == 6:
-            print("estado", scanState)
+            print("finiteStateMachine", scanState)
         elif scanState == 7:
-            print("estado", scanState)
+            print("finiteStateMachine", scanState)
         elif scanState == 8:
-            print("estado", scanState)
+            print("finiteStateMachine", scanState)
         elif scanState == 9:
             #resolver
             print("a resolver")
