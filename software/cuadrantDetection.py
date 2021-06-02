@@ -13,6 +13,7 @@ scanState = 0
 availalePolygons = []
 
 def clickInPolygon(event,x,y,flags,param):
+    global scanState
     if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
         print(x,y)
         if pointInsidePolygon((x,y), button.getCoordinates()):
