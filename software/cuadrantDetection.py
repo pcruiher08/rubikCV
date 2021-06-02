@@ -250,6 +250,8 @@ while True:
 
             C1 = Polygon(np.array(list(map(list, [P1, P11, P12, P2]))), (255,255,255)) 
             C1.paintPolygonLines(img)
+            C1.fillPolygon(img, overlay)
+
             polygons = []
             polygons.append(C1)
 
