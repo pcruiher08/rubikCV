@@ -15,8 +15,6 @@ img = 0
 overlay = 0
 def finiteStateMachine(event,x,y,flags,param):
     global scanState
-    global img
-    global overlay
     if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
         print(x,y)
         if pointInsidePolygon((x,y), button.getCoordinates()):
@@ -347,7 +345,29 @@ while True:
     cv2.setMouseCallback('img',finiteStateMachine)
 
     cv2.imshow('img',img)
+    if scanState == 0:
+        print("estado", scanState)
+        drawPolygons(img, overlay, polygonsState0)
 
+    elif scanState == 1:
+        print("estado", scanState)
+    elif scanState == 2:
+        print("estado", scanState)
+    elif scanState == 3:
+        print("estado", scanState)
+    elif scanState == 4:
+        print("estado", scanState)
+    elif scanState == 5:
+        print("estado", scanState)
+    elif scanState == 6:
+        print("estado", scanState)
+    elif scanState == 7:
+        print("estado", scanState)
+    elif scanState == 8:
+        print("estado", scanState)
+    elif scanState == 9:
+        #resolver
+        print("a resolver")
     
     k = cv2.waitKey(30) & 0xff
     if k == 27:
