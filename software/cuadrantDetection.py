@@ -23,7 +23,10 @@ def finiteStateMachine(event,x,y,flags,param):
             print("cambio de estado", scanState)
         if scanState == 0:
             print("finiteStateMachine", scanState)
-            print((x,y), polygonsState0[0].getCoordinates())
+            pointInsidePolygon((x,y), polygonsState0[0].getCoordinates())
+            pointInsidePolygon((x,y), polygonsState0[1].getCoordinates())
+
+            #print((x,y), polygonsState0[0].egtCoordinates())
             for polygon in polygonsState0:
                 if pointInsidePolygon((x,y), polygon.getCoordinates()):
                     polygon.nextColor()
