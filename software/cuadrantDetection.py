@@ -244,6 +244,7 @@ while True:
             P25 = (P10[0]-35, P1[1]+20)
             P23 = pointInterceptPointPointPointPoint(P3,P25,P8,P21)
             P24 = getFractionPoint(P25, P3, 1/3)
+            overlay = img.copy()
 
 
             C1 = np.array(list(map(list, [P1, P11, P12, P2])))
@@ -258,7 +259,6 @@ while True:
 
 
             alpha = 0.5
-            overlay = img.copy()
 
             #drawPolygons(img, overlay, polygons)
             cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
