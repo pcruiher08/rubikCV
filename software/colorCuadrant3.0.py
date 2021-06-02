@@ -159,10 +159,9 @@ def colorFinder(img, contours):
                 colors[i] = color_ranges_HSV[k][2]
                 cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[k][3])
         maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
-        cv2.imshow("color reconstruction",maskTemp)
         cv2.imshow("vista original",img)
 
-    return colors
+    return colors, maskTemp
 
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
@@ -288,8 +287,10 @@ for estado in range(900):
             img = cv2.line(img, P9, P24,[0,0,0],smolLine)
 
 
+            respuesta = colorFinder(img, contoursSpecial)
+            print(respuesta[0])
+            cv2.imshow("color reconstruction",respuesta[1])
 
-            print(colorFinder(img, contoursSpecial))
             
             #take 5 picutes
             #procesamos 5 fotos
