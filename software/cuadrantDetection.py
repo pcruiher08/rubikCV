@@ -9,9 +9,10 @@ import math as m
 button = Polygon(np.array(list(map(list, [(0,0),(0,20),(20,20),(20,0)]))), (0,255,0))
 scanState = 0
 
+polygonsState0 = []
 
-availalePolygons = []
-
+img = 0
+overlay = 0
 def finiteStateMachine(event,x,y,flags,param):
     global scanState
     if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
@@ -20,12 +21,28 @@ def finiteStateMachine(event,x,y,flags,param):
             scanState += 1
             print("cambio de estado", scanState)
         if scanState == 0:
-            print("estado 0")
-        elif scanState == 1:
-            print("estado 1")
-        elif scanState == 2:
-            print("estado 2")
+            print("estado", scanState)
+            drawPolygons(img, overlay, polygonsState0)
 
+        elif scanState == 1:
+            print("estado", scanState)
+        elif scanState == 2:
+            print("estado", scanState)
+        elif scanState == 3:
+            print("estado", scanState)
+        elif scanState == 4:
+            print("estado", scanState)
+        elif scanState == 5:
+            print("estado", scanState)
+        elif scanState == 6:
+            print("estado", scanState)
+        elif scanState == 7:
+            print("estado", scanState)
+        elif scanState == 8:
+            print("estado", scanState)
+        elif scanState == 9:
+            #resolver
+            print("a resolver")
 
 def getMidPoint(a, b):
     return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
@@ -227,12 +244,12 @@ while True:
 
 
             polygons = [C1]
+            polygonsState0 = polygons.copy()
 
 
 
             alpha = 0.5
 
-            drawPolygons(img, overlay, polygons)
             cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
 
 
