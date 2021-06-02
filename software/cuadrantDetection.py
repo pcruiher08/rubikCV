@@ -15,6 +15,8 @@ img = 0
 overlay = 0
 def finiteStateMachine(event,x,y,flags,param):
     global scanState
+    global img
+    global overlay
     if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
         print(x,y)
         if pointInsidePolygon((x,y), button.getCoordinates()):
