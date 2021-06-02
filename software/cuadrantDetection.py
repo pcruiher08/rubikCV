@@ -24,7 +24,7 @@ def finiteStateMachine(event,x,y,flags,param):
         if scanState == 0:
             print("estado", scanState)
             for polygon in polygonsState0:
-                if pointInsidePolygon((x,y), polygon):
+                if pointInsidePolygon((x,y), polygon.getCoordinates()):
                     polygon.nextColor()
         elif scanState == 1:
             print("estado", scanState)
@@ -79,10 +79,8 @@ def namestr(obj, namespace):
 
 def pointInsidePolygon(point, polygon):
     isInside = True
-    polygonCoordinates = polygon.getCoordinates()
-    for i in range(polygonCoordinates):
-        
-        result = (point[1] - polygonCoordinates[i][1]) * (polygonCoordinates[(i + 1) % len(polygonCoordinates)][0] - polygonCoordinates[i][0]) - (point[0] - polygonCoordinates[i][0]) * (polygonCoordinates[(i + 1) % len(polygonCoordinates)][1] - polygonCoordinates[i][1])
+    for i in range(len(polygon)):
+        result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
         if(not (result < 0)):
             isInside = False
     if(isInside):
