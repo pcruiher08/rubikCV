@@ -213,7 +213,7 @@ while True:
 
             if scanState == 0:
                 print("estado", scanState)
-                drawPolygons(img, overlay, polygonsState0)
+                #drawPolygons(img, overlay, polygonsState0)
                 print(polygonsState0[0].getColorLetter())
             elif scanState == 1:
                 print("estado", scanState)
