@@ -82,17 +82,28 @@ def namestr(obj, namespace):
     return [name for name in namespace if namespace[name] is obj]
 
 def pointInsidePolygon(point, polygon):
-    isInside = True
+    isInsideRight = True
+    isInsideLeft = True
     print("estoy checando ", polygon, "con ", point)
     for i in range(len(polygon)):
         result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
         if(not (result < 0)):
-            isInside = False
-    if(isInside):
+            isInsideRight = False
+    if(isInsideRight):
         print("toi adentro bro")
     else:
         print("ando aca afuera, abreme")
-    return isInside
+
+    for i in range(len(polygon)):
+        result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
+        if(not (result > 0)):
+            isInsideLeft = False
+    if(isInsideLeft):
+        print("toi adentro bro")
+    else:
+        print("ando aca afuera, abreme")
+
+    return isInsideRight or isInsideLeft
 
 
 def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
