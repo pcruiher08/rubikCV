@@ -38,7 +38,7 @@ class Polygon:
         print("cambiando color")
         self.colorIndex = (self.colorIndex + 1) % 6
         self.color = self.colors[self.colorIndex][0]
-        self.colorLetter = self.colors[self.colorIndex][1]
+        self.colorLetter = 'K'
         self.color = (255,0,0)
     def setCoordinates(self, coordinates):
         self.coordinates = coordinates
