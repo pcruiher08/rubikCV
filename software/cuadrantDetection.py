@@ -173,10 +173,8 @@ def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
 
 def drawPolygons(img, overlay, polygons):
     for polygon in polygons:
-        for i in range(len(polygon)):
-            img = cv2.circle(img, tuple(polygon[i]), 2, blueColor, 5)        
-            img = cv2.line(img, tuple(polygon[i]), tuple(polygon[(i + 1) % len(polygon)]),redColor,2)
-        cv2.fillPoly(overlay, pts = [polygon], color =tuple(getAverageInsidePolygon(img,C1)[0]))
+        polygon.paintPolygonLines(img)
+        polygon.fillPolygon(img, overlay)
 
 
 
@@ -250,8 +248,7 @@ while True:
             C1 = np.array(list(map(list, [P1, P11, P12, P2])))
 
             C1 = Polygon(np.array(list(map(list, [P1, P11, P12, P2]))), (255,255,255)) 
-            C1.paintPolygonLines(img)
-            C1.fillPolygon(img, overlay)
+
 
             polygons = []
             polygons.append(C1)
@@ -260,7 +257,7 @@ while True:
 
             alpha = 0.5
 
-            #drawPolygons(img, overlay, polygons)
+            drawPolygons(img, overlay, polygons)
             cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
 
 
