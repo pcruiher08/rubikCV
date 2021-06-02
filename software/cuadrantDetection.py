@@ -205,7 +205,7 @@ while True:
 
 
             polygonsState0 = [C1, C2]
-            
+            print("desde el loop", polygonsState0[0].getColorLetter())
 
             if scanState == 0:
                 print("estado", scanState)
