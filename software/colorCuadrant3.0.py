@@ -170,7 +170,7 @@ redColor = (0,0,255)
 
 
 
-for estado in range(900):
+while True:
     success, img = cap.read()
     #img = cv2.imread("4.jpg")
     arucofound = findArucoMarkers(img)
