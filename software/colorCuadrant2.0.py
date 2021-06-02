@@ -65,7 +65,6 @@ def distancePointPoint(a, b):
     return int( m.sqrt( (a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) ) )
 
 def pointInterceptPointPointPointPoint(a, b, c, d):
-
     divide = (a[0] - b[0]) * (c[1] - d[1]) - (a[1] - b[1]) * (c[0] - d[0])
     punto1 = ((a[0]*b[1] - a[1]*b[0]) * (c[0]-d[0]) - (a[0]-b[0]) * (c[0]*d[1] - c[1]*d[0]))/divide
     punto2 = ((a[0]*b[1] - a[1]*b[0]) * (c[1]-d[1]) - (a[1]-b[1]) * (c[0]*d[1] - c[1]*d[0]))/divide
@@ -88,22 +87,12 @@ def pointInsidePolygon(point, polygon):
         result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
         if(not (result < 0)):
             isInsideRight = False
-    '''
-    if(isInsideRight):
-        print("toi adentro bro")
-    else:
-        print("ando aca afuera, abreme")
-    '''
+
     for i in range(len(polygon)):
         result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
         if(not (result > 0)):
             isInsideLeft = False
-    '''
-    if(isInsideLeft):
-        print("toi adentro bro")
-    else:
-        print("ando aca afuera, abreme")
-    '''
+  
     return isInsideRight or isInsideLeft
 
 
@@ -127,7 +116,7 @@ def drawPolygons(img, overlay, polygons):
 
 
 
-#cap = cv2.VideoCapture(0)   
+cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
 blueColor = (255,0,0)
 redColor = (0,0,255)
@@ -136,8 +125,8 @@ redColor = (0,0,255)
 
 
 while True:
-    #success, img = cap.read()
-    img = cv2.imread("2.55.jpg")
+    success, img = cap.read()
+    #img = cv2.imread("2.55.jpg")
     orig = img.copy()
     arucofound = findArucoMarkers(img)
     howManyArucos = len(arucofound[0])
@@ -207,10 +196,9 @@ while True:
             C14 = np.array(list(map(list, [P23, P8, P9, P24])))
             C15 = np.array(list(map(list, [P24, P9, P10, P25])))
 
-            cv2.setMouseCallback('img',finiteStateMachine)
+            #cv2.setMouseCallback('img',finiteStateMachine)
 
             polygonsState0 = [C1, C2]
-            print("desde el loop", polygonsState0)
                             
             alpha = 0.5
 
@@ -347,7 +335,7 @@ while True:
 
 
 
-    #cv2.imshow('img',img)
+    cv2.imshow('img',img)
 
     
     k = cv2.waitKey(30) & 0xff
