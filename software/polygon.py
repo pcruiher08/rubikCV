@@ -6,7 +6,7 @@ class Polygon:
 
 
     def __init__(self, coordinates, color):
-        self.coordinates = np.array(list(map(list, [(0,0),(0,0),(0,0),(0,0)])))
+        self.coordinates = self.coordinates
         self.color = (255, 255, 255)
 
     def setColor(self, color):
