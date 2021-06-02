@@ -150,11 +150,13 @@ def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     return [corners, ids]
 
 
-def drawPolygons(img, polygons):
+def drawPolygons(img, overlay, polygons):
     for polygon in polygons:
         for i in range(len(polygon)):
             img = cv2.circle(img, tuple(polygon[i]), 2, blueColor, 5)        
             img = cv2.line(img, tuple(polygon[i]), tuple(polygon[(i + 1) % len(polygon)]),redColor,2)
+        cv2.fillPoly(overlay, pts = [polygon], color =tuple(getAverageInsidePolygon(img,C1)[0]))
+
 
 
 cv2.namedWindow('mouseRGB')
@@ -229,7 +231,14 @@ while True:
             C1 = np.array(list(map(list, [P1, P11, P12, P2])))
             polygons = []
             polygons.append(C1)
-            drawPolygons(img, polygons)
+
+
+
+            alpha = 0.5
+            overlay = img.copy()
+
+            cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
+            drawPolygons(img, overlay, polygons)
 
             '''
             img = cv2.circle(img, P1, 2, blueColor, 5)
@@ -281,7 +290,6 @@ while True:
             img = cv2.line(img, P2, P22,redColor,2)
             img = cv2.line(img, P9, P24,redColor,2)
 
-            overlay = img.copy()
             C1 = np.array(list(map(list, [P1, P11, P12, P2])))
             C2 = np.array(list(map(list, [P2, P12, P13, P3])))
             C3 = np.array(list(map(list, [P3, P13, P5, P4])))
@@ -317,9 +325,8 @@ while True:
             cv2.fillPoly(overlay, pts = [C14], color =tuple(getAverageInsidePolygon(img,C14)[0]))
             cv2.fillPoly(overlay, pts = [C15], color =tuple(getAverageInsidePolygon(img,C15)[0]))
 
-            alpha = 0.5
-            cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
             '''
+
 
 
 
