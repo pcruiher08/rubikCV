@@ -153,7 +153,7 @@ def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
 def drawPolygons(img, polygons):
     for polygon in polygons:
         for i in range(len(polygon)):
-            img = cv2.circle(img, [tuple](polygon[i])], 2, blueColor, 5)        
+            img = cv2.circle(img, [tuple(polygon[i])], 2, blueColor, 5)        
             img = cv2.line(img, [tuple(polygon[i])], [tuple(polygon[i % 4])],redColor,2)
 
 
