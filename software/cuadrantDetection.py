@@ -79,8 +79,10 @@ def namestr(obj, namespace):
 
 def pointInsidePolygon(point, polygon):
     isInside = True
-    for i in range(len(polygon.getCoordinates)):
-        result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
+    polygonCoordinates = polygon.getCoordinates()
+    for i in range(polygonCoordinates):
+        
+        result = (point[1] - polygonCoordinates[i][1]) * (polygonCoordinates[(i + 1) % len(polygonCoordinates)][0] - polygonCoordinates[i][0]) - (point[0] - polygonCoordinates[i][0]) * (polygonCoordinates[(i + 1) % len(polygonCoordinates)][1] - polygonCoordinates[i][1])
         if(not (result < 0)):
             isInside = False
     if(isInside):
