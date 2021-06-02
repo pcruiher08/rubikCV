@@ -154,8 +154,8 @@ def drawPolygons(img, polygons):
     for polygon in polygons:
         for i in range(len(polygon)):
             print(polygon)
-            img = cv2.circle(img, polygon[i], 2, blueColor, 5)        
-            img = cv2.line(img, polygon[i], polygon[i % len(polygon)],redColor,2)
+            img = cv2.circle(img, tuple(olygon[i]), 2, blueColor, 5)        
+            img = cv2.line(img, tuple(polygon[i]), tuple(polygon[i % len(polygon)]),redColor,2)
 
 
 cv2.namedWindow('mouseRGB')
