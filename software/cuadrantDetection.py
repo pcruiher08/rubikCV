@@ -2,6 +2,7 @@ import cv2
 import cv2.aruco as aruco
 import numpy as np
 import os
+from polygon import Polygon 
 import math as m 
 
 def rgb_to_hsv(r, g, b):
@@ -38,6 +39,14 @@ def mouseRGB(event,x,y,flags,param):
         #print("Coordinates of pixel: X: ",x,"Y: ",y)
         print(rgb_to_hsv(colorsR,colorsG,colorsB))
 
+availalePolygons = []
+'''
+def clickInPolygon(event,x,y,flags,param):
+    if event == cv2.EVENT_LBUTTONDOWN: #checks mouse left button down condition
+        for polygon in availalePolygons:
+            if(pointInsidePolygon((x,y), polygon)):
+'''
+
 def getMidPoint(a, b):
     return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
 
@@ -68,6 +77,18 @@ def calculateHSVDistance(a, b):
 
 def namestr(obj, namespace):
     return [name for name in namespace if namespace[name] is obj]
+
+def pointInsidePolygon(point, polygon):
+    isInside = True
+    for i in range(len(polygon)):
+        result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
+        if(not (result < 0)):
+            isInside = False
+    if(isInside):
+        print("toi adentro bro")
+    else:
+        print("ando aca afuera, abreme")
+    return isInside
 
 def getAverageInsidePolygon(img, polygon):
     imghsv = img.copy()
@@ -161,6 +182,7 @@ def drawPolygons(img, overlay, polygons):
 
 cv2.namedWindow('mouseRGB')
 cv2.setMouseCallback('mouseRGB',mouseRGB)
+
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
 blueColor = (255,0,0)
@@ -224,11 +246,10 @@ while True:
             P24 = getFractionPoint(P25, P3, 1/3)
 
 
-            img = cv2.circle(img, P1, 2, blueColor, 5)
-            img = cv2.circle(img, P11, 2, blueColor, 5)
-            img = cv2.circle(img, P12, 2, blueColor, 5)
-            img = cv2.circle(img, P2, 2, blueColor, 5)
             C1 = np.array(list(map(list, [P1, P11, P12, P2])))
+
+            C1 = Polygon(np.array(list(map(list, [P1, P11, P12, P2]))), (255,255,255)) 
+            Polygon.paintPolygonLines(img)
             polygons = []
             polygons.append(C1)
 
@@ -237,7 +258,7 @@ while True:
             alpha = 0.5
             overlay = img.copy()
 
-            drawPolygons(img, overlay, polygons)
+            #drawPolygons(img, overlay, polygons)
             cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
 
 
@@ -330,8 +351,10 @@ while True:
 
 
 
+    #cv2.setMouseCallback('img',clickInPolygon)
 
     cv2.imshow('img',img)
+
     cv2.imshow('mouseRGB', frame)
     cv2.imwrite('fotoparahumberto.jpg', frame)
     
