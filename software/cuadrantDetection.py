@@ -148,6 +148,15 @@ def findArucoMarkers(img, markerSize = 4, totalMarkers=250, draw=True):
     if draw:
         aruco.drawDetectedMarkers(img, corners,ids) 
     return [corners, ids]
+
+
+def drawPolygons(img, polygons):
+    for polygon in polygons:
+        for i in range(len(polygon)):
+            img = cv2.circle(img, polygon[i], 2, blueColor, 5)        
+            img = cv2.line(img, polygon[i], polygon[i % len(polygon)],redColor,2)
+
+
 cv2.namedWindow('mouseRGB')
 cv2.setMouseCallback('mouseRGB',mouseRGB)
 cap = cv2.VideoCapture(0)   
@@ -213,6 +222,16 @@ while True:
             P24 = getFractionPoint(P25, P3, 1/3)
 
 
+            img = cv2.circle(img, P1, 2, blueColor, 5)
+            img = cv2.circle(img, P11, 2, blueColor, 5)
+            img = cv2.circle(img, P12, 2, blueColor, 5)
+            img = cv2.circle(img, P2, 2, blueColor, 5)
+            C1 = np.array(list(map(list, [P1, P11, P12, P2])))
+            polygons = []
+            polygons.append(C1)
+            drawPolygons(img, polygons)
+
+            '''
             img = cv2.circle(img, P1, 2, blueColor, 5)
             img = cv2.circle(img, P2, 2, blueColor, 5)
             img = cv2.circle(img, P3, 2, blueColor, 5)
@@ -300,6 +319,7 @@ while True:
 
             alpha = 0.5
             cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
+            '''
 
 
 
