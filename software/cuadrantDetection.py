@@ -137,7 +137,8 @@ redColor = (0,0,255)
 
 while True:
     success, img = cap.read()
-    frame = img.copy()
+
+    cv2.imwrite('otrahumberto.jpg', img)          
     arucofound = findArucoMarkers(img)
     howManyArucos = len(arucofound[0])
     if howManyArucos!=0:
