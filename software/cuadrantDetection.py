@@ -237,8 +237,9 @@ while True:
             alpha = 0.5
             overlay = img.copy()
 
-            cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
             drawPolygons(img, overlay, polygons)
+            cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
+
 
             '''
             img = cv2.circle(img, P1, 2, blueColor, 5)
