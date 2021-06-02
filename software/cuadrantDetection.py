@@ -23,12 +23,12 @@ def finiteStateMachine(event,x,y,flags,param):
             print("cambio de estado", scanState)
         if scanState == 0:
             print("finiteStateMachine", scanState)
-
+            print("desde la funcion", polygonsState0)
             #print((x,y), polygonsState0[0].egtCoordinates())
             for polygon in polygonsState0:
                 if pointInsidePolygon((x,y), polygon.getCoordinates()):
                     polygon.nextColor()
-                    print("desde la funcion", polygon.getColorLetter())
+                    #print("desde la funcion", polygon.getColorLetter())
         elif scanState == 1:
             print("finiteStateMachine", scanState)
         elif scanState == 2:
@@ -83,25 +83,27 @@ def namestr(obj, namespace):
 def pointInsidePolygon(point, polygon):
     isInsideRight = True
     isInsideLeft = True
-    print("estoy checando ", polygon, "con ", point)
+    #print("estoy checando ", polygon, "con ", point)
     for i in range(len(polygon)):
         result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
         if(not (result < 0)):
             isInsideRight = False
+    '''
     if(isInsideRight):
         print("toi adentro bro")
     else:
         print("ando aca afuera, abreme")
-
+    '''
     for i in range(len(polygon)):
         result = (point[1] - polygon[i][1]) * (polygon[(i + 1) % len(polygon)][0] - polygon[i][0]) - (point[0] - polygon[i][0]) * (polygon[(i + 1) % len(polygon)][1] - polygon[i][1])
         if(not (result > 0)):
             isInsideLeft = False
+    '''
     if(isInsideLeft):
         print("toi adentro bro")
     else:
         print("ando aca afuera, abreme")
-
+    '''
     return isInsideRight or isInsideLeft
 
 
@@ -206,7 +208,7 @@ while True:
 
 
             polygonsState0 = [C1, C2]
-            print("desde el loop", polygonsState0[0].getColorLetter())
+            print("desde el loop", polygonsState0)
 
             if scanState == 0:
                 print("estado", scanState)
