@@ -301,13 +301,19 @@ def stringParser(string):
         newString += kociembaMap[color]
     return newString
 
+def printAsMatrix(string, n, m):
+    for i in range(n):
+        for j in range(m):
+            print(string[i * m + n], end = ' ')
+        print('\n')
+    print('\n')
 def printCube(string):
     parsedString = stringParser(string)
     for i in range(len(parsedString)):
         if(i < 10):
             #imprimo arriba
             print(' '*3 + parsedString[i], end = '', sep=' ')
-            if(i%3 == 1 and i != 1):
+            if(i%3 == 0 and i != 0):
                 print('\n')
 
         elif(i < 47):
@@ -561,8 +567,10 @@ BString = finalColors[6][8] + finalColors[7][9] + finalColors[4][3] + finalColor
 
 KociembaString = UString + RString + FString + DString + LString + BString
 
-printCube(KociembaString)
-
+#printCube(KociembaString)
+printAsMatrix(UString, 3, 3)
+printAsMatrix(RString + FString + DString + LString, 3, 12)
+printAsMatrix(BString, 3, 3)
 solution = kociemba.solve(KociembaString)
 
 commandParser(solution)
