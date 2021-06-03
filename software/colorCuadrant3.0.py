@@ -250,7 +250,7 @@ while True:
     success, img = cap.read()
     original = img.copy()
     #img = cv2.imread("4.jpg")
-    '''
+    
     contoursSpecial = arucoProcessing(img)
     respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
     rows,cols,dim = img.shape
@@ -262,14 +262,15 @@ while True:
     maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
     cv2.imshow("color reconstruction",maskTemp)
     cv2.imshow("original image",original)
-    '''
+    
     #take 5 picutes
     colores = []
     for i in range(5):
+        copia = original.copy()
         dosArucos = False
-        contoursSpecial = arucoProcessing(img)
+        contoursSpecial = arucoProcessing(copia)
 
-        respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
+        respuesta = colorFinder(copia, contoursSpecial, color_ranges_HSV)
         colores.append(respuesta)
 
     print(colores)
