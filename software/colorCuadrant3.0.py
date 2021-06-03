@@ -545,6 +545,17 @@ while True:
     if k == 27:
         break  
 
+while True:
+    
+    for i in range(len(stagePictures)):
+        cv2.imwrite("stage "+str(i + 1), stagePictures[i])
+    '''
+    k = cv2.waitKey(30) & 0xff
+    if k == 27:
+        break  
+    '''
+
+
 #sacamos el arreglo con la letra mas repetida por cada foto y lo guardamos en una matriz
 finalColors = []
 for i in range(len(stagePictures)):
@@ -591,17 +602,6 @@ solution = kociemba.solve(KociembaString)
 
 commandParser(solution)
 
-
-
-while True:
-    
-    for i in range(len(stagePictures)):
-        cv2.imwrite("stage "+str(i + 1), stagePictures[i])
-    '''
-    k = cv2.waitKey(30) & 0xff
-    if k == 27:
-        break  
-    '''
 
 
 
