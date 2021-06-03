@@ -306,18 +306,18 @@ def printCube(string):
     for i in range(len(parsedString)):
         if(i < 10):
             #imprimo arriba
-            print(' '*3 + parsedString[i], end = '')
+            print(' '*3 + parsedString[i], end = '', sep=' ')
             if(i%3 == 0):
                 print('\n')
 
         if(i < 47):
             #imprimo en medio
-            print(parsedString[i], end = '')
+            print(parsedString[i], end = '', sep=' ')
             if(i % 12 == 0):
                 print('\n')
         else:
             #imprimo abajo
-            print(' '*3 + parsedString[i], end = '')
+            print(' '*3 + parsedString[i], end = '', sep=' ')
             if(i%3 == 0):
                 print('\n')
 cap = cv2.VideoCapture(0)   
