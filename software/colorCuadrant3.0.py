@@ -160,6 +160,15 @@ def colorFinder(img, contours, color_ranges_HSV):
         yavg = int(yavg)
         mask = np.zeros([rows,cols],np.uint8)
         mask[xavg][yavg] = 255
+        mask[xavg+1][yavg] = 255
+        mask[xavg][yavg+1] = 255
+        mask[xavg-1][yavg] = 255
+        mask[xavg][yavg-1] = 255
+        mask[xavg+1][yavg+1] = 255
+        mask[xavg-1][yavg-1] = 255
+        mask[xavg+1][yavg-1] = 255
+        mask[xavg-1][yavg+1] = 255
+
         #cv2.drawContours(mask,contoursSpecial[i],-1,255,-1)
         mean = cv2.mean(hsv,mask=mask)
         temp = np.zeros([1,1,3],np.uint8)
