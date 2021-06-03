@@ -294,7 +294,7 @@ color_ranges_HSV = [
 ]
 
 
-stagesPictures = []
+stagePictures = []
 matrizKociemba = []
 
 scanState = 0
@@ -360,7 +360,7 @@ while True:
             ticks = 0
     elif(estadoActual == 1):
         if(ticks == 0):
-            stagesPictures.append(original.copy())
+            stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 1", 1)
             commandParser("F")
@@ -371,7 +371,7 @@ while True:
             ticks = 0
     elif(estadoActual == 2):
         if(ticks == 0):
-            stagesPictures.append(original.copy())
+            stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 2", 1)
             commandParser("F")
@@ -383,7 +383,7 @@ while True:
             
     elif(estadoActual == 3):
         if(ticks == 0):
-            stagesPictures.append(original.copy())
+            stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 3", 1)
             #motores
@@ -396,7 +396,7 @@ while True:
             
     elif(estadoActual == 4):
         if(ticks == 0):
-            stagesPictures.append(original.copy())
+            stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 4", 1)
             #motores
@@ -407,7 +407,7 @@ while True:
             
     elif(estadoActual == 5):
         if(ticks == 0):
-            stagesPictures.append(original.copy())
+            stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 5", 1)
             #motores
@@ -418,7 +418,7 @@ while True:
             
     elif(estadoActual == 6):
         if(ticks == 0):
-            stagesPictures.append(original.copy())
+            stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 6", 1)
             #motores
@@ -429,7 +429,7 @@ while True:
             
     elif(estadoActual == 7):
         if(ticks == 0):
-            stagesPictures.append(original.copy())
+            stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 7", 1)
             #motores
@@ -440,7 +440,7 @@ while True:
             
     elif(estadoActual == 8):
         if(ticks == 0):
-            stagesPictures.append(original.copy())
+            stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 8", 1)
             #motores
@@ -451,7 +451,7 @@ while True:
             
     elif(estadoActual == 9):
         if(ticks == 0):
-            stagesPictures.append(original.copy())
+            stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 9", 1)
             #motores
@@ -472,7 +472,8 @@ while True:
     #escribimos en la matriz kociemba
     #cambiamos de estado moviendo motores y es ciclo
 
-
+for i in range(len(stagePictures)):
+    cv2.imshow("stage "+str(i + 1), stagePictures[i])
 
 
 
