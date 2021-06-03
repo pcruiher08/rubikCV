@@ -103,7 +103,7 @@ def drawPolygons(img, overlay, polygons):
         polygon.fillPolygon(img, overlay)
 
 
-def colorFinder(img, contours):
+def colorFinder(img, contours, color_ranges_HSV):
     contoursSpecial = contours.copy()
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     edgee = cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
@@ -119,15 +119,7 @@ def colorFinder(img, contours):
     low_red = np.array([0,50,50])
     upper_red = np.array([10,255,255])
 
-    color_ranges_HSV = [
-        [(179, 59, 255), (0, 0, 106),"W",(0,0,255)],
-        [(180, 255, 255), (159, 50, 70),"R",(4,255,255)],
-        [(8, 255, 255), (0, 45, 0),"R",(4,255,255)],
-        [(20, 255, 255), (9, 58, 33),"O",(19,255,255)],
-        [(35, 255, 255), (25, 50, 70),"Y",(30,255,255)],
-        [(120, 255, 255), (50, 90, 135),"B",(120,255,255)],
-        [(89, 255, 255), (36, 50, 70),"G",(60,255,255)]
-    ]
+
     contoursFinal = []
     colors = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A']
     maskTemp = np.zeros([rows,cols,3],np.uint8)
@@ -160,8 +152,9 @@ def colorFinder(img, contours):
                 cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[k][3])
         maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
         cv2.imshow("vista original",img)
+        cv2.imshow("color reconstruction",maskTemp)
 
-    return colors, maskTemp
+    return colors
 
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
@@ -169,7 +162,15 @@ blueColor = (255,0,0)
 redColor = (0,0,255)
 
 
-
+color_ranges_HSV = [
+    [(179, 59, 255), (0, 0, 106),"W",(0,0,255)],
+    [(180, 255, 255), (159, 50, 70),"R",(4,255,255)],
+    [(8, 255, 255), (0, 45, 0),"R",(4,255,255)],
+    [(20, 255, 255), (9, 58, 33),"O",(19,255,255)],
+    [(35, 255, 255), (25, 50, 70),"Y",(30,255,255)],
+    [(120, 255, 255), (50, 90, 135),"B",(120,255,255)],
+    [(89, 255, 255), (36, 50, 70),"G",(60,255,255)]
+]
 while True:
     success, img = cap.read()
     #img = cv2.imread("4.jpg")
@@ -191,7 +192,7 @@ while True:
             leftCorner = (bottomCorner[0]-120, bottomCorner[1]+37)
 
             bigLine = 3
-            smolLine = 3
+            smallLine = 3
             #central line
             img = cv2.line(img, topCorner, bottomCorner,[0,0,0],bigLine)
             #right line
@@ -260,76 +261,46 @@ while True:
             contoursSpecial = [C1C,C2C,C3C,C4C,C5C,C6C,C7C,C8C,C9C,C10C,C11C,C12C,C13C,C14C,C15C]
 
 
-
-
-                            
-
-
             #lineas especiales
             
-            img = cv2.line(img, P5, P20,[0,0,0],smolLine)
-            img = cv2.line(img, P8, P16,[0,0,0],smolLine)
-            img = cv2.line(img, P10, P20,[0,0,0],smolLine)
-            img = cv2.line(img, P7, P16,[0,0,0],smolLine)
-            img = cv2.line(img, P6, P17,[0,0,0],smolLine)
-            img = cv2.line(img, P9, P19,[0,0,0],smolLine)
-            img = cv2.line(img, P3, P15,[0,0,0],smolLine)
-            img = cv2.line(img, P5, P11,[0,0,0],smolLine)
-            img = cv2.line(img, P1, P11,[0,0,0],smolLine)
-            img = cv2.line(img, P15, P7,[0,0,0],smolLine)
-            img = cv2.line(img, P6, P14,[0,0,0],smolLine)
-            img = cv2.line(img, P2, P12,[0,0,0],smolLine)
-            img = cv2.line(img, P8, P21,[0,0,0],smolLine)
-            img = cv2.line(img, P3, P25,[0,0,0],smolLine)
-            img = cv2.line(img, P10, P25,[0,0,0],smolLine)
-            img = cv2.line(img, P1, P21,[0,0,0],smolLine)
-            img = cv2.line(img, P2, P22,[0,0,0],smolLine)
-            img = cv2.line(img, P9, P24,[0,0,0],smolLine)
+            img = cv2.line(img, P5, P20,[0,0,0],smallLine)
+            img = cv2.line(img, P8, P16,[0,0,0],smallLine)
+            img = cv2.line(img, P10, P20,[0,0,0],smallLine)
+            img = cv2.line(img, P7, P16,[0,0,0],smallLine)
+            img = cv2.line(img, P6, P17,[0,0,0],smallLine)
+            img = cv2.line(img, P9, P19,[0,0,0],smallLine)
+            img = cv2.line(img, P3, P15,[0,0,0],smallLine)
+            img = cv2.line(img, P5, P11,[0,0,0],smallLine)
+            img = cv2.line(img, P1, P11,[0,0,0],smallLine)
+            img = cv2.line(img, P15, P7,[0,0,0],smallLine)
+            img = cv2.line(img, P6, P14,[0,0,0],smallLine)
+            img = cv2.line(img, P2, P12,[0,0,0],smallLine)
+            img = cv2.line(img, P8, P21,[0,0,0],smallLine)
+            img = cv2.line(img, P3, P25,[0,0,0],smallLine)
+            img = cv2.line(img, P10, P25,[0,0,0],smallLine)
+            img = cv2.line(img, P1, P21,[0,0,0],smallLine)
+            img = cv2.line(img, P2, P22,[0,0,0],smallLine)
+            img = cv2.line(img, P9, P24,[0,0,0],smallLine)
 
 
             respuesta = colorFinder(img, contoursSpecial)
-            print(respuesta[0])
-            cv2.imshow("color reconstruction",respuesta[1])
+            print(respuesta)
 
-            
+            rows,cols,dim = img.shape
+            maskTemp = np.zeros([rows,cols,3],np.uint8)
+            for i in range(respuesta):
+                for j in range(len(color_ranges_HSV)):
+                    if(respuesta[i] == color_ranges_HSV[j][2]):
+                        cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[k][3])
+            maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
+            cv2.imshow("color reconstruction",maskTemp)
+
             #take 5 picutes
             #procesamos 5 fotos
             #sacamos el arreglo con la letra mas repetida
             #escribimos en la matriz kociemba
             #cambiamos de estado moviendo motores y es ciclo
 
-            
-            '''
-            maskTemp = np.zeros([rows,cols,3],np.uint8)
-            for i in range(len(color_ranges_HSV)):
-                mask = cv2.inRange(hsv,color_ranges_HSV[i][1],color_ranges_HSV[i][0])
-                ret, thresh = cv2.threshold(mask,127,255,0)
-                #cv2.imshow(color_ranges_HSV[i][2],mask)
-                contours, hier = cv2.findContours(thresh, cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
-                print((contoursSpecial))
-                for j in range(len(contours)):
-                    if(cv2.contourArea(contours[j]) > 300 and cv2.contourArea(contours[j]) < 3000):
-                        epsilon = 0.1*cv2.arcLength(contours[j],True)
-                        aprox = cv2.approxPolyDP(contours[j], 3, True)
-                        #cv2.drawContours(img,contours[j],-1,(255,0,0),3)
-                        if(cv2.contourArea(aprox) > 300):
-                            mask = np.zeros([rows,cols],np.uint8)
-                            cv2.drawContours(mask,[aprox],-1,255,-1)
-                            mean = cv2.mean(hsv,mask=mask)
-                            temp = np.zeros([1,1,3],np.uint8)
-                            temp[0][0] = mean[:3]
-                            #print(mean)
-                            cv2.drawContours(img,[aprox],-1,[0,0,255],3)
-                            #cv2.drawContours(img,[aprox],-1,mean[:2],3)
-                            cv2.imshow("hola2",img)
-                            #cv2.fillPoly(img,pts = [aprox], color = mean)
-                            for k in range(len(color_ranges_HSV)):
-                                inR = cv2.inRange(temp,color_ranges_HSV[k][1],color_ranges_HSV[k][0])
-                                if(inR[0][0] == 255):
-                                    #cv2.drawContours(maskTemp,[aprox],-1,mean,3)
-                                    contoursFinal.append([[aprox],color_ranges_HSV[k][2]])
-                                    cv2.fillPoly(maskTemp,pts = [aprox], color = mean)
-            '''
 
 
 
