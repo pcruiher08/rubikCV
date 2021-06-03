@@ -463,18 +463,22 @@ while True:
         break
         
     cv2.imshow('arucos',img)
+
     k = cv2.waitKey(30) & 0xff
     if k == 27:
         break  
 
-
     #sacamos el arreglo con la letra mas repetida
     #escribimos en la matriz kociemba
     #cambiamos de estado moviendo motores y es ciclo
+while True:
+    
+    for i in range(len(stagePictures)):
+        cv2.imshow("stage "+str(i + 1), stagePictures[i])
 
-for i in range(len(stagePictures)):
-    cv2.imshow("stage "+str(i + 1), stagePictures[i])
-
+        k = cv2.waitKey(30) & 0xff
+        if k == 27:
+            break  
 
 
 
