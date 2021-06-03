@@ -569,9 +569,24 @@ BString = finalColors[6][8] + finalColors[7][9] + finalColors[4][3] + finalColor
 KociembaString = UString + RString + FString + DString + LString + BString
 
 #printCube(KociembaString)
+print("YELLOW")
 printAsMatrix(UString, 3, 3)
-printAsMatrix(RString + FString + DString + LString, 3, 12)
+
+print("ORANGE")
+printAsMatrix(LString, 3, 3)
+
+print("BLUE")
+printAsMatrix(FString, 3, 3)
+
+print("GREEN")
 printAsMatrix(BString, 3, 3)
+
+print("RED")
+printAsMatrix(RString, 3, 3)
+
+print("WHITE")
+printAsMatrix(DString, 3, 3)
+
 solution = kociemba.solve(KociembaString)
 
 commandParser(solution)
