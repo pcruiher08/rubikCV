@@ -283,7 +283,7 @@ while True:
             img = cv2.line(img, P9, P24,[0,0,0],smallLine)
 
 
-            respuesta = colorFinder(img, contoursSpecial)
+            respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
             print(respuesta)
 
             rows,cols,dim = img.shape
