@@ -11,31 +11,6 @@ matrizKociemba = []
 scanState = 0
 
 
-def finiteStateMachine(cambia):
-    if cambia:
-        scanState += 1
-        print("cambio de estado", scanState)
-    if scanState == 0:
-        print("finiteStateMachine", scanState)
-    elif scanState == 1:
-        print("finiteStateMachine", scanState)
-    elif scanState == 2:
-        print("finiteStateMachine", scanState)
-    elif scanState == 3:
-        print("finiteStateMachine", scanState)
-    elif scanState == 4:
-        print("finiteStateMachine", scanState)
-    elif scanState == 5:
-        print("finiteStateMachine", scanState)
-    elif scanState == 6:
-        print("finiteStateMachine", scanState)
-    elif scanState == 7:
-        print("finiteStateMachine", scanState)
-    elif scanState == 8:
-        print("finiteStateMachine", scanState)
-    elif scanState == 9:
-        #resolver
-        print("a resolver")
 
 def getMidPoint(a, b):
     return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
@@ -153,25 +128,8 @@ def colorFinder(img, contours, color_ranges_HSV):
 
     return colors
 
-cap = cv2.VideoCapture(0)   
-greenColor = (0,255,0)
-blueColor = (255,0,0)
-redColor = (0,0,255)
 
-
-color_ranges_HSV = [
-    [(179, 59, 255), (0, 0, 106),"W",(0,0,255)],
-    [(180, 255, 255), (159, 50, 70),"R",(4,255,255)],
-    [(8, 255, 255), (0, 45, 0),"R",(4,255,255)],
-    [(20, 255, 255), (9, 58, 33),"O",(19,255,255)],
-    [(35, 255, 255), (25, 50, 70),"Y",(30,255,255)],
-    [(120, 255, 255), (50, 90, 135),"B",(120,255,255)],
-    [(89, 255, 255), (36, 50, 70),"G",(60,255,255)]
-]
-while True:
-    success, img = cap.read()
-    original = img.copy()
-    #img = cv2.imread("4.jpg")
+def arucoProcessing(img):
     arucofound = findArucoMarkers(img)
     howManyArucos = len(arucofound[0])
     if howManyArucos!=0:
@@ -224,21 +182,6 @@ while True:
             P23 = pointInterceptPointPointPointPoint(P3,P25,P8,P21)
             P24 = getFractionPoint(P25, P3, 1/3)
 
-            C1 = Polygon(np.array(list(map(list, [P1, P11, P12, P2]))), (255,255,255)) 
-            C2 = Polygon(np.array(list(map(list, [P2, P12, P13, P3]))), (255,255,255))
-            C3 = np.array(list(map(list, [P3, P13, P5, P4])))
-            C4 = np.array(list(map(list, [P4, P5, P18, P8])))
-            C5 = np.array(list(map(list, [P8, P18, P19, P9])))
-            C6 = np.array(list(map(list, [P9, P19, P20, P10])))
-            C7 = np.array(list(map(list, [P13, P14, P6, P5])))
-            C8 = np.array(list(map(list, [P14, P15, P7, P6])))
-            C9 = np.array(list(map(list, [P6, P7, P16, P17])))
-            C10 = np.array(list(map(list, [P5, P6, P17, P18])))
-            C11 = np.array(list(map(list, [P21, P1, P2, P22])))
-            C12 = np.array(list(map(list, [P22, P2, P3, P23])))
-            C13 = np.array(list(map(list, [P23, P3, P4, P8])))
-            C14 = np.array(list(map(list, [P23, P8, P9, P24])))
-            C15 = np.array(list(map(list, [P24, P9, P10, P25])))
 
             C1C = [np.array([P1,P11,P12,P2])]
             C2C = [np.array([P2, P12, P13, P3])]
@@ -279,27 +222,57 @@ while True:
             img = cv2.line(img, P1, P21,[0,0,0],smallLine)
             img = cv2.line(img, P2, P22,[0,0,0],smallLine)
             img = cv2.line(img, P9, P24,[0,0,0],smallLine)
+    return contoursSpecial
+cap = cv2.VideoCapture(0)   
+greenColor = (0,255,0)
+blueColor = (255,0,0)
+redColor = (0,0,255)
 
 
-            respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
-            print(respuesta)
-
-            rows,cols,dim = img.shape
-            maskTemp = np.zeros([rows,cols,3],np.uint8)
-            for i in range(len(respuesta)):
-                for j in range(len(color_ranges_HSV)):
-                    if(respuesta[i] == color_ranges_HSV[j][2]):
-                        cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[j][3])
-            maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
-            cv2.imshow("color reconstruction",maskTemp)
-            cv2.imshow("original image",original)
+color_ranges_HSV = [
+    [(179, 59, 255), (0, 0, 106),"W",(0,0,255)],
+    [(180, 255, 255), (159, 50, 70),"R",(4,255,255)],
+    [(8, 255, 255), (0, 45, 0),"R",(4,255,255)],
+    [(20, 255, 255), (9, 58, 33),"O",(19,255,255)],
+    [(35, 255, 255), (25, 50, 70),"Y",(30,255,255)],
+    [(120, 255, 255), (50, 90, 135),"B",(120,255,255)],
+    [(89, 255, 255), (36, 50, 70),"G",(60,255,255)]
+]
 
 
-            #take 5 picutes
-            #procesamos 5 fotos
-            #sacamos el arreglo con la letra mas repetida
-            #escribimos en la matriz kociemba
-            #cambiamos de estado moviendo motores y es ciclo
+
+
+while True:
+    success, img = cap.read()
+    original = img.copy()
+    #img = cv2.imread("4.jpg")
+
+
+    contoursSpecial = arucoProcessing(img)
+    respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
+    print(respuesta)
+
+    rows,cols,dim = img.shape
+    maskTemp = np.zeros([rows,cols,3],np.uint8)
+    for i in range(len(respuesta)):
+        for j in range(len(color_ranges_HSV)):
+            if(respuesta[i] == color_ranges_HSV[j][2]):
+                cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[j][3])
+    maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
+    cv2.imshow("color reconstruction",maskTemp)
+    cv2.imshow("original image",original)
+
+    pictures = []
+    #take 5 picutes
+    for i in range(5):
+        par1, foto = cap.read()
+        pictures.append(foto)
+
+    #procesamos 5 fotos
+
+    #sacamos el arreglo con la letra mas repetida
+    #escribimos en la matriz kociemba
+    #cambiamos de estado moviendo motores y es ciclo
 
 
 
