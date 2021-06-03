@@ -288,7 +288,7 @@ while True:
 
             rows,cols,dim = img.shape
             maskTemp = np.zeros([rows,cols,3],np.uint8)
-            for i in range(respuesta):
+            for i in range(len(respuesta)):
                 for j in range(len(color_ranges_HSV)):
                     if(respuesta[i] == color_ranges_HSV[j][2]):
                         cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[k][3])
