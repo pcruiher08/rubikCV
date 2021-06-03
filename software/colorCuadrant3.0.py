@@ -413,8 +413,8 @@ while True:
             stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 1", 1)
-            commandParser("F")
-            #motores
+            commandParser("F'")
+            #motoresghfdfhghfgfhg
         ticks += 1
         if(ticks > 10):
             estadoActual = 2
@@ -424,7 +424,7 @@ while True:
             stagePictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 2", 1)
-            commandParser("F")
+            commandParser("F'")
             #motores
         ticks += 1
         if(ticks > 10):
@@ -437,7 +437,7 @@ while True:
             screen.lcd_clear()
             screen.lcd_display_string("estado 3", 1)
             #motores
-            commandParser("F' F'")
+            commandParser("F2")
             commandParser("L")
         ticks += 1
         if(ticks > 10):
