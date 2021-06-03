@@ -523,9 +523,9 @@ for i in range(len(stagePictures)):
         respuesta = colorFinder(pictureToProcess, contoursSpecial, color_ranges_HSV)
         colorsToProcess.append(respuesta)
     
-    finalColors.append(dominantColor(colorsToProcess))
+    finalColors.append(dominantColor(colorsToProcess)[0])
     colorsToProcess.clear()
-
+print(finalColors)
 #escribimos en la matriz kociemba
 UString = finalColors[3][8] + finalColors[7][6] + finalColors[7][2] + finalColors[3][9] + 'U' + finalColors[8][6] + finalColors[1][2] + finalColors[1][6] + finalColors[1][7]
 RString = finalColors[2][2] + finalColors[8][9] + finalColors[6][7] + finalColors[2][6] + 'R' + finalColors[9][11] + finalColors[2][7] + finalColors[5][1] + finalColors[5][2]
