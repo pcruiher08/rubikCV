@@ -574,7 +574,7 @@ RString = finalColors[2][2] + finalColors[8][6] + finalColors[6][7] + finalColor
 FString = finalColors[0][8] + finalColors[1][9] + finalColors[1][8] + finalColors[0][9] + 'F' + finalColors[2][9] + finalColors[0][3] + finalColors[0][4] + finalColors[0][5]
 DString = finalColors[0][12] + finalColors[0][13] + finalColors[0][14] + finalColors[0][11] + 'D' + finalColors[5][11] + finalColors[0][10] + finalColors[5][13] + finalColors[5][12]
 LString = finalColors[3][7] + finalColors[3][6] + finalColors[0][7] + finalColors[4][6] + 'L' + finalColors[0][6] + finalColors[0][0] + finalColors[0][1] + finalColors[0][2]
-BString = finalColors[5][4] + finalColors[4][8] + finalColors[5][3]  + finalColors[4][9]  + 'B' + finalColors[9][1]  + finalColors[7][9] + finalColors[4][3] +  finalColors[6][8]
+BString = finalColors[4][8] + finalColors[5][4] + finalColors[5][3]  + finalColors[4][9]  + 'B' + finalColors[4][3] + finalColors[9][1]  + finalColors[7][9] + finalColors[6][8]
 
 KociembaString = UString + RString + FString + DString + LString + BString
 
