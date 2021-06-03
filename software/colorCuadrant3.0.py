@@ -527,7 +527,7 @@ for i in range(len(stagePictures)):
     colorsToProcess.clear()
 print(finalColors)
 #escribimos en la matriz kociemba
-UString = finalColors[3][8] + finalColors[7][6] + finalColors[7][2] + finalColors[3][9] + 'U' + finalColors[8][10] + finalColors[1][2] + finalColors[1][6] + finalColors[1][7]
+UString = finalColors[3][8] + finalColors[7][6] + finalColors[7][2] + finalColors[3][9] + 'U' + finalColors[8][9] + finalColors[1][2] + finalColors[1][6] + finalColors[1][7]
 RString = finalColors[2][2] + finalColors[8][6] + finalColors[6][7] + finalColors[2][6] + 'R' + finalColors[9][11] + finalColors[2][7] + finalColors[5][1] + finalColors[5][2]
 FString = finalColors[0][8] + finalColors[1][9] + finalColors[1][8] + finalColors[0][10] + 'F' + finalColors[2][9] + finalColors[0][3] + finalColors[0][4] + finalColors[0][5]
 DString = finalColors[0][12] + finalColors[0][13] + finalColors[0][14] + finalColors[0][11] + 'D' + finalColors[5][11] + finalColors[0][10] + finalColors[5][13] + finalColors[5][12]
