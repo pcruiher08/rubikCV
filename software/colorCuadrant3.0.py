@@ -133,6 +133,7 @@ def arucoProcessing(img):
     contoursSpecial = []
     arucofound = findArucoMarkers(img)
     howManyArucos = len(arucofound[0])
+    encontreDosArucos = False
     if howManyArucos!=0:
         coordinates = []
         for bbox, id in zip(arucofound[0], arucofound[1]):
@@ -142,6 +143,7 @@ def arucoProcessing(img):
             coordinates.append(coords)
             #img = cv2.circle(img, coords, 2, redColor, 5)
         if(howManyArucos == 2):
+            encontreDosArucos = True
             topCorner = getMidPoint(coordinates[0], coordinates[1])
             topCorner = (topCorner[0]-5, topCorner[1]+22)
             bottomCorner = (topCorner[0]-5, topCorner[1]+170)
@@ -223,7 +225,7 @@ def arucoProcessing(img):
             img = cv2.line(img, P1, P21,[0,0,0],smallLine)
             img = cv2.line(img, P2, P22,[0,0,0],smallLine)
             img = cv2.line(img, P9, P24,[0,0,0],smallLine)
-    return contoursSpecial
+    return contoursSpecial, encontreDosArucos
     
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
@@ -248,10 +250,8 @@ while True:
     success, img = cap.read()
     original = img.copy()
     #img = cv2.imread("4.jpg")
-    contoursSpecial = arucoProcessing(img)
-    respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
-    print(respuesta)
-
+    contoursSpecial, flag = arucoProcessing(img)
+    respuesta = colorFinder(foto, contoursSpecial, color_ranges_HSV)
     rows,cols,dim = img.shape
     maskTemp = np.zeros([rows,cols,3],np.uint8)
     for i in range(len(respuesta)):
@@ -262,12 +262,18 @@ while True:
     cv2.imshow("color reconstruction",maskTemp)
     cv2.imshow("original image",original)
 
-    pictures = []
     #take 5 picutes
+    colores = []
     for i in range(5):
         par1, foto = cap.read()
-        pictures.append(foto)
-    print(pictures)
+        dosArucos = False
+        while(not dosArucos):
+            contoursSpecial, dosArucos = arucoProcessing(img)
+
+        respuesta = colorFinder(foto, contoursSpecial, color_ranges_HSV)
+        colores.append(respuesta)
+
+    print(respuesta)
     #procesamos 5 fotos
 
     #sacamos el arreglo con la letra mas repetida
