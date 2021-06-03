@@ -225,7 +225,7 @@ def arucoProcessing(img):
             img = cv2.line(img, P1, P21,[0,0,0],smallLine)
             img = cv2.line(img, P2, P22,[0,0,0],smallLine)
             img = cv2.line(img, P9, P24,[0,0,0],smallLine)
-    return contoursSpecial, encontreDosArucos
+    return contoursSpecial
     
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
@@ -250,7 +250,7 @@ while True:
     success, img = cap.read()
     original = img.copy()
     #img = cv2.imread("4.jpg")
-    contoursSpecial, flag = arucoProcessing(img)
+    contoursSpecial = arucoProcessing(img)
     respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
     rows,cols,dim = img.shape
     maskTemp = np.zeros([rows,cols,3],np.uint8)
@@ -266,8 +266,7 @@ while True:
     colores = []
     for i in range(5):
         dosArucos = False
-        while(not dosArucos):
-            contoursSpecial, dosArucos = arucoProcessing(img)
+        contoursSpecial = arucoProcessing(img)
 
         respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
         colores.append(respuesta)
