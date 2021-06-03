@@ -291,7 +291,7 @@ while True:
             for i in range(len(respuesta)):
                 for j in range(len(color_ranges_HSV)):
                     if(respuesta[i] == color_ranges_HSV[j][2]):
-                        cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[k][3])
+                        cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[j][3])
             maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
             cv2.imshow("color reconstruction",maskTemp)
 
