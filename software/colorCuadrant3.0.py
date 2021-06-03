@@ -604,6 +604,7 @@ while True:
     '''
 
 
+
 screen.lcd_clear()
 screen.lcd_display_string("adios", 1)
 
