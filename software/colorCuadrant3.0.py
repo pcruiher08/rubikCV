@@ -388,7 +388,7 @@ while True:
             screen.lcd_display_string("estado 3", 1)
             #motores
             commandParser("F' F'")
-            #agregar siguiente estado de motores
+            commandParser("L")
         ticks += 1
         if(ticks > 10):
             estadoActual = 4
@@ -400,6 +400,8 @@ while True:
             screen.lcd_clear()
             screen.lcd_display_string("estado 4", 1)
             #motores
+            commandParser("L")
+
         ticks += 1
         if(ticks > 10):
             estadoActual = 5
@@ -411,6 +413,9 @@ while True:
             screen.lcd_clear()
             screen.lcd_display_string("estado 5", 1)
             #motores
+            commandParser("L' L'")
+            commandParser("D2")
+
         ticks += 1
         if(ticks > 10):
             estadoActual = 6
@@ -422,6 +427,9 @@ while True:
             screen.lcd_clear()
             screen.lcd_display_string("estado 6", 1)
             #motores
+            commandParser("D' D'")
+            commandParser("U2")
+
         ticks += 1
         if(ticks > 10):
             estadoActual = 7
@@ -433,6 +441,8 @@ while True:
             screen.lcd_clear()
             screen.lcd_display_string("estado 7", 1)
             #motores
+            commandParser("F'")
+
         ticks += 1
         if(ticks > 10):
             estadoActual = 8
@@ -444,6 +454,8 @@ while True:
             screen.lcd_clear()
             screen.lcd_display_string("estado 8", 1)
             #motores
+            commandParser("F")
+            commandParser("L")
         ticks += 1
         if(ticks > 10):
             estadoActual = 9
@@ -455,11 +467,26 @@ while True:
             screen.lcd_clear()
             screen.lcd_display_string("estado 9", 1)
             #motores
+            commandParser("L'")
+            commandParser("U' U'")
+            commandParser("B' D")
+
         ticks += 1
         if(ticks > 10):
             estadoActual = 10
             ticks = 0
     elif(estadoActual == 10):
+        if(ticks == 0):
+            stagePictures.append(original.copy())
+            screen.lcd_clear()
+            screen.lcd_display_string("estado 10", 1)
+            #motores
+            commandParser("D' B")
+        ticks += 1
+        if(ticks > 10):
+            estadoActual = 11
+            ticks = 0        
+    elif(estadoActual == 11):
         break
         
     cv2.imshow('arucos',img)
@@ -471,6 +498,35 @@ while True:
     #sacamos el arreglo con la letra mas repetida
     #escribimos en la matriz kociemba
     #cambiamos de estado moviendo motores y es ciclo
+finalColors = []
+for i in range(len(stagePictures)):
+    colorsToProcess = []
+    for j in range(5):
+        pictureToProcess = stagePictures[i].copy()
+        contoursSpecial = arucoProcessing(pictureToProcess)
+        respuesta = colorFinder(pictureToProcess, contoursSpecial, color_ranges_HSV)
+        colorsToProcess.append(respuesta)
+    
+    finalColors.append(dominantColor(colorsToProcess))
+    colorsToProcess.clear()
+
+def dominantColor(colorsArr):
+    result = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A']
+    result2 = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A']
+    kociembaMap = {'B' : 'F', 'O': 'L', 'R' : 'R', 'G' : 'B', 'W' : 'D', 'Y': 'U'}
+    for i in range(len(colorsArr[0])):
+        colors = {'W' : 0, 'O' : 0, 'G' : 0, 'R' : 0, 'Y' : 0, 'B' : 0}
+        max = -1
+        maxL = 'A'
+        for j in range(len(colorsArr)):
+            colors[colorsArr[j][i]] += 1
+            if(colors[colorsArr[j][i]] > max):
+                max = colors[colorsArr[j][i]]
+                maxL = colorsArr[j][i]
+            result[i] = kociembaMap[maxL]
+            result2[i] = maxL
+    return result, result2
+'''
 while True:
     
     for i in range(len(stagePictures)):
@@ -479,7 +535,7 @@ while True:
     k = cv2.waitKey(30) & 0xff
     if k == 27:
         break  
-
+'''
 
 
 screen.lcd_clear()
