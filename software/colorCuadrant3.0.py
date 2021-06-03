@@ -6,7 +6,7 @@ from polygon import Polygon
 import math as m 
 import LCD
 from motor import Motor
-
+import kociemba
 
 def commandParser(series):
     #R U R’ U R U2 R’ U
@@ -277,6 +277,24 @@ def arucoProcessing(img):
             img = cv2.line(img, P9, P24,[0,0,0],smallLine)
     return contoursSpecial
     
+def dominantColor(colorsArr):
+    result = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A']
+    result2 = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A']
+    kociembaMap = {'B' : 'F', 'O': 'L', 'R' : 'R', 'G' : 'B', 'W' : 'D', 'Y': 'U'}
+    for i in range(len(colorsArr[0])):
+        colors = {'W' : 0, 'O' : 0, 'G' : 0, 'R' : 0, 'Y' : 0, 'B' : 0}
+        max = -1
+        maxL = 'A'
+        for j in range(len(colorsArr)):
+            colors[colorsArr[j][i]] += 1
+            if(colors[colorsArr[j][i]] > max):
+                max = colors[colorsArr[j][i]]
+                maxL = colorsArr[j][i]
+            result[i] = kociembaMap[maxL]
+            result2[i] = maxL
+    return result, result2
+
+
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
 blueColor = (255,0,0)
@@ -495,9 +513,7 @@ while True:
     if k == 27:
         break  
 
-    #sacamos el arreglo con la letra mas repetida
-    #escribimos en la matriz kociemba
-    #cambiamos de estado moviendo motores y es ciclo
+#sacamos el arreglo con la letra mas repetida por cada foto y lo guardamos en una matriz
 finalColors = []
 for i in range(len(stagePictures)):
     colorsToProcess = []
@@ -510,22 +526,24 @@ for i in range(len(stagePictures)):
     finalColors.append(dominantColor(colorsToProcess))
     colorsToProcess.clear()
 
-def dominantColor(colorsArr):
-    result = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A']
-    result2 = ['A','A','A','A','A','A','A','A','A','A','A','A','A','A','A']
-    kociembaMap = {'B' : 'F', 'O': 'L', 'R' : 'R', 'G' : 'B', 'W' : 'D', 'Y': 'U'}
-    for i in range(len(colorsArr[0])):
-        colors = {'W' : 0, 'O' : 0, 'G' : 0, 'R' : 0, 'Y' : 0, 'B' : 0}
-        max = -1
-        maxL = 'A'
-        for j in range(len(colorsArr)):
-            colors[colorsArr[j][i]] += 1
-            if(colors[colorsArr[j][i]] > max):
-                max = colors[colorsArr[j][i]]
-                maxL = colorsArr[j][i]
-            result[i] = kociembaMap[maxL]
-            result2[i] = maxL
-    return result, result2
+#escribimos en la matriz kociemba
+UString = finalColors[3][8] + finalColors[7][6] + finalColors[7][2] + finalColors[3][9] + 'U' + finalColors[8][6] + finalColors[1][2] + finalColors[1][6] + finalColors[1][7]
+RString = finalColors[2][2] + finalColors[8][9] + finalColors[6][7] + finalColors[2][6] + 'R' + finalColors[9][11] + finalColors[2][7] + finalColors[5][1] + finalColors[5][2]
+FString = finalColors[0][8] + finalColors[1][9] + finalColors[1][8] + finalColors[0][10] + 'F' + finalColors[2][9] + finalColors[0][3] + finalColors[0][4] + finalColors[0][5]
+DString = finalColors[0][12] + finalColors[0][13] + finalColors[0][14] + finalColors[0][11] + 'D' + finalColors[5][11] + finalColors[0][10] + finalColors[5][13] + finalColors[5][12]
+LString = finalColors[3][7] + finalColors[3][6] + finalColors[0][7] + finalColors[4][6] + 'L' + finalColors[0][6] + finalColors[0][0] + finalColors[0][1] + finalColors[0][2]
+BString = finalColors[6][8] + finalColors[7][9] + finalColors[4][3] + finalColors[9][1] + 'B' + finalColors[4][9] + finalColors[5][3] + finalColors[5][4] + finalColors[4][8]
+
+KociembaString = UString + RString + FString + DString + LString + BString
+
+print(KociembaString)
+
+solution = kociemba.solve(KociembaString)
+
+commandParser(solution)
+
+
+
 '''
 while True:
     
