@@ -267,7 +267,7 @@ while True:
     for i in range(5):
         par1, foto = cap.read()
         pictures.append(foto)
-
+    print(pictures)
     #procesamos 5 fotos
 
     #sacamos el arreglo con la letra mas repetida
