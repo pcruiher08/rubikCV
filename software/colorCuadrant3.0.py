@@ -302,9 +302,10 @@ def stringParser(string):
     return newString
 
 def printAsMatrix(string, n, m):
+    newString = stringParser(string)
     for i in range(n):
         for j in range(m):
-            print(string[i * m + j], end = ' ')
+            print(newString[i * m + j], end = ' ')
         print('\n')
     print('\n')
 def printCube(string):
