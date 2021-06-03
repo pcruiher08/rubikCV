@@ -548,7 +548,7 @@ while True:
 while True:
     
     for i in range(len(stagePictures)):
-        cv2.imwrite("stage "+str(i + 1), stagePictures[i])
+        cv2.imwrite("stage "+str(i + 1)+'.jpg', stagePictures[i])
     '''
     k = cv2.waitKey(30) & 0xff
     if k == 27:
