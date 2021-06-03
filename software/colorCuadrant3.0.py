@@ -150,9 +150,7 @@ def colorFinder(img, contours, color_ranges_HSV):
                 #contoursFinal.append([contoursSpecial[i],color_ranges_HSV[k][2]])
                 colors[i] = color_ranges_HSV[k][2]
                 cv2.fillPoly(maskTemp,pts = contoursSpecial[i], color = color_ranges_HSV[k][3])
-        maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
         cv2.imshow("vista original",img)
-        cv2.imshow("color reconstruction",maskTemp)
 
     return colors
 
