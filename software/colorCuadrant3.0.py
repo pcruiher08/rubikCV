@@ -294,7 +294,32 @@ def dominantColor(colorsArr):
             result2[i] = maxL
     return result, result2
 
+def stringParser(string):
+    newString = ''
+    kociembaMap = {'F' : 'B', 'L': 'O', 'R' : 'R', 'B' : 'G', 'D' : 'W', 'U': 'Y'}
+    for color in string:
+        newString += kociembaMap[color]
+    return newString
 
+def printCube(string):
+    parsedString = stringParser(string)
+    for i in range(len(parsedString)):
+        if(i < 10):
+            #imprimo arriba
+            print(' '*3 + parsedString[i], end = '')
+            if(i%3 == 0):
+                print('\n')
+
+        if(i < 47):
+            #imprimo en medio
+            print(parsedString[i], end = '')
+            if(i % 12 == 0):
+                print('\n')
+        else:
+            #imprimo abajo
+            print(' '*3 + parsedString[i], end = '')
+            if(i%3 == 0):
+                print('\n')
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
 blueColor = (255,0,0)
@@ -536,7 +561,7 @@ BString = finalColors[6][8] + finalColors[7][9] + finalColors[4][3] + finalColor
 
 KociembaString = UString + RString + FString + DString + LString + BString
 
-print(KociembaString)
+printCube(KociembaString)
 
 solution = kociemba.solve(KociembaString)
 
