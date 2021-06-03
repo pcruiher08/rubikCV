@@ -5,11 +5,61 @@ import os
 from polygon import Polygon 
 import math as m 
 import LCD
+from motor import Motor
 
-matrizKociemba = []
 
-scanState = 0
+def commandParser(series):
+    #R U R’ U R U2 R’ U
+    movements = series.split(' ')
+    for move in movements:
+        twoMoves = False
+        directionFlag = False
+        if len(move) == 2:
+            if(move[1] == '2'):
+                #cw cw
+                twoMoves = True
+            else:
+                #ccw
+                directionFlag = True
 
+        if(move[0] == 'F'):
+            if(twoMoves):
+                F.turn90CW()
+                F.turn90CW()
+            else:
+                F.turn90(directionFlag)
+        if(move[0] == 'L'):
+            if(twoMoves):
+                L.turn90CW()
+                L.turn90CW()
+            else:
+                L.turn90(directionFlag)  
+        if(move[0] == 'R'):
+            if(twoMoves):
+                R.turn90CW()
+                R.turn90CW()
+            else:
+                R.turn90(directionFlag)
+        if(move[0] == 'B'):
+            if(twoMoves):
+                B.turn90CW()
+                B.turn90CW()
+            else:
+                B.turn90(directionFlag)
+        if(move[0] == 'U'):
+            if(twoMoves):
+                U.turn90CW()
+                U.turn90CW()
+            else:
+                U.turn90(directionFlag)
+        if(move[0] == 'D'):
+            if(twoMoves):
+                D.turn90CW()
+                D.turn90CW()
+            else:
+                D.turn90(directionFlag)
+        twoMoves = False
+        directionFlag = False
 
 
 def getMidPoint(a, b):
@@ -245,7 +295,28 @@ color_ranges_HSV = [
 
 
 stagesPictures = []
+matrizKociemba = []
 
+scanState = 0
+turnDelay = .005 / 8 * 1/2
+
+F = Motor(26,19)
+L = Motor(13,6)
+R = Motor(21, 20)
+B = Motor(16,12)
+U = Motor(5, 22)
+D = Motor(27, 17)
+
+screen = LCD.lcd()
+screen.lcd_clear()
+screen.lcd_display_string("hay 6 motores", 1)
+
+F.setDelay(turnDelay)
+L.setDelay(turnDelay)
+R.setDelay(turnDelay)
+B.setDelay(turnDelay)
+U.setDelay(turnDelay)
+D.setDelay(turnDelay)
 
 '''
 estado 0, esperar 5 ticks para estabilizacion
@@ -292,8 +363,8 @@ while True:
             stagesPictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 1", 1)
+            commandParser("F")
             #motores
-
         ticks += 1
         if(ticks > 10):
             estadoActual = 2
@@ -303,6 +374,7 @@ while True:
             stagesPictures.append(original.copy())
             screen.lcd_clear()
             screen.lcd_display_string("estado 2", 1)
+            commandParser("F")
             #motores
         ticks += 1
         if(ticks > 10):
@@ -315,6 +387,8 @@ while True:
             screen.lcd_clear()
             screen.lcd_display_string("estado 3", 1)
             #motores
+            commandParser("F' F'")
+            #agregar siguiente estado de motores
         ticks += 1
         if(ticks > 10):
             estadoActual = 4
@@ -403,7 +477,8 @@ while True:
 
 
 
-
+screen.lcd_clear()
+screen.lcd_display_string("adios", 1)
 
 #cap.release()
 cv2.destroyAllWindows()
