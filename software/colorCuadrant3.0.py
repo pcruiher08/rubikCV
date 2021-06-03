@@ -265,12 +265,11 @@ while True:
     #take 5 picutes
     colores = []
     for i in range(5):
-        par1, foto = cap.read()
         dosArucos = False
         while(not dosArucos):
             contoursSpecial, dosArucos = arucoProcessing(img)
 
-        respuesta = colorFinder(foto, contoursSpecial, color_ranges_HSV)
+        respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
         colores.append(respuesta)
 
     print(respuesta)
