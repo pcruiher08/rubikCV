@@ -130,6 +130,7 @@ def colorFinder(img, contours, color_ranges_HSV):
 
 
 def arucoProcessing(img):
+    contoursSpecial = []
     arucofound = findArucoMarkers(img)
     howManyArucos = len(arucofound[0])
     if howManyArucos!=0:
@@ -247,7 +248,6 @@ while True:
     success, img = cap.read()
     original = img.copy()
     #img = cv2.imread("4.jpg")
-    contoursSpecial = []
     contoursSpecial = arucoProcessing(img)
     respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
     print(respuesta)
