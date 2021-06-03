@@ -251,7 +251,7 @@ while True:
     original = img.copy()
     #img = cv2.imread("4.jpg")
     contoursSpecial, flag = arucoProcessing(img)
-    respuesta = colorFinder(foto, contoursSpecial, color_ranges_HSV)
+    respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
     rows,cols,dim = img.shape
     maskTemp = np.zeros([rows,cols,3],np.uint8)
     for i in range(len(respuesta)):
