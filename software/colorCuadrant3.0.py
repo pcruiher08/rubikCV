@@ -4,7 +4,7 @@ import numpy as np
 import os
 from polygon import Polygon 
 import math as m 
-
+import LCD
 
 matrizKociemba = []
 
@@ -244,8 +244,26 @@ color_ranges_HSV = [
 ]
 
 
+stagesPictures = []
 
 
+'''
+estado 0, esperar 5 ticks para estabilizacion
+estado 1, foto y agregar al array y luego mover motores para transicion al estado 2
+estado 2, foto y agregar al array y luego mover motores para transicion al estado 3
+estado 3, foto y agregar al array y luego mover motores para transicion al estado 4
+estado 4, foto y agregar al array y luego mover motores para transicion al estado 5
+estado 5, foto y agregar al array y luego mover motores para transicion al estado 6
+estado 6, foto y agregar al array y luego mover motores para transicion al estado 7
+estado 7, foto y agregar al array y luego mover motores para transicion al estado 8
+estado 8, foto y agregar al array y luego mover motores para transicion al estado 9
+estado 9, foto y agregar al array y luego mover motores para transicion al estado 10
+estado 10, kociemba y motores
+'''
+screen = LCD.lcd()
+screen.lcd_clear()
+estadoActual = 0
+ticks = 0
 while True:
     success, img = cap.read()
     original = img.copy()
@@ -262,19 +280,119 @@ while True:
     maskTemp = cv2.cvtColor(maskTemp, cv2.COLOR_HSV2BGR)
     cv2.imshow("color reconstruction",maskTemp)
     cv2.imshow("original image",original)
-    
-    #take 5 picutes
-    colores = []
-    for i in range(5):
-        copia = original.copy()
-        dosArucos = False
-        contoursSpecial = arucoProcessing(copia)
 
-        respuesta = colorFinder(copia, contoursSpecial, color_ranges_HSV)
-        colores.append(respuesta)
 
-    print(colores)
-    #procesamos 5 fotos
+    if(estadoActual == 0):
+        ticks += 1
+        if(ticks > 5):
+            estadoActual = 1
+            ticks = 0
+    elif(estadoActual == 1):
+        if(ticks == 0):
+            stagesPictures.append(original.copy())
+            screen.lcd_clear()
+            screen.lcd_display_string("estado 1", 1)
+            #motores
+
+        ticks += 1
+        if(ticks > 10):
+            estadoActual = 2
+            ticks = 0
+    elif(estadoActual == 2):
+        if(ticks == 0):
+            stagesPictures.append(original.copy())
+            screen.lcd_clear()
+            screen.lcd_display_string("estado 2", 1)
+            #motores
+        ticks += 1
+        if(ticks > 10):
+            estadoActual = 3
+            ticks = 0
+            
+    elif(estadoActual == 3):
+        if(ticks == 0):
+            stagesPictures.append(original.copy())
+            screen.lcd_clear()
+            screen.lcd_display_string("estado 3", 1)
+            #motores
+        ticks += 1
+        if(ticks > 10):
+            estadoActual = 4
+            ticks = 0
+            
+    elif(estadoActual == 4):
+        if(ticks == 0):
+            stagesPictures.append(original.copy())
+            screen.lcd_clear()
+            screen.lcd_display_string("estado 4", 1)
+            #motores
+        ticks += 1
+        if(ticks > 10):
+            estadoActual = 5
+            ticks = 0
+            
+    elif(estadoActual == 5):
+        if(ticks == 0):
+            stagesPictures.append(original.copy())
+            screen.lcd_clear()
+            screen.lcd_display_string("estado 5", 1)
+            #motores
+        ticks += 1
+        if(ticks > 10):
+            estadoActual = 6
+            ticks = 0
+            
+    elif(estadoActual == 6):
+        if(ticks == 0):
+            stagesPictures.append(original.copy())
+            screen.lcd_clear()
+            screen.lcd_display_string("estado 6", 1)
+            #motores
+        ticks += 1
+        if(ticks > 10):
+            estadoActual = 7
+            ticks = 0
+            
+    elif(estadoActual == 7):
+        if(ticks == 0):
+            stagesPictures.append(original.copy())
+            screen.lcd_clear()
+            screen.lcd_display_string("estado 7", 1)
+            #motores
+        ticks += 1
+        if(ticks > 10):
+            estadoActual = 8
+            ticks = 0
+            
+    elif(estadoActual == 8):
+        if(ticks == 0):
+            stagesPictures.append(original.copy())
+            screen.lcd_clear()
+            screen.lcd_display_string("estado 8", 1)
+            #motores
+        ticks += 1
+        if(ticks > 10):
+            estadoActual = 9
+            ticks = 0
+            
+    elif(estadoActual == 9):
+        if(ticks == 0):
+            stagesPictures.append(original.copy())
+            screen.lcd_clear()
+            screen.lcd_display_string("estado 9", 1)
+            #motores
+        ticks += 1
+        if(ticks > 10):
+            estadoActual = 10
+            ticks = 0
+    elif(estadoActual == 10):
+        break
+        
+    cv2.imshow('arucos',img)
+    k = cv2.waitKey(30) & 0xff
+    if k == 27:
+        break  
+
 
     #sacamos el arreglo con la letra mas repetida
     #escribimos en la matriz kociemba
@@ -287,11 +405,5 @@ while True:
 
 
 
-    cv2.imshow('arucos',img)
-
-    
-    k = cv2.waitKey(30) & 0xff
-    if k == 27:
-        break
 #cap.release()
 cv2.destroyAllWindows()
