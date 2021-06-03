@@ -223,6 +223,7 @@ def arucoProcessing(img):
             img = cv2.line(img, P2, P22,[0,0,0],smallLine)
             img = cv2.line(img, P9, P24,[0,0,0],smallLine)
     return contoursSpecial
+    
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
 blueColor = (255,0,0)
@@ -246,8 +247,7 @@ while True:
     success, img = cap.read()
     original = img.copy()
     #img = cv2.imread("4.jpg")
-
-
+    contoursSpecial = []
     contoursSpecial = arucoProcessing(img)
     respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
     print(respuesta)
