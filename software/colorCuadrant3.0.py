@@ -593,16 +593,15 @@ commandParser(solution)
 
 
 
-'''
 while True:
     
     for i in range(len(stagePictures)):
-        cv2.imshow("stage "+str(i + 1), stagePictures[i])
-
+        cv2.imwrite("stage "+str(i + 1), stagePictures[i])
+    '''
     k = cv2.waitKey(30) & 0xff
     if k == 27:
         break  
-'''
+    '''
 
 
 screen.lcd_clear()
