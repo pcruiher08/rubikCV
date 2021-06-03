@@ -307,10 +307,10 @@ def printCube(string):
         if(i < 10):
             #imprimo arriba
             print(' '*3 + parsedString[i], end = '', sep=' ')
-            if(i%3 == 0):
+            if(i%3 == 0 and i != 0):
                 print('\n')
 
-        if(i < 47):
+        elif(i < 47):
             #imprimo en medio
             print(parsedString[i], end = '', sep=' ')
             if(i % 12 == 0):
