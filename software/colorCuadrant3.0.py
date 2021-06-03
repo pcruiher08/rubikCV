@@ -271,7 +271,7 @@ while True:
         respuesta = colorFinder(img, contoursSpecial, color_ranges_HSV)
         colores.append(respuesta)
 
-    print(respuesta)
+    print(colores)
     #procesamos 5 fotos
 
     #sacamos el arreglo con la letra mas repetida
