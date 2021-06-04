@@ -611,7 +611,7 @@ solution = kociemba.solve(KociembaString)
 
 commandParser(solution)
 
-
+##mensaje
 
 
 screen.lcd_clear()
