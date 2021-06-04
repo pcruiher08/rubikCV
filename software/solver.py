@@ -318,25 +318,7 @@ def printAsMatrix(string, n, m):
             print(newString[i * m + j], end = ' ')
         print('\n')
     print('\n')
-def printCube(string):
-    parsedString = stringParser(string)
-    for i in range(len(parsedString)):
-        if(i < 10):
-            #imprimo arriba
-            print(' '*3 + parsedString[i], end = '', sep=' ')
-            if(i%3 == 0 and i != 0):
-                print('\n')
 
-        elif(i < 47):
-            #imprimo en medio
-            print(parsedString[i], end = '', sep=' ')
-            if(i % 12 == 0):
-                print('\n')
-        else:
-            #imprimo abajo
-            print(' '*3 + parsedString[i], end = '', sep=' ')
-            if(i%3 == 0):
-                print('\n')
 cap = cv2.VideoCapture(0)   
 greenColor = (0,255,0)
 blueColor = (255,0,0)
@@ -425,7 +407,7 @@ while True:
             screen.lcd_clear()
             screen.lcd_display_string("estado 1", 1)
             commandParser("F'")
-            #motoresghfdfhghfgfhg
+            #motores
         ticks += 1
         if(ticks > 10):
             estadoActual = 2
@@ -590,7 +572,6 @@ BString =  finalColors[6][8] + finalColors[7][9] + finalColors[4][3] +  finalCol
 
 KociembaString = UString + RString + FString + DString + LString + BString
 
-#printCube(KociembaString)
 print("YELLOW")
 printAsMatrix(UString, 3, 3)
 
