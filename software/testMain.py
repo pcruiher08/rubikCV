@@ -80,8 +80,8 @@ D.setDelay(turnDelay)
 #cube in a cube pattern
 #commandParser("F L F U’ R U F2 L2 U’ L’ B D’ B’ L2 U")
 #6 centers pattern
-#commandParser("F2 B2 U D’ R2 L2 U D’")
-
+commandParser("D B' F2 L2 B2 D' R' B D' F")
+'''
 #scan phase
 
 screen.lcd_clear()
@@ -135,7 +135,7 @@ screen.lcd_display_string("Back piece", 1)
 commandParser("B' D")
 #scan
 commandParser("D' B")
-
+'''
 
 '''
 #test
