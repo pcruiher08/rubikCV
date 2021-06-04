@@ -389,7 +389,8 @@ estado 6, foto y agregar al array y luego mover motores para transicion al estad
 estado 7, foto y agregar al array y luego mover motores para transicion al estado 8
 estado 8, foto y agregar al array y luego mover motores para transicion al estado 9
 estado 9, foto y agregar al array y luego mover motores para transicion al estado 10
-estado 10, kociemba y motores
+estado 10, foto y agregar al array y luego mover motores para transicion al estado 11
+estado 11, kociemba y motores
 '''
 screen = LCD.lcd()
 screen.lcd_clear()
@@ -555,9 +556,10 @@ while True:
     if k == 27:
         break  
 
-    
+'''
 for i in range(len(stagePictures)):
     cv2.imwrite("stage "+str(i + 1)+'.jpg', stagePictures[i])
+'''
 '''
 k = cv2.waitKey(30) & 0xff
 if k == 27:
