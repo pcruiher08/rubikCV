@@ -358,7 +358,7 @@ stagePictures = []
 matrizKociemba = []
 
 scanState = 0
-turnDelay = .005 / 8 * 1/2
+turnDelay = .005 / 8 * 1/6
 
 F = Motor(26,19)
 L = Motor(13,6)
