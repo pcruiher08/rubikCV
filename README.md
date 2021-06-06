@@ -30,9 +30,9 @@
 ### Software
 #### OpenCV justification
 * Image processing (5 pictures per face)
-##### * Arucos (Augmented reality and geometry functions)
-##### ..* HSV
-##### ..* Dominant Color algorithm
+* Arucos (Augmented reality and geometry functions)
+* HSV
+* Dominant Color algorithm
 #### Cube map (diagrams, polygon class)
 #### States machine (scanning phase with pre defined movements)
 #### Kociemba
