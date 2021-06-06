@@ -28,7 +28,6 @@
 
 
 ### Software
---
 
 
 #### OpenCV justification
