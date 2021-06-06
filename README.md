@@ -29,7 +29,6 @@
 
 ### Software
 
-
 #### OpenCV justification
 * Image processing (5 pictures per face)
 * Arucos (Augmented reality and geometry functions)
