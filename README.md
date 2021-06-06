@@ -29,7 +29,7 @@
 
 ### Software
 #### OpenCV justification
-..* Image processing (5 pictures per face)
+* Image processing (5 pictures per face)
 ##### * Arucos (Augmented reality and geometry functions)
 ##### ..* HSV
 ##### ..* Dominant Color algorithm
