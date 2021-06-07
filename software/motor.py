@@ -2,14 +2,12 @@ from time import sleep
 import RPi.GPIO as GPIO
 
 class Motor:
-
-
     def __init__(self, directionPin, stepPin):
         self.DIR = directionPin       # Direction GPIO Pin
         self.STEP = stepPin      # Step GPIO Pin
         self.CW = 0         # Clockwise Rotation
         self.CCW = 1        # Counterclockwise Rotation
-        self.SPR = 800      # Steps per Revolution (360 / 1.8)
+        self.SPR = 800      # Steps per Revolution (360 / 1.8) * microsteps
         self.DELAY = .005/1 # delay
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.DIR, GPIO.OUT)
@@ -35,7 +33,7 @@ class Motor:
 
     def turn90CCW(self):
         GPIO.output(self.DIR, self.CCW)
-        #sleep(.15)
+        sleep(.15)
         for x in range(int(self.SPR/4)):
             GPIO.output(self.STEP, GPIO.HIGH)
             sleep(self.DELAY)
@@ -50,7 +48,3 @@ class Motor:
             sleep(self.DELAY)
             GPIO.output(self.STEP, GPIO.LOW)
             sleep(self.DELAY)
-
-    def printdetails(self):
-        print("This piano is a/an " , self.DIR , " foot")
-        print(self.STEP, "piano, " , self.SPR, "years old and costing" , self.CW , " dollars.")

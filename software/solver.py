@@ -9,7 +9,7 @@ from motor import Motor
 import kociemba
 
 def commandParser(series):
-    #R U R’ U R U2 R’ U
+    #se recibe un string en formato R U R’ U R U2 R’ U
     movements = series.split(' ')
     for move in movements:
         twoMoves = False
